@@ -1,0 +1,8 @@
+nginx:
+  fullnameOverride: nginx-ingress
+  controller:
+    extraArgs:
+      default-ssl-certificate: "ingress-nginx/wildcard-apps"
+      enable-ssl-passthrough: true
+    hostNetwork: true
+  
