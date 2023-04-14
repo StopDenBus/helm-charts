@@ -1,0 +1,142 @@
+argocd:
+  fullnameOverride: argocd
+
+  global:
+    logging:
+      format: json
+      # -- Annotations for the all deployed Statefulsets
+    statefulsetAnnotations:
+      reloader.stakater.com/auto: "true"
+    # -- Annotations for the all deployed Deployments
+    deploymentAnnotations:
+      reloader.stakater.com/auto: "true"
+
+  configs:
+    repositories:
+      argocd:
+        url: git@github.com:StopDenBus/argocd.git
+      secrets:
+        url: git@github.com:StopDenBus/kubernetes_secrets.git
+      dungeon:
+        url: git@github.com:StopDenBus/dungeon.git
+      hello-world:
+        url: git@github.com:StopDenBus/php_hello_world.git
+    secret:
+      createSecret: false
+
+  dex:
+    enabled: false
+
+  extraObjects:
+    - apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: cmp-plugin
+      data:
+        avp-helm.yaml: |
+          ---
+          apiVersion: argoproj.io/v1alpha1
+          kind: ConfigManagementPlugin
+          metadata:
+            name: argocd-vault-plugin-helm
+          spec:
+            allowConcurrency: true
+            discover:
+              find:
+                command:
+                  - sh
+                  - "-c"
+                  - "find . -maxdepth 1 -name 'Chart.yaml' && find . -maxdepth 1 -name 'values.yaml'"
+            generate:
+              command:
+                - sh
+                - "-c"
+                - |
+                  helm repo add bitnami https://charts.bitnami.com/bitnami > /dev/null;
+                  helm dependency build > /dev/null;
+                  helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE . |
+                  argocd-vault-plugin generate -s vault-configuration -
+            lockRepo: false
+  repoServer:
+    volumes:
+      - configMap:
+          name: cmp-plugin
+        name: cmp-plugin
+      - name: custom-tools
+        emptyDir: {}
+    initContainers:
+      - name: download-tools
+        image: registry.access.redhat.com/ubi8
+        env:
+          - name: AVP_VERSION
+            value: 1.11.0
+        command: [sh, -c]
+        args:
+          - >-
+            curl -L https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_amd64 -o argocd-vault-plugin &&
+            chmod +x argocd-vault-plugin &&
+            mv argocd-vault-plugin /custom-tools/
+        volumeMounts:
+          - mountPath: /custom-tools
+            name: custom-tools
+    extraContainers:
+      - name: avp
+        command: [/var/run/argocd/argocd-cmp-server]
+        image: quay.io/argoproj/argocd:v2.5.5
+        securityContext:
+          runAsNonRoot: true
+          runAsUser: 999
+        volumeMounts:
+          - mountPath: /var/run/argocd
+            name: var-files
+          - mountPath: /home/argocd/cmp-server/plugins
+            name: plugins
+          - mountPath: /tmp
+            name: tmp
+
+          # Register plugins into sidecar
+          - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+            subPath: avp-helm.yaml
+            name: cmp-plugin
+
+          # Important: Mount tools into $PATH
+          - name: custom-tools
+            subPath: argocd-vault-plugin
+            mountPath: /usr/local/bin/argocd-vault-plugin
+    rbac:
+      - apiGroups: [""] # "" indicates the core API group
+        resources: ["secrets"]
+        verbs: ["get"]
+
+  server:
+    ingress:
+      enabled: true
+      annotations:
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+        nginx.ingress.kubernetes.io/ssl-passthrough: "false"
+        nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
+      ingressClassName: "nginx"
+      hosts:
+        - argocd.apps.gusek.info
+      tls:
+        - hosts:
+          - argocd.apps.gusek.info
+      https: true
+    config:
+      exec.enabled: 'true'
+      url: https://argocd.apps.gusek.info
+      oidc.config: |
+        name: Dex
+        issuer: http://dex.apps.gusek.info/dex
+        clientID: argocd
+        clientSecret: $oidc.keycloak.clientSecret
+    rbacConfig:
+      policy.csv: |
+        g, kubernetes_admin, role:admin
+      policy.default: role:readonly  
+  
+  applicationSet:
+    enabled: false
+
+  notifications:
+    enabled: false

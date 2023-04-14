@@ -1,0 +1,34 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cluster-bootstrap
+spec:
+  project: cluster-bootstrap
+  source:
+    repoURL: git@github.com:StopDenBus/argocd.git
+    targetRevision: HEAD
+    path: app-resources/cluster-bootstrap
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: gusek.info
+spec:
+  project: gusek.info
+  source:
+    repoURL: git@github.com:StopDenBus/argocd.git
+    targetRevision: HEAD
+    path: app-resources/gusek.info
+  destination:
+    namespace: argocd
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
