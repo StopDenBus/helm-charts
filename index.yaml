@@ -1,5 +1,21 @@
 apiVersion: v1
 entries:
+  ingress-nginx:
+  - apiVersion: v2
+    appVersion: 1.16.0
+    created: "2023-04-14T19:41:09.214824532Z"
+    dependencies:
+    - alias: nginx
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.0.13
+    description: A Helm chart for Kubernetes
+    digest: 7e93fb53311294a58d2bdfb58efe8e9d9278a48cb34980ce2874810b339ace94
+    name: ingress-nginx
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/ingress-nginx-0.1.0/ingress-nginx-0.1.0.tgz
+    version: 0.1.0
   sealed-secrets:
   - apiVersion: v2
     appVersion: v0.20.2
@@ -16,4 +32,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-10T13:27:28.547074593Z"
+generated: "2023-04-14T19:41:09.214829532Z"
