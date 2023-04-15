@@ -1,4 +1,4 @@
-charts/
+*/*/charts/
 Chart.lock
 argocd-ssh-key.yaml
 postgres-password.yaml
