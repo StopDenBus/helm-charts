@@ -1,3 +1,34 @@
+applications:
+  argocd:
+    chart: argocd
+    helm:
+      releaseName: argocd    
+    namespace: argocd
+    project: cluster-bootstrap
+    targetRevision: 0.1.0
+  nginx:
+    chart: ingress-nginx
+    helm:
+      releaseName: ingress-nginx
+    namespace: ingress-nginx
+    project: cluster-bootstrap
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true   
+    targetRevision: 0.1.0
+  sealed-secrets:
+    chart: sealed-secrets
+    helm:
+      releaseName: sealed-secrets-controller
+    namespace: kube-system
+    project: cluster-bootstrap
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+    targetRevision: 0.1.0
+
 argocd:
   fullnameOverride: argocd
 

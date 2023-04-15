@@ -32,3 +32,24 @@ spec:
     automated:
       selfHeal: true
       prune: true
+      
+{{- range $app, $properties := .Values.applications }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ $app }}
+spec:
+  project: {{ $properties.project }}
+  source:
+    chart: {{ $properties.chart }}
+    repoURL: {{ include "repoURL" $properties }}
+    targetRevision: {{ $properties.targetRevision }}
+    {{- if $properties.helm }}
+    {{- include "helmParameters" $properties | nindent 4 }}
+    {{- end }}
+  destination:
+    namespace: {{ $properties.namespace }}
+    server: https://kubernetes.default.svc
+  {{- include "syncPolicy" $properties | nindent 2 }}  
+{{- end }}
