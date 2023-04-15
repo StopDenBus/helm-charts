@@ -1,8 +1,2 @@
 */*/charts/
 Chart.lock
-argocd-ssh-key.yaml
-postgres-password.yaml
-ldap-password.yaml
-argocd-secret.yaml
-argocd-client-secret.yaml
-vault-configuration.yaml
