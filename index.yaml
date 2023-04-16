@@ -49,6 +49,22 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/ingress-nginx-0.1.0/ingress-nginx-0.1.0.tgz
     version: 0.1.0
+  openebs:
+  - apiVersion: v2
+    appVersion: 3.5.0
+    created: "2023-04-16T12:33:24.754678089Z"
+    dependencies:
+    - alias: zfs-localpv
+      name: zfs-localpv
+      repository: https://openebs.github.io/zfs-localpv
+      version: 2.1.0
+    description: Containerized Attached Storage for Kubernetes
+    digest: 6e0b1c6b83f2ef8d311a1242d4819865715fb5d87e4970290d7ceaf115ef72e6
+    name: openebs
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/openebs-0.0.1/openebs-0.0.1.tgz
+    version: 0.0.1
   sealed-secrets:
   - apiVersion: v2
     appVersion: v0.20.2
@@ -65,4 +81,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-15T15:31:18.757384626Z"
+generated: "2023-04-16T12:33:24.754689189Z"
