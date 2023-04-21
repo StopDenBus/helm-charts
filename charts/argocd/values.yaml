@@ -15,12 +15,14 @@ argocd:
     repositories:
       argocd:
         url: git@github.com:StopDenBus/argocd.git
-      secrets:
-        url: git@github.com:StopDenBus/kubernetes_secrets.git
       dungeon:
         url: git@github.com:StopDenBus/dungeon.git
       hello-world:
         url: git@github.com:StopDenBus/php_hello_world.git
+      helm-charts:
+        url: https://stopdenbus.github.io/helm-charts
+      secrets:
+        url: git@github.com:StopDenBus/kubernetes_secrets.git
     secret:
       createSecret: false
 
