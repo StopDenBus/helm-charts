@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://stopdenbus.github.io/helm-charts
+    repoURL: git@github.com:StopDenBus/helm-charts.git
     targetRevision: HEAD
     path: ./
   destination:

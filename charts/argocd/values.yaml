@@ -20,7 +20,7 @@ argocd:
       hello-world:
         url: git@github.com:StopDenBus/php_hello_world.git
       helm-charts:
-        url: https://stopdenbus.github.io/helm-charts
+        url: git@github.com:StopDenBus/helm-charts.git
       secrets:
         url: git@github.com:StopDenBus/kubernetes_secrets.git
     secret:
