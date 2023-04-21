@@ -1,0 +1,51 @@
+# ArgoCD applications
+applications:
+  argocd:
+    chart: argocd
+    helm:
+      releaseName: argocd    
+    namespace: argocd
+    project: cluster-bootstrap
+    syncPolicy:
+      syncOptions:
+        - CreateNamespace=true     
+    targetRevision: 0.1.2
+  nginx:
+    chart: ingress-nginx
+    helm:
+      releaseName: ingress-nginx
+    namespace: ingress-nginx
+    project: cluster-bootstrap
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true         
+    targetRevision: 0.1.0
+  openebs:
+    chart: openebs
+    helm:
+      releaseName: openebs
+    namespace: openebs
+    project: cluster-bootstrap
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true 
+    targetRevision: 0.0.1  
+  sealed-secrets:
+    chart: sealed-secrets
+    helm:
+      releaseName: sealed-secrets-controller
+    namespace: kube-system
+    project: cluster-bootstrap
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true 
+    targetRevision: 0.1.0

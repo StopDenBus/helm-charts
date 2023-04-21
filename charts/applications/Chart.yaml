@@ -1,6 +1,6 @@
 apiVersion: v2
-name: argocd
-description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery tool for Kubernetes.
+name: applications
+description: A Helm chart for ArgoCD applications
 
 # A chart can be either an 'application' or a 'library' chart.
 #
@@ -15,16 +15,10 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.1.3
+version: 0.0.1
 
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "5.28.1"
-
-dependencies:
-  - name: argo-cd
-    version: 5.28.1
-    repository: https://argoproj.github.io/argo-helm
-    alias: argocd
+appVersion: "0.0.1"
