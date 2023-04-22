@@ -17,8 +17,11 @@ applications:
     namespace: dex
     project: default
     syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
       syncOptions:
-        - CreateNamespace=true     
+        - CreateNamespace=true 
     targetRevision: 0.0.1
   nginx:
     chart: ingress-nginx
