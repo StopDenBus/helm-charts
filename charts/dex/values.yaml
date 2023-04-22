@@ -1,0 +1,93 @@
+
+dex:
+  fullnameOverride: dex
+  https:
+    # -- Enable the HTTPS endpoint.
+    enabled: false
+  grpc:
+  # -- Enable the gRPC endpoint.
+  # Read more in the [documentation](https://dexidp.io/docs/api/).
+    enabled: true
+  config:
+    logger:
+      level: "debug"
+    issuer: http://dex.apps.gusek.info/dex
+    web:
+      http: 0.0.0.0:5556
+    # See https://dexidp.io/docs/storage/ for more options
+    storage:
+      type: memory
+    # Enable at least one connector
+    # See https://dexidp.io/docs/connectors/ for more options
+    enablePasswordDB: true
+    staticPasswords:
+      - email: "admin@gusek.info"
+        hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
+        username: "admin"
+        userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"        
+    staticClients:
+      - id: argocd
+        secretEnv: argocd-client-secret
+        name: "ArgoCD"
+        redirectURIs:
+          - https://argocd.apps.gusek.info/api/dex/callback
+          - https://argocd.apps.gusek.info/auth/callback
+          - https://argocd.gusek.info/auth/api/dex/callback
+    auth2:
+      skipApprovalScreen: true          
+    connectors:
+      - type: ldap
+        name: OpenLDAP
+        id: ldap
+        config:
+          host: samba.gusek.info:636
+          insecureNoSSL: false
+          insecureSkipVerify: true
+          bindDN: cn=dex,cn=users,dc=gusek,dc=info
+          bindPW: $LDAP_PASSWORD
+          # User search maps a username and password entered by a user to a LDAP entry.
+          userSearch:
+            # BaseDN to start the search from. It will translate to the query
+            # "(&(objectClass=person)(uid=<username>))".
+            baseDN: cn=users,dc=gusek,dc=info
+            # Optional filter to apply when searching the directory.
+            filter: "(objectClass=person)"
+            # username attribute used for comparing user entries. This will be translated
+            # and combined with the other filter as "(<attr>=<username>)".
+            username: sAMAccountName
+            # The following three fields are direct mappings of attributes on the user entry.
+            # String representation of the user.
+            idAttr: sAMAccountName
+            # Required. Attribute to map to Email.
+            emailAttr: userPrincipalName
+            # Maps to display name of users. No default value.
+            nameAttr: displayName
+            preferredUsernameAttr: sAMAccountName
+          groupSearch:
+            baseDN: dc=gusek,dc=info
+            # Optional filter to apply when searching the directory.
+            filter: "(objectClass=group)"
+            userAttr: DN
+            groupAttr: member
+            nameAttr: cn
+  envVars:
+    - name: LDAP_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: ldap-password
+          key: LDAP_PASSWORD
+    - name: argocd-client-secret
+      valueFrom:
+        secretKeyRef:
+          name: argocd-client-secret
+          key: client-secret   
+  ingress:
+    enabled: true
+    annotations:
+      kubernetes.io/ingress.class: nginx
+#      nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+    hosts:
+      - host: dex.apps.gusek.info
+        paths:
+          - path: /
+            pathType: Prefix

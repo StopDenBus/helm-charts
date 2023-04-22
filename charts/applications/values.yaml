@@ -10,6 +10,16 @@ applications:
       syncOptions:
         - CreateNamespace=true     
     targetRevision: 0.1.7
+  dex:
+    chart: dex
+    helm:
+      releaseName: dex    
+    namespace: dex
+    project: default
+    syncPolicy:
+      syncOptions:
+        - CreateNamespace=true     
+    targetRevision: 0.0.1
   nginx:
     chart: ingress-nginx
     helm:
