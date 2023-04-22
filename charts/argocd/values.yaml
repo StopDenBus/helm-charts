@@ -68,7 +68,10 @@ argocd:
             allowConcurrency: true
             discover:
               find:
-                glob "**/Chart.yaml"
+                command:
+                  - sh
+                  - "-c"
+                  - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
             generate:
               command:
                 - sh
