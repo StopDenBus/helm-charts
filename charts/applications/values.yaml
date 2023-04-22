@@ -9,7 +9,7 @@ applications:
     syncPolicy:
       syncOptions:
         - CreateNamespace=true     
-    targetRevision: 0.1.6
+    targetRevision: 0.1.7
   nginx:
     chart: ingress-nginx
     helm:
