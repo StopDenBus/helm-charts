@@ -59,6 +59,26 @@ argocd:
                   helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE . |
                   argocd-vault-plugin generate -s vault-configuration -
             lockRepo: false
+          ---
+          apiVersion: argoproj.io/v1alpha1
+          kind: ConfigManagementPlugin
+          metadata:
+            name: argocd-vault-plugin-helm-test
+          spec:
+            allowConcurrency: true
+            discover:
+              find:
+                glob "**/Chart.yaml"
+            generate:
+              command:
+                - sh
+                - "-c"
+                - |
+                  helm repo add bitnami https://charts.bitnami.com/bitnami > /dev/null;
+                  helm dependency build > /dev/null;
+                  helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE . |
+                  argocd-vault-plugin generate -s vault-configuration -
+            lockRepo: false          
   repoServer:
     volumes:
       - configMap:
