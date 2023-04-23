@@ -9,12 +9,13 @@ applications:
     syncPolicy:
       syncOptions:
         - CreateNamespace=true     
-    targetRevision: 0.1.10
+    targetRevision: 0.1.11
   dex:
     chart: dex
     helm:
       releaseName: dex    
     namespace: dex
+    plugin: my-argocd-vault-plugin-helm
     project: default
     syncPolicy:
       automated:

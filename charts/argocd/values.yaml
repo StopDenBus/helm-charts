@@ -71,7 +71,7 @@ argocd:
                 command:
                   - sh
                   - "-c"
-                  - "find . -name 'Chart.yaml' && find . -name 'values.yaml'"
+                  - "echo 'Hallo World'"
             generate:
               command:
                 - sh
@@ -128,6 +128,10 @@ argocd:
           - name: custom-tools
             subPath: argocd-vault-plugin
             mountPath: /usr/local/bin/argocd-vault-plugin
+    volumeMounts:
+      - mountPath: /usr/local/bin/argocd-vault-plugin
+        name: custom-tools
+        subPath: argocd-vault-plugin        
     rbac:
       - apiGroups: [""] # "" indicates the core API group
         resources: ["secrets"]
@@ -155,6 +159,11 @@ argocd:
         issuer: http://dex.apps.gusek.info/dex
         clientID: argocd
         clientSecret: $oidc.keycloak.clientSecret
+      configManagementPlugins: |
+          - name: my-argocd-vault-plugin-helm
+            generate:
+              command: ["sh", "-c"]
+              args: ['helm template "$ARGOCD_APP_NAME" -n "$ARGOCD_APP_NAMESPACE" . | argocd-vault-plugin generate -s vault-configuration -']              
     rbacConfig:
       policy.csv: |
         g, kubernetes_admin, role:admin

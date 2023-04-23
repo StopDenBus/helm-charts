@@ -41,6 +41,9 @@ metadata:
   name: {{ $app }}
 spec:
   project: {{ $properties.project }}
+  {{- if $properties.plugin }}
+  plugin: {{ $properties.plugin }}
+  {{- end }}
   source:
     chart: {{ $properties.chart }}
     repoURL: {{ include "repoURL" $properties }}
