@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-04-29T20:12:54.335624763Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 0df44d483c74bf074d5c4286647c16582dfdfc4876b14c0b24fae252c82098bb
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.13/applications-0.0.13.tgz
+    version: 0.0.13
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-04-29T16:47:29.83777374Z"
     description: A Helm chart for ArgoCD applications
     digest: 2dc1abbba5372b22e1820402941a14bf11e1ee9ae47520cc897f644d5f63ece0
@@ -333,6 +343,22 @@ entries:
   dex:
   - apiVersion: v2
     appVersion: 0.14.1
+    created: "2023-04-29T20:12:54.461521847Z"
+    dependencies:
+    - alias: dex
+      name: dex
+      repository: https://charts.dexidp.io
+      version: 0.14.1
+    description: OpenID Connect (OIDC) identity and OAuth 2.0 provider with pluggable
+      connectors.
+    digest: 8fb07dfe3759f4e04b89f398c1a08ebd4193f796f2df92a2e737c70a7a2228ed
+    name: dex
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.2/dex-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 0.14.1
     created: "2023-04-22T13:23:24.470452914Z"
     dependencies:
     - alias: dex
@@ -346,6 +372,22 @@ entries:
     type: application
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.1/dex-0.0.1.tgz
+    version: 0.0.1
+  external-secrets:
+  - apiVersion: v2
+    appVersion: 0.8.1
+    created: "2023-04-29T20:12:54.609980309Z"
+    dependencies:
+    - alias: external-secrets
+      name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: 0.8.1
+    description: External secret management for Kubernetes
+    digest: f071350ca7f2dcd2fe4f70fe7cd1aed3827849d456b6cc3197b472c12086ed23
+    name: external-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-secrets-0.0.1/external-secrets-0.0.1.tgz
     version: 0.0.1
   ingress-nginx:
   - apiVersion: v2
@@ -395,4 +437,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-29T16:47:30.097507457Z"
+generated: "2023-04-29T20:12:54.610076411Z"
