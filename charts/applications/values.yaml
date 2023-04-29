@@ -23,7 +23,7 @@ applications:
       syncOptions:
         - CreateNamespace=true 
     targetRevision: 0.0.2
-  dex:
+  external-secrets:
     chart: external-secrets
     helm:
       releaseName: external-secrets    
