@@ -15,7 +15,6 @@ applications:
     helm:
       releaseName: dex    
     namespace: dex
-    plugin: my-argocd-vault-plugin-helm
     project: default
     syncPolicy:
       automated:
@@ -23,7 +22,20 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true 
-    targetRevision: 0.0.1
+    targetRevision: 0.0.2
+  dex:
+    chart: external-secrets
+    helm:
+      releaseName: external-secrets    
+    namespace: external-secrets
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true 
+    targetRevision: 0.0.1 
   nginx:
     chart: ingress-nginx
     helm:
