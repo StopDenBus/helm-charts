@@ -29,109 +29,7 @@ argocd:
   dex:
     enabled: false
 
-  # extraObjects:
-  #   - apiVersion: v1
-  #     kind: ConfigMap
-  #     metadata:
-  #       name: cmp-plugin
-  #     data:
-  #       avp-helm.yaml: |
-  #         ---
-  #         apiVersion: argoproj.io/v1alpha1
-  #         kind: ConfigManagementPlugin
-  #         metadata:
-  #           name: argocd-vault-plugin-helm
-  #         spec:
-  #           allowConcurrency: true
-  #           discover:
-  #             find:
-  #               command:
-  #                 - sh
-  #                 - "-c"
-  #                 - "find . -maxdepth 1 -name 'Chart.yaml' && find . -maxdepth 1 -name 'values.yaml'"
-  #           generate:
-  #             command:
-  #               - sh
-  #               - "-c"
-  #               - |
-  #                 helm repo add bitnami https://charts.bitnami.com/bitnami > /dev/null;
-  #                 helm dependency build > /dev/null;
-  #                 helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE . |
-  #                 argocd-vault-plugin generate -s vault-configuration -
-  #           lockRepo: false
-  #         ---
-  #         apiVersion: argoproj.io/v1alpha1
-  #         kind: ConfigManagementPlugin
-  #         metadata:
-  #           name: argocd-vault-plugin-helm-test
-  #         spec:
-  #           allowConcurrency: true
-  #           discover:
-  #             find:
-  #               command:
-  #                 - sh
-  #                 - "-c"
-  #                 - "echo 'Hallo World'"
-  #           generate:
-  #             command:
-  #               - sh
-  #               - "-c"
-  #               - |
-  #                 helm repo add bitnami https://charts.bitnami.com/bitnami > /dev/null;
-  #                 helm dependency build > /dev/null;
-  #                 helm template $ARGOCD_APP_NAME --include-crds -n $ARGOCD_APP_NAMESPACE . |
-  #                 argocd-vault-plugin generate -s vault-configuration -
-  #           lockRepo: false          
-  repoServer:
-    # volumes:
-    #   - configMap:
-    #       name: cmp-plugin
-    #     name: cmp-plugin
-    #   - name: custom-tools
-    #     emptyDir: {}
-    # initContainers:
-    #   - name: download-tools
-    #     image: registry.access.redhat.com/ubi8
-    #     env:
-    #       - name: AVP_VERSION
-    #         value: 1.11.0
-    #     command: [sh, -c]
-    #     args:
-    #       - >-
-    #         curl -L https://github.com/argoproj-labs/argocd-vault-plugin/releases/download/v$(AVP_VERSION)/argocd-vault-plugin_$(AVP_VERSION)_linux_amd64 -o argocd-vault-plugin &&
-    #         chmod +x argocd-vault-plugin &&
-    #         mv argocd-vault-plugin /custom-tools/
-    #     volumeMounts:
-    #       - mountPath: /custom-tools
-    #         name: custom-tools
-    # extraContainers:
-    #   - name: avp
-    #     command: [/var/run/argocd/argocd-cmp-server]
-    #     image: quay.io/argoproj/argocd:v2.5.5
-    #     securityContext:
-    #       runAsNonRoot: true
-    #       runAsUser: 999
-    #     volumeMounts:
-    #       - mountPath: /var/run/argocd
-    #         name: var-files
-    #       - mountPath: /home/argocd/cmp-server/plugins
-    #         name: plugins
-    #       - mountPath: /tmp
-    #         name: tmp
-
-    #       # Register plugins into sidecar
-    #       - mountPath: /home/argocd/cmp-server/config/plugin.yaml
-    #         subPath: avp-helm.yaml
-    #         name: cmp-plugin
-
-    #       # Important: Mount tools into $PATH
-    #       - name: custom-tools
-    #         subPath: argocd-vault-plugin
-    #         mountPath: /usr/local/bin/argocd-vault-plugin
-    # volumeMounts:
-    #   - mountPath: /usr/local/bin/argocd-vault-plugin
-    #     name: custom-tools
-    #     subPath: argocd-vault-plugin        
+  repoServer:    
     rbac:
       - apiGroups: [""] # "" indicates the core API group
         resources: ["secrets"]
@@ -158,12 +56,7 @@ argocd:
         name: Dex
         issuer: http://dex.apps.gusek.info/dex
         clientID: argocd
-        clientSecret: $oidc.keycloak.clientSecret
-      # configManagementPlugins: |
-      #     - name: my-argocd-vault-plugin-helm
-      #       generate:
-      #         command: ["sh", "-c"]
-      #         args: ['helm template "$ARGOCD_APP_NAME" -n "$ARGOCD_APP_NAMESPACE" . | argocd-vault-plugin generate -s vault-configuration -']              
+        clientSecret: $oidc.clientSecret
     rbacConfig:
       policy.csv: |
         g, kubernetes_admin, role:admin

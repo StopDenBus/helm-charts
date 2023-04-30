@@ -5,11 +5,11 @@ applications:
     helm:
       releaseName: argocd    
     namespace: argocd
-    project: cluster-bootstrap
+    project: default
     syncPolicy:
       syncOptions:
         - CreateNamespace=true     
-    targetRevision: 0.1.12
+    targetRevision: 0.1.13
   dex:
     chart: dex
     helm:
