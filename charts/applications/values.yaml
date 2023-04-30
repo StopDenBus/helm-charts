@@ -9,7 +9,7 @@ applications:
     syncPolicy:
       syncOptions:
         - CreateNamespace=true     
-    targetRevision: 0.1.13
+    targetRevision: 0.1.14
   dex:
     chart: dex
     helm:
