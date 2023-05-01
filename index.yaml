@@ -545,6 +545,17 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/openebs-0.0.1/openebs-0.0.1.tgz
     version: 0.0.1
+  php-hello-world:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-05-01T16:57:54.002284298Z"
+    description: A hello world app written in PHP
+    digest: c220239687ea7bd3a2adf842dfbd7b4f52d12422e6157539240c40f369b54a33
+    name: php-hello-world
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/php-hello-world-0.0.1/php-hello-world-0.0.1.tgz
+    version: 0.0.1
   sealed-secrets:
   - apiVersion: v2
     appVersion: v0.20.2
@@ -561,4 +572,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-04-30T11:10:23.901582955Z"
+generated: "2023-05-01T16:57:54.002381397Z"
