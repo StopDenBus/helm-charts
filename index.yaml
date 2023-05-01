@@ -548,6 +548,16 @@ entries:
   php-hello-world:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-05-01T18:02:06.843869647Z"
+    description: A hello world app written in PHP
+    digest: 5a299ce6f209f31ae50d3196b99100bf68beb19c8ece02a7d18d649e0ffaa156
+    name: php-hello-world
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/php-hello-world-0.0.17/php-hello-world-0.0.17.tgz
+    version: 0.0.17
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-05-01T16:57:54.002284298Z"
     description: A hello world app written in PHP
     digest: c220239687ea7bd3a2adf842dfbd7b4f52d12422e6157539240c40f369b54a33
@@ -572,4 +582,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-01T16:57:54.002381397Z"
+generated: "2023-05-01T18:02:06.843952951Z"
