@@ -1,0 +1,17 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-hello-world-deployment
+spec:
+  template:
+    spec:
+      containers:
+        - name: php-hello-world
+          image: php-hello-world-image
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+      imagePullSecrets:
+        - name: github
