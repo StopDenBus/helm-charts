@@ -78,6 +78,8 @@ applications:
     featureBranches:
       feature/blub:
         tag: 11dab270b892e8e7680632d6c928a0977e902e29
+      feature/cool-feature:
+        tag: 077dbc3a856d24cb6efb127a91960f81bf03f5fc
   sealed-secrets:
     chart: sealed-secrets
     helm:
