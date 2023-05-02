@@ -75,7 +75,7 @@ applications:
       syncOptions:
         - CreateNamespace=true 
     targetRevision: 0.0.18
-    features: []
+    featureBranches: {}
   sealed-secrets:
     chart: sealed-secrets
     helm:
