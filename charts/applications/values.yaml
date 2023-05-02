@@ -79,7 +79,7 @@ applications:
       feature/blub:
         tag: 11dab270b892e8e7680632d6c928a0977e902e29
       feature/cool-feature:
-        tag: 077dbc3a856d24cb6efb127a91960f81bf03f5fc
+        tag: b92740c7a0637aa8ac8f64527fa5db5134099c32
   sealed-secrets:
     chart: sealed-secrets
     helm:
