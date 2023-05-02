@@ -3,17 +3,17 @@ applications:
   argocd:
     chart: argocd
     helm:
-      releaseName: argocd    
+      releaseName: argocd
     namespace: argocd
     project: default
     syncPolicy:
       syncOptions:
-        - CreateNamespace=true     
+        - CreateNamespace=true
     targetRevision: 0.1.14
   dex:
     chart: dex
     helm:
-      releaseName: dex    
+      releaseName: dex
     namespace: dex
     project: default
     syncPolicy:
@@ -21,12 +21,12 @@ applications:
         selfHeal: true
         prune: true
       syncOptions:
-        - CreateNamespace=true 
+        - CreateNamespace=true
     targetRevision: 0.0.4
   external-secrets:
     chart: external-secrets
     helm:
-      releaseName: external-secrets    
+      releaseName: external-secrets
     namespace: external-secrets
     project: default
     syncPolicy:
@@ -34,7 +34,7 @@ applications:
         selfHeal: true
         prune: true
       syncOptions:
-        - CreateNamespace=true 
+        - CreateNamespace=true
     targetRevision: 0.0.2
   nginx:
     chart: ingress-nginx
@@ -47,7 +47,7 @@ applications:
         selfHeal: true
         prune: true
       syncOptions:
-        - CreateNamespace=true         
+        - CreateNamespace=true
     targetRevision: 0.1.0
   openebs:
     chart: openebs
@@ -60,7 +60,7 @@ applications:
         selfHeal: true
         prune: true
       syncOptions:
-        - CreateNamespace=true 
+        - CreateNamespace=true
     targetRevision: 0.0.1
   php-hello-world:
     chart: php-hello-world
@@ -73,9 +73,11 @@ applications:
         selfHeal: true
         prune: true
       syncOptions:
-        - CreateNamespace=true 
+        - CreateNamespace=true
     targetRevision: 0.0.18
-    featureBranches: {}
+    featureBranches:
+      feature/blub:
+        tag: 11dab270b892e8e7680632d6c928a0977e902e29
   sealed-secrets:
     chart: sealed-secrets
     helm:
@@ -87,5 +89,5 @@ applications:
         selfHeal: true
         prune: true
       syncOptions:
-        - CreateNamespace=true 
+        - CreateNamespace=true
     targetRevision: 0.1.0
