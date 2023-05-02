@@ -76,8 +76,6 @@ applications:
         - CreateNamespace=true
     targetRevision: 0.0.18
     featureBranches:
-      feature/blub:
-        tag: 11dab270b892e8e7680632d6c928a0977e902e29
       feature/cool-feature:
         tag: b92740c7a0637aa8ac8f64527fa5db5134099c32
   sealed-secrets:
