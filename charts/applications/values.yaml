@@ -61,7 +61,21 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true 
-    targetRevision: 0.0.1  
+    targetRevision: 0.0.1
+  php-hello-world:
+    chart: php-hello-world
+    helm:
+      releaseName: php-hello-world
+    namespace: stuff
+    project: cluster-bootstrap
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true 
+    targetRevision: 0.0.18
+    features: []
   sealed-secrets:
     chart: sealed-secrets
     helm:

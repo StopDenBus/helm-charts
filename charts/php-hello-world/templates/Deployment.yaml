@@ -8,7 +8,7 @@ spec:
     spec:
       containers:
         - name: php-hello-world
-          image: php-hello-world-image
+          image: {{ template "php-hello-world.image" . }}
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
