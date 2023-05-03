@@ -77,7 +77,7 @@ applications:
     targetRevision: 0.0.18
     featureBranches:
       feature/cool-feature:
-        tag: b92740c7a0637aa8ac8f64527fa5db5134099c32
+        tag: f801a511d0243448c97242e70a710c8fe3cd4cdf
   sealed-secrets:
     chart: sealed-secrets
     helm:
