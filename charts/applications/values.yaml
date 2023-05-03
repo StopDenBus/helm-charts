@@ -75,9 +75,7 @@ applications:
       syncOptions:
         - CreateNamespace=true
     targetRevision: 0.0.18
-    featureBranches:
-      feature/cool-feature:
-        tag: 42276d0e65c8d13f6c9c4d05e190e1f560abfeb8
+    featureBranches: {}
   sealed-secrets:
     chart: sealed-secrets
     helm:
