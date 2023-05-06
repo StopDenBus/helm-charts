@@ -8,7 +8,7 @@ spec:
   source:
     chart: applications
     repoURL: https://stopdenbus.github.io/helm-charts
-    targetRevision: 0.0.19
+    targetRevision: 0.0.20
     helm:
       releaseName: applications
   destination:
