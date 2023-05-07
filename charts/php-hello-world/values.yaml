@@ -1,4 +1,3 @@
-
 ## @section Global parameters
 ## Global Docker image parameters
 ## Please, note that this will override the image parameters, including dependencies, configured to use the global value
@@ -16,36 +15,643 @@ global:
   ##   - myRegistryKeySecretName
   ##
   imagePullSecrets: []
+  storageClass: ""
 
 ## @section Common parameters
 ##
 
-## PHP hello world image version
-## ref: https://github.com/StopDenBus/php_hello_world/pkgs/container/php_hello_world%2Fphp-hello-world
-## @param image.registry Hello World image registry
-## @param image.repository Hello World Image name
-## @param image.tag Hello World Image tag
-## @param image.digest Hello World image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag
-## @param image.pullPolicy Hello World image pull policy
-## @param image.pullSecrets Specify docker-registry secret names as an array
+## @param kubeVersion Override Kubernetes version
 ##
-image:
-  registry: ghrc.io
-  repository: stopdenbus/php_hello_world/php-hello-world
-  tag: 0.0.18
-  digest: ""
-  ## Specify a imagePullPolicy
-  ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
-  ## ref: https://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+kubeVersion: ""
+## @param nameOverride String to partially override common.names.name
+##
+nameOverride: ""
+## @param fullnameOverride String to fully override common.names.fullname
+##
+fullnameOverride: ""
+## @param namespaceOverride String to fully override common.names.namespace
+##
+namespaceOverride: ""
+## @param commonLabels Labels to add to all deployed objects
+##
+commonLabels: {}
+## @param commonAnnotations Annotations to add to all deployed objects
+##
+commonAnnotations: {}
+## @param clusterDomain Kubernetes cluster domain name
+##
+clusterDomain: cluster.local
+## @param extraDeploy Array of extra objects to deploy with the release
+##
+extraDeploy: []
+
+## Enable diagnostic mode in the deployment
+##
+diagnosticMode:
+  ## @param diagnosticMode.enabled Enable diagnostic mode (all probes will be disabled and the command will be overridden)
   ##
-  pullPolicy: IfNotPresent
-  ## Optionally specify an array of imagePullSecrets.
-  ## Secrets must be manually created in the namespace.
-  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+  enabled: false
+  ## @param diagnosticMode.command Command to override all containers in the deployment
+  ##
+  command:
+    - sleep
+  ## @param diagnosticMode.args Args to override all containers in the deployment
+  ##
+  args:
+    - infinity
+
+## @section php-hello-world Parameters
+##
+
+## %%MAIN_CONTAINER/POD_DESCRIPTION%%
+##
+application:
+  ## Bitnami php-hello-world image
+  ## ref: https://hub.docker.com/r/bitnami/%%IMAGE_NAME%%/tags/
+  ## @param application.image.registry php-hello-world image registry
+  ## @param application.image.repository php-hello-world image repository
+  ## @param application.image.tag php-hello-world image tag (immutable tags are recommended)
+  ## @param application.image.pullPolicy php-hello-world image pull policy
+  ## @param application.image.pullSecrets php-hello-world image pull secrets
+  ## @param application.image.debug Enable php-hello-world image debug mode
+  ##
+  image:
+    registry: ghrc.io
+    repository: stopdenbus/php_hello_world/php-hello-world
+    ## Specify a imagePullPolicy
+    ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+    ## ref: http://kubernetes.io/docs/user-guide/images/#pre-pulling-images
+    ##
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ## e.g:
+    ## pullSecrets:
+    ##   - myRegistryKeySecretName
+    ##
+    pullSecrets: []
+    ## Enable debug mode
+    ##
+    debug: false
+  ## @param application.replicaCount Number of php-hello-world replicas to deploy
+  ##
+  replicaCount: 1
+  ## @param application.containerPorts.http php-hello-world HTTP container port
+  ## @param application.containerPorts.https php-hello-world HTTPS container port
+  ##
+  containerPorts:
+    http: 8080
+    https: 8443
+  ## Configure extra options for php-hello-world containers' liveness and readiness probes
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
+  ## @param application.livenessProbe.enabled Enable livenessProbe on php-hello-world containers
+  ## @param application.livenessProbe.initialDelaySeconds Initial delay seconds for livenessProbe
+  ## @param application.livenessProbe.periodSeconds Period seconds for livenessProbe
+  ## @param application.livenessProbe.timeoutSeconds Timeout seconds for livenessProbe
+  ## @param application.livenessProbe.failureThreshold Failure threshold for livenessProbe
+  ## @param application.livenessProbe.successThreshold Success threshold for livenessProbe
+  ##
+  livenessProbe:
+    enabled: true
+    path: /
+    port: 8080
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    timeoutSeconds: 1
+    failureThreshold: 5
+    successThreshold: 1
+  ## @param application.readinessProbe.enabled Enable readinessProbe on php-hello-world containers
+  ## @param application.readinessProbe.initialDelaySeconds Initial delay seconds for readinessProbe
+  ## @param application.readinessProbe.periodSeconds Period seconds for readinessProbe
+  ## @param application.readinessProbe.timeoutSeconds Timeout seconds for readinessProbe
+  ## @param application.readinessProbe.failureThreshold Failure threshold for readinessProbe
+  ## @param application.readinessProbe.successThreshold Success threshold for readinessProbe
+  ##
+  readinessProbe:
+    enabled: true
+    path: /
+    port: 8080    
+    initialDelaySeconds: 5
+    periodSeconds: 5
+    timeoutSeconds: 1
+    failureThreshold: 5
+    successThreshold: 1
+  ## @param application.startupProbe.enabled Enable startupProbe on php-hello-world containers
+  ## @param application.startupProbe.initialDelaySeconds Initial delay seconds for startupProbe
+  ## @param application.startupProbe.periodSeconds Period seconds for startupProbe
+  ## @param application.startupProbe.timeoutSeconds Timeout seconds for startupProbe
+  ## @param application.startupProbe.failureThreshold Failure threshold for startupProbe
+  ## @param application.startupProbe.successThreshold Success threshold for startupProbe
+  ##
+  startupProbe:
+    enabled: false
+    initialDelaySeconds: 5
+    path: /
+    port: 8080    
+    periodSeconds: 5
+    timeoutSeconds: 1
+    failureThreshold: 5
+    successThreshold: 1
+  ## @param application.customLivenessProbe Custom livenessProbe that overrides the default one
+  ##
+  customLivenessProbe: {}
+  ## @param application.customReadinessProbe Custom readinessProbe that overrides the default one
+  ##
+  customReadinessProbe: {}
+  ## @param application.customStartupProbe Custom startupProbe that overrides the default one
+  ##
+  customStartupProbe: {}
+  ## php-hello-world resource requests and limits
+  ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
+  ## @param application.resources.limits The resources limits for the php-hello-world containers
+  ## @param application.resources.requests The requested resources for the php-hello-world containers
+  ##
+  resources:
+    limits: {}
+    requests: {}
+  ## Configure Pods Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+  ## @param application.podSecurityContext.enabled Enabled php-hello-world pods' Security Context
+  ## @param application.podSecurityContext.fsGroup Set php-hello-world pod's Security Context fsGroup
+  ##
+  podSecurityContext:
+    enabled: true
+    fsGroup: 1001
+  ## Configure Container Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+  ## @param application.containerSecurityContext.enabled Enabled php-hello-world containers' Security Context
+  ## @param application.containerSecurityContext.runAsUser Set php-hello-world containers' Security Context runAsUser
+  ## @param application.containerSecurityContext.runAsNonRoot Set php-hello-world containers' Security Context runAsNonRoot
+  ## @param application.containerSecurityContext.readOnlyRootFilesystem Set php-hello-world containers' Security Context runAsNonRoot
+  ##
+  containerSecurityContext:
+    enabled: true
+    runAsUser: 1001
+    runAsNonRoot: true
+    readOnlyRootFilesystem: false
+
+  ## @param application.existingConfigmap The name of an existing ConfigMap with your custom configuration for php-hello-world
+  ##
+  existingConfigmap:
+  ## @param application.command Override default container command (useful when using custom images)
+  ##
+  command: []
+  ## @param application.args Override default container args (useful when using custom images)
+  ##
+  args: []
+  ## @param application.hostAliases php-hello-world pods host aliases
+  ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+  ##
+  hostAliases: []
+  ## @param application.podLabels Extra labels for php-hello-world pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+  ##
+  podLabels: {}
+  ## @param application.podAnnotations Annotations for php-hello-world pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  podAnnotations: {}
+  ## @param application.podAffinityPreset Pod affinity preset. Ignored if `application.affinity` is set. Allowed values: `soft` or `hard`
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAffinityPreset: ""
+  ## @param application.podAntiAffinityPreset Pod anti-affinity preset. Ignored if `application.affinity` is set. Allowed values: `soft` or `hard`
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAntiAffinityPreset: soft
+  ## Pod Disruption Budget configuration
+  ## ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb
+  ## @param application.pdb.create Enable/disable a Pod Disruption Budget creation
+  ## @param application.pdb.minAvailable Minimum number/percentage of pods that should remain scheduled
+  ## @param application.pdb.maxUnavailable Maximum number/percentage of pods that may be made unavailable
+  ##
+  pdb:
+    create: false
+    minAvailable: 1
+    maxUnavailable: ""
+  ## Autoscaling configuration
+  ## ref: https://kubernetes.io/docs/tasks/run-application/horizontal-pod-autoscale/
+  ## @param application.autoscaling.enabled Enable autoscaling for application
+  ## @param application.autoscaling.minReplicas Minimum number of application replicas
+  ## @param application.autoscaling.maxReplicas Maximum number of application replicas
+  ## @param application.autoscaling.targetCPU Target CPU utilization percentage
+  ## @param application.autoscaling.targetMemory Target Memory utilization percentage
+  ##
+  autoscaling:
+    enabled: false
+    minReplicas: ""
+    maxReplicas: ""
+    targetCPU: ""
+    targetMemory: ""
+  ## Node application.affinity preset
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+  ##
+  nodeAffinityPreset:
+    ## @param application.nodeAffinityPreset.type Node affinity preset type. Ignored if `application.affinity` is set. Allowed values: `soft` or `hard`
+    ##
+    type: ""
+    ## @param application.nodeAffinityPreset.key Node label key to match. Ignored if `application.affinity` is set
+    ##
+    key: ""
+    ## @param application.nodeAffinityPreset.values Node label values to match. Ignored if `application.affinity` is set
+    ## E.g.
+    ## values:
+    ##   - e2e-az1
+    ##   - e2e-az2
+    ##
+    values: []
+  ## @param application.affinity Affinity for php-hello-world pods assignment
+  ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  ## NOTE: `application.podAffinityPreset`, `application.podAntiAffinityPreset`, and `application.nodeAffinityPreset` will be ignored when it's set
+  ##
+  affinity: {}
+  ## @param application.nodeSelector Node labels for php-hello-world pods assignment
+  ## ref: https://kubernetes.io/docs/user-guide/node-selection/
+  ##
+  nodeSelector: {}
+  ## @param application.tolerations Tolerations for php-hello-world pods assignment
+  ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  ##
+  tolerations: []
+  ## @param application.updateStrategy.type php-hello-world statefulset strategy type
+  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
+  ##
+  updateStrategy:
+    ## StrategyType
+    ## Can be set to RollingUpdate or OnDelete
+    ##
+    type: RollingUpdate
+
+  ## ONLY FOR STATEFULSETS
+  ## @param application.podManagementPolicy Statefulset Pod management policy, it needs to be Parallel to be able to complete the cluster join
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#pod-management-policies
+  ##
+  podManagementPolicy: OrderedReady
+
+  ## @param application.priorityClassName php-hello-world pods' priorityClassName
+  ##
+  priorityClassName: ""
+  ## @param application.topologySpreadConstraints Topology Spread Constraints for pod assignment spread across your cluster among failure-domains. Evaluated as a template
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/#spread-constraints-for-pods
+  ##
+  topologySpreadConstraints: []
+  ## @param application.schedulerName Name of the k8s scheduler (other than default) for php-hello-world pods
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  schedulerName: ""
+  ## @param application.terminationGracePeriodSeconds Seconds Redmine pod needs to terminate gracefully
+  ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods
+  ##
+  terminationGracePeriodSeconds: ""
+  ## @param application.lifecycleHooks for the php-hello-world container(s) to automate configuration before or after startup
+  ##
+  lifecycleHooks: {}
+  ## @param application.extraEnvVars Array with extra environment variables to add to php-hello-world nodes
   ## e.g:
-  ## pullSecrets:
-  ##   - myRegistryKeySecretName
+  ## extraEnvVars:
+  ##   - name: FOO
+  ##     value: "bar"
   ##
-  pullSecrets: []
-  ## Set to true if you would like to see extra information on logs
+  extraEnvVars: []
+  ## @param application.extraEnvVarsCM Name of existing ConfigMap containing extra env vars for php-hello-world nodes
   ##
+  extraEnvVarsCM: ""
+  ## @param application.extraEnvVarsSecret Name of existing Secret containing extra env vars for php-hello-world nodes
+  ##
+  extraEnvVarsSecret: ""
+  ## @param application.extraVolumes Optionally specify extra list of additional volumes for the php-hello-world pod(s)
+  ##
+  extraVolumes: []
+  ## @param application.extraVolumeMounts Optionally specify extra list of additional volumeMounts for the php-hello-world container(s)
+  ##
+  extraVolumeMounts: []
+  ## @param application.sidecars Add additional sidecar containers to the php-hello-world pod(s)
+  ## e.g:
+  ## sidecars:
+  ##   - name: your-image-name
+  ##     image: your-image
+  ##     imagePullPolicy: Always
+  ##     ports:
+  ##       - name: portname
+  ##         containerPort: 1234
+  ##
+  sidecars: []
+  ## @param application.initContainers Add additional init containers to the php-hello-world pod(s)
+  ## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+  ## e.g:
+  ## initContainers:
+  ##  - name: your-image-name
+  ##    image: your-image
+  ##    imagePullPolicy: Always
+  ##    command: ['sh', '-c', 'echo "hello world"']
+  ##
+  initContainers: []
+
+## @section Traffic Exposure Parameters
+##
+
+## php-hello-world service parameters
+##
+service:
+  ## @param service.type php-hello-world service type
+  ##
+  type: ClusterIP
+  ## @param service.ports.http php-hello-world service HTTP port
+  ## @param service.ports.https php-hello-world service HTTPS port
+  ##
+  ports:
+    http: 8080
+  ## Node ports to expose
+  ## @param service.nodePorts.http Node port for HTTP
+  ## NOTE: choose port between <30000-32767>
+  ##
+  nodePorts:
+    http: ""
+  ## @param service.clusterIP php-hello-world service Cluster IP
+  ## e.g.:
+  ## clusterIP: None
+  ##
+  clusterIP: ""
+  ## @param service.loadBalancerIP php-hello-world service Load Balancer IP
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer
+  ##
+  loadBalancerIP: ""
+  ## @param service.loadBalancerSourceRanges php-hello-world service Load Balancer sources
+  ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+  ## e.g:
+  ## loadBalancerSourceRanges:
+  ##   - 10.10.10.0/24
+  ##
+  loadBalancerSourceRanges: []
+  ## @param service.externalTrafficPolicy php-hello-world service external traffic policy
+  ## ref http://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+  ##
+  externalTrafficPolicy: Cluster
+  ## @param service.annotations Additional custom annotations for php-hello-world service
+  ##
+  annotations: {}
+  ## @param service.extraPorts Extra ports to expose in php-hello-world service (normally used with the `sidecars` value)
+  ##
+  extraPorts: []
+  ## @param service.sessionAffinity Control where client requests go, to the same pod or round-robin
+  ## Values: ClientIP or None
+  ## ref: https://kubernetes.io/docs/user-guide/services/
+  ##
+  sessionAffinity: None
+  ## @param service.sessionAffinityConfig Additional settings for the sessionAffinity
+  ## sessionAffinityConfig:
+  ##   clientIP:
+  ##     timeoutSeconds: 300
+  ##
+  sessionAffinityConfig: {}
+## php-hello-world ingress parameters
+## ref: http://kubernetes.io/docs/user-guide/ingress/
+##
+ingress:
+  ## @param ingress.enabled Enable ingress record generation for php-hello-world
+  ##
+  enabled: true
+  ## @param ingress.pathType Ingress path type
+  ##
+  pathType: ImplementationSpecific
+  ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
+  ##
+  apiVersion: ""
+  ## @param ingress.hostname Default host for the ingress record
+  ##
+  hostname: php-hello-world.apps.gusek.info
+  ## @param ingress.ingressClassName IngressClass that will be be used to implement the Ingress (Kubernetes 1.18+)
+  ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
+  ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
+  ##
+  ingressClassName: ""
+  ## @param ingress.path Default path for the ingress record
+  ## NOTE: You may need to set this to '/*' in order to use this with ALB ingress controllers
+  ##
+  path: /
+  ## @param ingress.annotations Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
+  ## Use this parameter to set the required annotations for cert-manager, see
+  ## ref: https://cert-manager.io/docs/usage/ingress/#supported-annotations
+  ## e.g:
+  ## annotations:
+  ##   kubernetes.io/ingress.class: nginx
+  ##   cert-manager.io/cluster-issuer: cluster-issuer-name
+  ##
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
+  ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
+  ## You can:
+  ##   - Use the `ingress.secrets` parameter to create this TLS secret
+  ##   - Rely on cert-manager to create it by setting the corresponding annotations
+  ##   - Rely on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
+  ##
+  tls: true
+  ## @param ingress.selfSigned Create a TLS secret for this ingress record using self-signed certificates generated by Helm
+  ##
+  selfSigned: false
+  ## @param ingress.extraHosts An array with additional hostname(s) to be covered with the ingress record
+  ## e.g:
+  ## extraHosts:
+  ##   - name: %%COMPONENT_NAME%%.local
+  ##     path: /
+  ##
+  extraHosts: []
+  ## @param ingress.extraPaths An array with additional arbitrary paths that may need to be added to the ingress under the main host
+  ## e.g:
+  ## extraPaths:
+  ## - path: /*
+  ##   backend:
+  ##     serviceName: ssl-redirect
+  ##     servicePort: use-annotation
+  ##
+  extraPaths: []
+  ## @param ingress.extraTls TLS configuration for additional hostname(s) to be covered with this ingress record
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
+  ## e.g:
+  ## extraTls:
+  ## - hosts:
+  ##     - %%COMPONENT_NAME%%.local
+  ##   secretName: %%COMPONENT_NAME%%.local-tls
+  ##
+  extraTls:
+    - hosts:
+        - php-hello-world.apps.gusek.info
+      secretName: wildcard-apps     
+  ## @param ingress.secrets Custom TLS certificates as secrets
+  ## NOTE: 'key' and 'certificate' are expected in PEM format
+  ## NOTE: 'name' should line up with a 'secretName' set further up
+  ## If it is not set and you're using cert-manager, this is unneeded, as it will create a secret for you with valid certificates
+  ## If it is not set and you're NOT using cert-manager either, self-signed certificates will be created valid for 365 days
+  ## It is also possible to create and manage the certificates outside of this helm chart
+  ## Please see README.md for more information
+  ## e.g:
+  ## secrets:
+  ##   - name: %%COMPONENT_NAME%%.local-tls
+  ##     key: |-
+  ##       -----BEGIN RSA PRIVATE KEY-----
+  ##       ...
+  ##       -----END RSA PRIVATE KEY-----
+  ##     certificate: |-
+  ##       -----BEGIN CERTIFICATE-----
+  ##       ...
+  ##       -----END CERTIFICATE-----
+  ##
+  secrets: []
+  ## @param ingress.extraRules Additional rules to be covered with this ingress record
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-rules
+  ## e.g:
+  ## extraRules:
+  ## - host: example.local
+  ##     http:
+  ##       path: /
+  ##       backend:
+  ##         service:
+  ##           name: example-svc
+  ##           port:
+  ##             name: http
+  ##
+  extraRules: []
+
+## @section Persistence Parameters
+##
+
+## Enable persistence using Persistent Volume Claims
+## ref: https://kubernetes.io/docs/user-guide/persistent-volumes/
+##
+persistence:
+  ## @param persistence.enabled Enable persistence using Persistent Volume Claims
+  ##
+  enabled: false
+  ## @param persistence.mountPath Path to mount the volume at.
+  ##
+  mountPath: /application/data
+  ## @param persistence.subPath The subdirectory of the volume to mount to, useful in dev environments and one PV for multiple services
+  ##
+  subPath: ""
+  ## @param persistence.storageClass Storage class of backing PVC
+  ## If defined, storageClassName: <storageClass>
+  ## If set to "-", storageClassName: "", which disables dynamic provisioning
+  ## If undefined (the default) or set to null, no storageClassName spec is
+  ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+  ##   GKE, AWS & OpenStack)
+  ##
+  storageClass: ""
+  ## @param persistence.annotations Persistent Volume Claim annotations
+  ##
+  annotations: {}
+  ## @param persistence.accessModes Persistent Volume Access Modes
+  ##
+  accessModes:
+    - ReadWriteOnce
+  ## @param persistence.size Size of data volume
+  ##
+  size: 8Gi
+  ## @param persistence.existingClaim The name of an existing PVC to use for persistence
+  ##
+  existingClaim: ""
+  ## @param persistence.selector Selector to match an existing Persistent Volume for WordPress data PVC
+  ## If set, the PVC can't have a PV dynamically provisioned for it
+  ## E.g.
+  ## selector:
+  ##   matchLabels:
+  ##     app: my-app
+  ##
+  selector: {}
+  ## @param persistence.dataSource Custom PVC data source
+  ##
+  dataSource: {}
+## @section Init Container Parameters
+##
+
+## @section Other Parameters
+##
+
+## RBAC configuration
+##
+rbac:
+  ## @param rbac.create Specifies whether RBAC resources should be created
+  ##
+  create: false
+  ## @param rbac.rules Custom RBAC rules to set
+  ## e.g:
+  ## rules:
+  ##   - apiGroups:
+  ##       - ""
+  ##     resources:
+  ##       - pods
+  ##     verbs:
+  ##       - get
+  ##       - list
+  ##
+  rules: []
+
+## ServiceAccount configuration
+##
+serviceAccount:
+  ## @param serviceAccount.create Specifies whether a ServiceAccount should be created
+  ##
+  create: false
+  ## @param serviceAccount.name The name of the ServiceAccount to use.
+  ## If not set and create is true, a name is generated using the common.names.fullname template
+  ##
+  name: ""
+  ## @param serviceAccount.annotations Additional Service Account annotations (evaluated as a template)
+  ##
+  annotations: {}
+  ## @param serviceAccount.automountServiceAccountToken Automount service account token for the server service account
+  ##
+  automountServiceAccountToken: true
+
+## Prometheus metrics
+##
+metrics:
+  ## @param metrics.enabled Enable the export of Prometheus metrics
+  ##
+  enabled: false
+  ## Prometheus Operator ServiceMonitor configuration
+  ##
+  serviceMonitor:
+    ## @param metrics.serviceMonitor.enabled if `true`, creates a Prometheus Operator ServiceMonitor (also requires `metrics.enabled` to be `true`)
+    ##
+    enabled: false
+    ## @param metrics.serviceMonitor.namespace Namespace in which Prometheus is running
+    ##
+    namespace: ""
+    ## @param metrics.serviceMonitor.annotations Additional custom annotations for the ServiceMonitor
+    ##
+    annotations: {}
+    ## @param metrics.serviceMonitor.labels Extra labels for the ServiceMonitor
+    ##
+    labels: {}
+    ## @param metrics.serviceMonitor.jobLabel The name of the label on the target service to use as the job name in Prometheus
+    ##
+    jobLabel: ""
+    ## @param metrics.serviceMonitor.honorLabels honorLabels chooses the metric's labels on collisions with target labels
+    ##
+    honorLabels: false
+    ## @param metrics.serviceMonitor.interval Interval at which metrics should be scraped.
+    ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint
+    ## e.g:
+    ## interval: 10s
+    ##
+    interval: ""
+    ## @param metrics.serviceMonitor.scrapeTimeout Timeout after which the scrape is ended
+    ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint
+    ## e.g:
+    ## scrapeTimeout: 10s
+    ##
+    scrapeTimeout: ""
+    ## @param metrics.serviceMonitor.metricRelabelings Specify additional relabeling of metrics
+    ##
+    metricRelabelings: []
+    ## @param metrics.serviceMonitor.relabelings Specify general relabeling
+    ##
+    relabelings: []
+    ## @param metrics.serviceMonitor.selector Prometheus instance selector labels
+    ## ref: https://github.com/bitnami/charts/tree/main/bitnami/prometheus-operator#prometheus-configuration
+    ## selector:
+    ##   prometheus: my-prometheus
+    ##
+    selector: {}
