@@ -5,4 +5,6 @@ nginx:
       default-ssl-certificate: "ingress-nginx/wildcard-apps"
       enable-ssl-passthrough: true
     hostNetwork: true
+    ingressClassResource:
+      default: true
   
