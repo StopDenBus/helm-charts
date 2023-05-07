@@ -90,7 +90,8 @@ application:
     ## pullSecrets:
     ##   - myRegistryKeySecretName
     ##
-    pullSecrets: []
+    pullSecrets:
+      - github
     ## Enable debug mode
     ##
     debug: false
