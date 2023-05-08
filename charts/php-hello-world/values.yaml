@@ -76,7 +76,7 @@ application:
   ## @param application.image.debug Enable php-hello-world image debug mode
   ##
   image:
-    registry: ghrc.io
+    registry: ghcr.io
     repository: stopdenbus/php_hello_world/php-hello-world
     ## Specify a imagePullPolicy
     ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
