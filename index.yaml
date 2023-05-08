@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-05-08T17:55:31.922808445Z"
+    description: A Helm chart for ArgoCD applications
+    digest: f7b46cc76d9db49e202f6b0f41ef78580d9b484af76615dcbd7c4b693f9a5dc1
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.27/applications-0.0.27.tgz
+    version: 0.0.27
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-05-08T17:52:11.38097637Z"
     description: A Helm chart for ArgoCD applications
     digest: 041d5babbaff8b75f6e9f70790a1ef2c281447c26f580dbfdc3488d0b23553eb
@@ -633,6 +643,20 @@ entries:
   php-hello-world:
   - apiVersion: v2
     appVersion: 0.0.4
+    created: "2023-05-08T17:55:32.055834454Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 1.x.x
+    description: A hello world app written in PHP
+    digest: df2b6f00047ae7808851a9f2d4f6d645e6b0a2653527271cc84660cf795d0b76
+    name: php-hello-world
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/php-hello-world-0.0.25/php-hello-world-0.0.25.tgz
+    version: 0.0.25
+  - apiVersion: v2
+    appVersion: 0.0.4
     created: "2023-05-08T17:52:11.526612965Z"
     dependencies:
     - name: common
@@ -751,4 +775,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-08T17:52:11.526878467Z"
+generated: "2023-05-08T17:55:32.056113657Z"
