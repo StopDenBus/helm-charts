@@ -74,7 +74,7 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.27
+    targetRevision: 0.0.28
     featureBranches: {}
   sealed-secrets:
     chart: sealed-secrets
