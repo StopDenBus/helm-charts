@@ -32,3 +32,32 @@ syncPolicy:
 syncPolicy: {}
 {{- end -}}
 {{- end -}}
+
+{{/*
+Return name from feature branche
+*/}}
+{{- define "featureBrancheName" -}}
+{{- $branch :=  trimPrefix "feature/" .feature }}
+{{- printf "%s-%s" $branch .app -}}
+{{- end -}}
+
+{{/*
+Return feature branche helm parameters
+*/}}
+{{- define "featureBrancheHelmParameters" -}}
+{{- $featureBrancheName := (include "featureBrancheName" .) -}}
+{{- $hostname := printf "%s.apps.gusek.info" $featureBrancheName -}}
+{{- $hosts := dict "secretName" "wildcard-apps" "hosts" list $hostname  -}}
+{{- $extraTls := list $hosts -}}
+helm:
+{{ printf "releaseName: %s" $featureBrancheName | indent 2 }}
+  parameters:
+    - name: "application.image.tag"
+      value: {{ .properties.tag }}
+    - name: "ingress.hostname"
+      value: {{ $hostname }}
+    - name: "ingress.extraTls[0].hosts"
+      value: {{ printf "{%s.apps.gusek.info}" $featureBrancheName }}
+    - name: "ingress.extraTls[0].secretName"
+      value: "wildcard-apps"
+{{- end -}}

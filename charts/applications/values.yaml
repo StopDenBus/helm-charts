@@ -67,7 +67,7 @@ applications:
     helm:
       releaseName: php-hello-world
     namespace: stuff
-    project: cluster-bootstrap
+    project: default
     syncPolicy:
       automated:
         selfHeal: true

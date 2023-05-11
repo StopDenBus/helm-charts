@@ -56,3 +56,28 @@ spec:
     server: https://kubernetes.default.svc
   {{- include "syncPolicy" $properties | nindent 2 }}  
 {{- end }}
+
+{{- range $app, $properties := .Values.applications }}
+{{- range $feature, $feature_properties := $properties.featureBranches }}
+{{- $argument := dict "app" $app "feature" $feature "properties" $feature_properties }}
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ include "featureBrancheName" $argument }}
+spec:
+  project: {{ $properties.project }}
+  {{- if $properties.plugin }}
+  plugin: {{ $properties.plugin }}
+  {{- end }}
+  source:
+    chart: {{ $properties.chart }}
+    repoURL: {{ include "repoURL" $properties }}
+    targetRevision: {{ $properties.targetRevision }}
+    {{- include "featureBrancheHelmParameters" $argument | nindent 4 }}
+  destination:
+    namespace: {{ $properties.namespace }}
+    server: https://kubernetes.default.svc
+  {{- include "syncPolicy" $properties | nindent 2 }}  
+{{- end }}
+{{- end }}
