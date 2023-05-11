@@ -56,7 +56,7 @@ helm:
       value: {{ .properties.tag }}
     - name: "ingress.hostname"
       value: {{ $hostname }}
-    - name: "ingress.extraTls[0].hosts"
+    - name: "ingress.extraTls[0].hosts[0]"
       value: {{ printf "%s.apps.gusek.info" $featureBrancheName }}
     - name: "ingress.extraTls[0].secretName"
       value: "wildcard-apps"
