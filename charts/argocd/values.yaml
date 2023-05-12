@@ -54,7 +54,7 @@ argocd:
       url: https://argocd.apps.gusek.info
       oidc.config: |
         name: Dex
-        issuer: http://dex.apps.gusek.info/dex
+        issuer: https://dex.apps.gusek.info/dex
         clientID: argocd
         clientSecret: $oidc.clientSecret
     rbacConfig:

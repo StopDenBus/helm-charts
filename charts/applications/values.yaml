@@ -9,7 +9,7 @@ applications:
     syncPolicy:
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.1.14
+    targetRevision: 0.1.15
   dex:
     chart: dex
     helm:
@@ -22,7 +22,7 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.5
+    targetRevision: 0.0.6
   external-secrets:
     chart: external-secrets
     helm:
