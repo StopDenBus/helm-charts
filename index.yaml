@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-05-14T09:34:52.390794612Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 21d449c05fb5edd7ad07f25efffe2e9679ca09b555daae2b8f1f822fae0a1236
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.46/applications-0.0.46.tgz
+    version: 0.0.46
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-05-12T18:15:53.513381304Z"
     description: A Helm chart for ArgoCD applications
     digest: 4648deadecb5d3383ba00755446fdb956e8c8a678374d36dade3fbb81e67dd9f
@@ -701,6 +711,22 @@ entries:
   dex:
   - apiVersion: v2
     appVersion: 0.14.1
+    created: "2023-05-14T09:34:52.512069683Z"
+    dependencies:
+    - alias: dex
+      name: dex
+      repository: https://charts.dexidp.io
+      version: 0.14.1
+    description: OpenID Connect (OIDC) identity and OAuth 2.0 provider with pluggable
+      connectors.
+    digest: 6a3582e8c1170f3fb864c00aeebb9ea7e058a19cbdb969502d2c3171dbaa5278
+    name: dex
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.7/dex-0.0.7.tgz
+    version: 0.0.7
+  - apiVersion: v2
+    appVersion: 0.14.1
     created: "2023-05-12T18:15:53.895217799Z"
     dependencies:
     - alias: dex
@@ -1063,4 +1089,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-12T18:15:53.895669689Z"
+generated: "2023-05-14T09:34:52.51249168Z"
