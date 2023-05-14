@@ -88,7 +88,7 @@ dex:
         secretKeyRef:
           name: argocd-client-secret
           key: client-secret
-    - name: argocd-client-secret
+    - name: vault-client-secret
       valueFrom:
         secretKeyRef:
           name: vault-client-secret
