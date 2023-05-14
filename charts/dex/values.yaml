@@ -33,15 +33,13 @@ dex:
           - https://argocd.apps.gusek.info/api/dex/callback
           - https://argocd.apps.gusek.info/auth/callback
           - https://argocd.gusek.info/auth/api/dex/callback
-          - https://vault.gusek.info/ui/vault/auth/oidc/oidc/callback
-          - https://vault.gusek.info/oidc/callback
-          - http://localhost:8250/oidc/callback          
       - id: vault
         secretEnv: vault-client-secret
         name: "Vault"
         redirectURIs:
           - https://vault.gusek.info/ui/vault/auth/oidc/oidc/callback
           - https://vault.gusek.info/oidc/callback
+          - http://localhost:8250/oidc/callback
     auth2:
       skipApprovalScreen: true          
     connectors:
@@ -89,12 +87,16 @@ dex:
       valueFrom:
         secretKeyRef:
           name: argocd-client-secret
-          key: client-secret   
+          key: client-secret
+    - name: argocd-client-secret
+      valueFrom:
+        secretKeyRef:
+          name: vault-client-secret
+          key: client-secret            
   ingress:
     enabled: true
     annotations:
       kubernetes.io/ingress.class: nginx
-#      nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
     hosts:
       - host: dex.apps.gusek.info
         paths:
