@@ -33,6 +33,8 @@ dex:
           - https://argocd.apps.gusek.info/api/dex/callback
           - https://argocd.apps.gusek.info/auth/callback
           - https://argocd.gusek.info/auth/api/dex/callback
+          - https://vault.gusek.info/ui/vault/auth/oidc/oidc/callback
+          - https://vault.gusek.info/oidc/callback          
       - id: vault
         secretEnv: vault-client-secret
         name: "Vault"
