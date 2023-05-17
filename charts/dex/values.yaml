@@ -77,6 +77,15 @@ dex:
             userAttr: DN
             groupAttr: member
             nameAttr: cn
+      - type: google
+        id: google
+        name: Google
+        config:
+          clientID: $GOOGLE_CLIENT_ID
+          clientSecret: $GOOGLE_CLIENT_SECRET
+          redirectURI: https://dex.apps.gusek.info/dex/callback
+          serviceAccountFilePath: /google/googleAuth.json
+          adminEmail: micha@gusek.info
   envVars:
     - name: LDAP_PASSWORD
       valueFrom:
@@ -92,7 +101,25 @@ dex:
       valueFrom:
         secretKeyRef:
           name: vault-client-secret
-          key: client-secret            
+          key: client-secret
+    - name: GOOGLE_CLIENT_ID
+      valueFrom:
+        secretKeyRef:
+          name: google-client
+          key: client-id
+    - name: GOOGLE_CLIENT_SECRET
+      valueFrom:
+        secretKeyRef:
+          name: google-client
+          key: client-secret
+  volumes:
+    - name: google-service-account-file
+      secret:
+        secretName: google-client
+  volumeMounts:
+    - name: google-service-account-file
+      mountPath: /google/googleAuth.json
+      subPath: service-account-file
   ingress:
     enabled: true
     annotations:
