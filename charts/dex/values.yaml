@@ -17,14 +17,12 @@ dex:
     # See https://dexidp.io/docs/storage/ for more options
     storage:
       type: memory
-    # Enable at least one connector
-    # See https://dexidp.io/docs/connectors/ for more options
     enablePasswordDB: false
-    staticPasswords:
-      - email: "admin@gusek.info"
-        hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
-        username: "admin"
-        userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"        
+    # staticPasswords:
+    #   - email: "admin@gusek.info"
+    #     hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
+    #     username: "admin"
+    #     userID: "08a8684b-db88-4b73-90a9-3cd1661f5466"        
     staticClients:
       - id: argocd
         secretEnv: argocd-client-secret
@@ -41,7 +39,9 @@ dex:
           - https://vault.gusek.info/oidc/callback
           - http://localhost:8250/oidc/callback
     auth2:
-      skipApprovalScreen: true          
+      skipApprovalScreen: true
+    # Enable at least one connector
+    # See https://dexidp.io/docs/connectors/ for more options             
     connectors:
       # - type: ldap
       #   name: OpenLDAP
