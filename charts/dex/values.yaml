@@ -17,7 +17,7 @@ dex:
     # See https://dexidp.io/docs/storage/ for more options
     storage:
       type: memory
-    enablePasswordDB: false
+    enablePasswordDB: true
     # staticPasswords:
     #   - email: "admin@gusek.info"
     #     hash: "$2a$10$2b2cU8CPhOTaGrs1HRQuAueS7JTT5ZHsHSzYiFPm1leZck7Mc8T4W"
