@@ -22,7 +22,7 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.17
+    targetRevision: 0.0.18
   external-secrets:
     chart: external-secrets
     helm:

@@ -15,8 +15,8 @@ dex:
     web:
       http: 0.0.0.0:5556
     # See https://dexidp.io/docs/storage/ for more options
-    # storage:
-    #   type: memory
+    storage:
+      type: memory
     # enablePasswordDB: true
     # staticPasswords:
     #   - email: "admin@gusek.info"
