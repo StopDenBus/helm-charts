@@ -60,6 +60,7 @@ argocd:
     rbacConfig:
       policy.csv: |
         g, kubernetes_admin, role:admin
+        g, kubernetes-admin@gusek.info, role:admin
       policy.default: role:readonly  
   
   applicationSet:
