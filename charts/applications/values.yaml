@@ -74,7 +74,7 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.30
+    targetRevision: 0.0.31
     featureBranches:
       feature/cool-feature:
         tag: 40ba834d914638ecee75159a7f25cbed2d96e3fc
