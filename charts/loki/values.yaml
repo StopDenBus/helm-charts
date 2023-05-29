@@ -10,27 +10,7 @@ loki:
     hosts:
       - host: loki.apps.gusek.info
         paths:
-          write:
-            - /api/prom/push
-            - /loki/api/v1/push
-          read:
-            - /api/prom/tail
-            - /loki/api/v1/tail
-            - /loki/api
-            - /api/prom/rules
-            - /loki/api/v1/rules
-            - /prometheus/api/v1/rules
-            - /prometheus/api/v1/alerts
-          singleBinary:
-            - /api/prom/push
-            - /loki/api/v1/push
-            - /api/prom/tail
-            - /loki/api/v1/tail
-            - /loki/api
-            - /api/prom/rules
-            - /loki/api/v1/rules
-            - /prometheus/api/v1/rules
-            - /prometheus/api/v1/alerts      
+          - /
     tls:
       - hosts:
         - loki.apps.gusek.info
