@@ -31,6 +31,11 @@ dex:
           - https://argocd.apps.gusek.info/api/dex/callback
           - https://argocd.apps.gusek.info/auth/callback
           - https://argocd.gusek.info/auth/api/dex/callback
+      - id: grafana
+        secretEnv: grafana-client-secret
+        name: "Grafana"
+        redirectURIs:
+          - https://grafana.apps.gusek.info/login/generic_oauth     
       - id: vault
         secretEnv: vault-client-secret
         name: "Vault"
@@ -87,21 +92,27 @@ dex:
           serviceAccountFilePath: /google/googleAuth.json
           adminEmail: micha@gusek.info
   envVars:
-    - name: LDAP_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          name: ldap-password
-          key: LDAP_PASSWORD
     - name: argocd-client-secret
       valueFrom:
         secretKeyRef:
           name: argocd-client-secret
           key: client-secret
+    - name: grafana-client-secret
+      valueFrom:
+        secretKeyRef:
+          name: grafana-client-secret
+          key: client-secret    
     - name: vault-client-secret
       valueFrom:
         secretKeyRef:
           name: vault-client-secret
-          key: client-secret
+          key: client-secret           
+    - name: LDAP_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: ldap-password
+          key: LDAP_PASSWORD
+
     - name: GOOGLE_CLIENT_ID
       valueFrom:
         secretKeyRef:
@@ -112,6 +123,7 @@ dex:
         secretKeyRef:
           name: google-client
           key: client-secret
+    
   volumes:
     - name: google-service-account-file
       secret:
