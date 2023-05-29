@@ -1,0 +1,49 @@
+grafana:
+  admin:
+    existingSecret: "grafana-admin-password"
+    passwordKey: admin-password
+    userKey: admin-user
+  datasources:
+    datasources.yaml:
+      apiVersion: 1
+      datasources:
+        - name: loki
+          access: proxy
+          isDefault: true
+          jsonData:
+            maxLines: 1000
+          type: loki
+          url: http://loki:3100
+  envValueFrom:
+    GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
+      secretKeyRef:
+        name: grafana-oidc
+        key: clientSecret
+  grafana.ini:
+    auth.generic_oauth:
+      allow_sign_up: true
+      api_url: https://dex.apps.gusek.info/dex/userinfo
+      auth_url: https://dex.apps.gusek.info/dex/auth
+      client_id: grafana
+      email_attribute_path: email
+      enabled: true
+      name: Dex
+      scopes: openid profile email groups
+      token_url: https://dex.apps.gusek.info/dex/token
+    auth.generic_oauth.group_mapping:
+      role_attribute_path: contains(groups[*], 'grafana-admin@gusek.info') && 'Admin' || contains(groups[*], 'grafana-editor@gusek.info') && 'Editor' || 'Viewer'
+      org_id: 1      
+    server:
+      root_url: https://grafana.apps.gusek.info
+  ingress:
+    enabled: true
+    annotations:
+        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    hosts:
+      - grafana.apps.gusek.info
+    tls:
+      - hosts:
+        - dex.apps.gusek.info
+        secretName: wildcard-apps
+  testFramework:
+    enabled: false   

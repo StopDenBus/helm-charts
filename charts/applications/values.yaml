@@ -36,6 +36,32 @@ applications:
       syncOptions:
         - CreateNamespace=true
     targetRevision: 0.0.1
+  grafana:
+    chart: grafana
+    helm:
+      releaseName: grafana
+    namespace: monitoring
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true
+    targetRevision: 0.0.1
+  loki:
+    chart: loki
+    helm:
+      releaseName: loki
+    namespace: monitoring
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true
+    targetRevision: 0.0.1       
   nginx:
     chart: ingress-nginx
     helm:
