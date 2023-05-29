@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-05-29T11:23:33.953462488Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 8b7bb92812e20685f6fbc9ea01fbcdb9baefc1eeb8fd010d21ef6527f89d4cfb
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.62/applications-0.0.62.tgz
+    version: 0.0.62
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-05-29T10:25:16.432500293Z"
     description: A Helm chart for ArgoCD applications
     digest: 897a6d4af6a22dae2fa9e49db00a1242fcb9d8555fcdb5aba26c7e480a652362
@@ -1195,6 +1205,22 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/external-secrets-0.0.1/external-secrets-0.0.1.tgz
     version: 0.0.1
+  grafana:
+  - apiVersion: v2
+    appVersion: 9.5.2
+    created: "2023-05-29T11:23:34.093941305Z"
+    dependencies:
+    - alias: grafana
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 6.56.6
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 1473db933d8379addedb28d932f97ba46f8b891c916dfc97bceeaadb38a1c53a
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.1/grafana-0.0.1.tgz
+    version: 0.0.1
   ingress-nginx:
   - apiVersion: v2
     appVersion: 1.16.0
@@ -1226,6 +1252,22 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/ingress-nginx-0.1.0/ingress-nginx-0.1.0.tgz
     version: 0.1.0
+  loki:
+  - apiVersion: v2
+    appVersion: v2.8.2
+    created: "2023-05-29T11:23:34.257809575Z"
+    dependencies:
+    - alias: loki
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: 2.8.2
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: 7f250371b01ccf6b4df91f2e4b8a26bb887b6606938dd960fb20bfad7dd761a7
+    name: loki
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/loki-0.0.1/loki-0.0.1.tgz
+    version: 0.0.1
   openebs:
   - apiVersion: v2
     appVersion: 3.5.0
@@ -1461,4 +1503,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-05-29T10:25:16.578540963Z"
+generated: "2023-05-29T11:23:34.258411266Z"
