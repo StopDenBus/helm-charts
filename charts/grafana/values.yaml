@@ -43,7 +43,7 @@ grafana:
       - grafana.apps.gusek.info
     tls:
       - hosts:
-        - dex.apps.gusek.info
+        - grafana.apps.gusek.info
         secretName: wildcard-apps
   testFramework:
     enabled: false   
