@@ -62,6 +62,19 @@ applications:
       syncOptions:
         - CreateNamespace=true
     targetRevision: 0.0.3
+  mariadb:
+    chart: mariadb
+    helm:
+      releaseName: mariadb
+    namespace: mariadb
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true
+    targetRevision: 0.1.1
   nginx:
     chart: ingress-nginx
     helm:

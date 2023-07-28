@@ -1,0 +1,14 @@
+mariadb:
+  auth:
+    existingSecret: "mariadb-secrets"
+    database: ""
+
+  primary:
+    persistence:
+      storageClass: "zfs"
+    service:
+      type: "NodePort"
+      nodePort: 32306
+
+
+
