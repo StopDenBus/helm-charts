@@ -1,0 +1,55 @@
+mailu:
+  global:
+    database:
+      roundcube:
+        existingSecret: "mysql-mailu-secrets"
+        existingSecretPasswordKey: "mysql-mailu-password"
+        username: "mailu"
+    storageClass: "zfs"
+
+  hostnames:
+    - mail.apps.gusek.info
+  domain: "gusek.info"
+  existingSecret: "mailu-secret-key"
+  timezone: "Europe/Berlin"
+  subnet: "10.244.0.0/16"
+  
+  initialAccount:
+    enabled: true
+    username: "admin"
+    domain: "gusek.info"
+    existingSecret: "mailu-admin-secret"
+    existingSecretPasswordKey: "password"
+    mode: "ifmissing"    
+  
+  externalDatabase:
+    enabled: true
+    type: "mysql"
+    host: "mariadb.mariadb.svc.cluster.local"
+    existingSecret: mysql-mailu-secrets
+    existingSecretDatabaseKey: "mysql-mailu-database"
+    existingSecretUsernameKey: "mysql-mailu-username"
+    existingSecretPasswordKey: "mysql-mailu-password"
+
+  persistence:
+    size: 20Gi
+    storageClass: "zfs"
+    hostPath: /data/kubernetes/mailu
+
+  ingress:
+    annotations:
+      kubernetes.io/ingress.class: nginx  
+    extraTls:
+      - hosts:
+        - mail.apps.gusek.info
+        secretName: wildcard-apps
+    existingSecret: wildcard-apps
+
+  front:
+    externalService:
+      enabled: true
+      type: "NodePort"
+
+  fetchmail:
+    enabled: true
+    delay: 600
