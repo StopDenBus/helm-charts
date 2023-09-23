@@ -23,7 +23,23 @@ loki:
   service:
     type: NodePort
     nodePort: 31000
+  tableManager:
+    retention_deletes_enabled: "true"
+    retention_period: "2w"
   
-
+ingress:
+  enabled: false
+  annotations:
+      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+  hosts:
+    - host: loki.apps.gusek.info
+      paths:
+        - /
+  tls:
+    - hosts:
+      - loki.apps.gusek.info
+      secretName: wildcard-apps
+service:
+  port: 0815
 
 
