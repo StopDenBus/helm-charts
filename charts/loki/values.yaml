@@ -2,9 +2,12 @@ loki:
   config:
     limits_config:
       per_stream_rate_limit: 5M
-      per_stream_rate_limit_burst: 20M    
+      per_stream_rate_limit_burst: 20M
+    tableManager:
+      retention_deletes_enabled: "true"
+      retention_period: "2w"      
   ingress:
-    enabled: true
+    enabled: false
     annotations:
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
     hosts:
@@ -23,9 +26,6 @@ loki:
   service:
     type: NodePort
     nodePort: 31000
-  tableManager:
-    retention_deletes_enabled: "true"
-    retention_period: "2w"
   
 ingress:
   enabled: false
