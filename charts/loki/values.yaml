@@ -20,6 +20,7 @@ loki:
         secretName: wildcard-apps    
   persistence:
     enabled: true
+    size: 15Gi
     storageClassName: zfs
   rbac:
     pspEnabled: false
