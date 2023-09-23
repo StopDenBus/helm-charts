@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-09-23T14:29:07.317856805Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 9b8c3633d1724aa8eabe8e72f3739eb5dd75efa2f6b8160da4f43eb108e6d34b
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.70/applications-0.0.70.tgz
+    version: 0.0.70
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-09-23T14:18:54.808032774Z"
     description: A Helm chart for ArgoCD applications
     digest: bce49ab2f30845b604dedfec1ca0abc99fef804106460ed33a54e82e93c441dd
@@ -1340,6 +1350,21 @@ entries:
   loki:
   - apiVersion: v2
     appVersion: v2.8.2
+    created: "2023-09-23T14:29:07.47450464Z"
+    dependencies:
+    - alias: loki
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: 2.8.2
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: d882c0b132a54fda443dd486d183f0ff82f23fa4dad8ac7f3b46dfd9f4d5ac06
+    name: loki
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/loki-0.0.6/loki-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
+    appVersion: v2.8.2
     created: "2023-09-23T14:18:55.009338893Z"
     dependencies:
     - alias: loki
@@ -1681,4 +1706,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-23T14:18:55.009980806Z"
+generated: "2023-09-23T14:29:07.474870949Z"
