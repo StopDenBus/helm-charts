@@ -3,7 +3,7 @@ loki:
     limits_config:
       per_stream_rate_limit: 5M
       per_stream_rate_limit_burst: 20M
-    tableManager:
+    table_manager:
       retention_deletes_enabled: "true"
       retention_period: "2w"      
   ingress:
