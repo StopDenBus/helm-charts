@@ -49,25 +49,25 @@ applications:
       syncOptions:
         - CreateNamespace=true
     targetRevision: 0.0.2
-  istiod:
-    chart: istio
-    helm:
-      releaseName: istiod
-    namespace: istio-system
-    project: default
-    syncPolicy:
-      automated:
-        selfHeal: true
-        prune: true
-      syncOptions:
-        - CreateNamespace=true
-    ignoreDifferences:
-      - group: admissionregistration.k8s.io
-        jqPathExpressions:
-          - .webhooks[].failurePolicy
-        kind: ValidatingWebhookConfiguration
-        name: istio-validator-istio-system
-    targetRevision: 0.0.1
+  #istiod:
+  #  chart: istio
+  #  helm:
+  #    releaseName: istiod
+  #  namespace: istio-system
+  #  project: default
+  #  syncPolicy:
+  #    automated:
+  #      selfHeal: true
+  #      prune: true
+  #    syncOptions:
+  #      - CreateNamespace=true
+  #  ignoreDifferences:
+  #    - group: admissionregistration.k8s.io
+  #      jqPathExpressions:
+  #        - .webhooks[].failurePolicy
+  #      kind: ValidatingWebhookConfiguration
+  #      name: istio-validator-istio-system
+  #  targetRevision: 0.0.1
   loki:
     chart: loki
     helm:
