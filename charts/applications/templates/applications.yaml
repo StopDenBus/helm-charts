@@ -54,7 +54,9 @@ spec:
   destination:
     namespace: {{ $properties.namespace }}
     server: https://kubernetes.default.svc
-  {{- include "syncPolicy" $properties | nindent 2 }}  
+  {{- include "syncPolicy" $properties | nindent 2 }}
+  {{- include "ignoreDifferences" $properties | nindent 2 }}  
+
 {{- end }}
 
 {{- range $app, $properties := .Values.applications }}

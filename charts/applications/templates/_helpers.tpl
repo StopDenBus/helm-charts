@@ -34,6 +34,15 @@ syncPolicy: {}
 {{- end -}}
 
 {{/*
+Return applications ignoreDifferences
+*/}}
+{{- define "ignoreDifferences" -}}
+{{- if .ignoreDifferences -}}
+ignoreDifferences:
+{{- toYaml .ignoreDifferences | nindent 2 }}
+{{- end -}}
+{{- end -}}
+{{/*
 Return name from feature branche
 */}}
 {{- define "featureBrancheName" -}}
