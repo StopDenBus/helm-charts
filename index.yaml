@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-09-24T11:37:04.544278165Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 5da1863e250a6d9f56cd10200eb00b9b38c9914a2bc9bea35cf36e891f823eca
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.74/applications-0.0.74.tgz
+    version: 0.0.74
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-09-23T14:51:46.438363567Z"
     description: A Helm chart for ArgoCD applications
     digest: d5023f026618e0fa100d197444fac5c43f16afe7ea5b219e6f91b9c0202d68d6
@@ -1377,6 +1387,30 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/ingress-nginx-0.1.0/ingress-nginx-0.1.0.tgz
     version: 0.1.0
+  istio:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2023-09-24T11:37:04.687313376Z"
+    dependencies:
+    - alias: istio-base
+      name: base
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.19.0
+    - alias: istio-istiod
+      name: istiod
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.19.0
+    - alias: istio-gateway
+      name: gateway
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.19.0
+    description: Helm chart for istio control plane
+    digest: f125ad7a416306ac49c82b9c14fce040d5e53e0f725e3b86730bb880c5ef9d19
+    name: istio
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/istio-0.0.1/istio-0.0.1.tgz
+    version: 0.0.1
   loki:
   - apiVersion: v2
     appVersion: v2.8.2
@@ -1766,4 +1800,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-23T14:51:46.637644268Z"
+generated: "2023-09-24T11:37:04.687763385Z"
