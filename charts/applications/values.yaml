@@ -50,7 +50,7 @@ applications:
         - CreateNamespace=true
     targetRevision: 0.0.2
   istiod:
-    chart:  istiod
+    chart: istio
     helm:
       releaseName: istiod
     namespace: istio-system
