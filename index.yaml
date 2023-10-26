@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-10-26T14:24:49.916970432Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 9cf76415aa8b21dbea1a2dd65cd60e47ed0d7a73ec7ef243987acc4fc1e201b2
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.79/applications-0.0.79.tgz
+    version: 0.0.79
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-09-24T12:29:28.478752652Z"
     description: A Helm chart for ArgoCD applications
     digest: 3e0849e54ee2ef7612501c9c276f6e1b640a9b4f1cdd096d6dd883d9cf6dff08
@@ -1574,6 +1584,20 @@ entries:
     version: 0.0.1
   mailu:
   - apiVersion: v2
+    created: "2023-10-26T14:24:50.213997599Z"
+    dependencies:
+    - alias: mailu
+      name: mailu
+      repository: https://mailu.github.io/helm-charts/
+      version: 1.5.0
+    description: This chart installs the Mailu mail system on kubernetes
+    digest: 0698726ed0bc560df82c660f7ff41ecbdc408665f04f0cc2d26d0c97e6492e36
+    name: mailu
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mailu-0.0.2/mailu-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     created: "2023-07-29T11:45:44.603605873Z"
     dependencies:
     - alias: mailu
@@ -1840,4 +1864,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-09-24T12:29:28.479174054Z"
+generated: "2023-10-26T14:24:50.214607047Z"
