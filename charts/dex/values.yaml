@@ -90,7 +90,7 @@ dex:
           clientSecret: $GOOGLE_CLIENT_SECRET
           redirectURI: https://dex.apps.gusek.info/dex/callback
           serviceAccountFilePath: /google/googleAuth.json
-          adminEmail: micha@gusek.info
+          domainToAdminEmail.*: micha@gusek.info
   envVars:
     - name: argocd-client-secret
       valueFrom:
