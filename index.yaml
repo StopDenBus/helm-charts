@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-12-21T12:51:14.2344863Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 6567620344cdbb89c36f5680452fbb06071727fca3b17af288ea784c9cf44a84
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.85/applications-0.0.85.tgz
+    version: 0.0.85
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-12-21T12:41:18.973951519Z"
     description: A Helm chart for ArgoCD applications
     digest: bb239617f5bd8153fc26b974f05fc189f01d67dc8beed061c393cbf64230c93e
@@ -1491,6 +1501,21 @@ entries:
     version: 0.0.1
   external-secrets:
   - apiVersion: v2
+    appVersion: 0.9.10
+    created: "2023-12-21T12:51:14.434481966Z"
+    dependencies:
+    - alias: external-secrets
+      name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: 0.9.10
+    description: External secret management for Kubernetes
+    digest: 8c3677ef78aacaaafef62f28646873c30cd8245b67aac5f498be5ca794032f9c
+    name: external-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-secrets-0.0.2/external-secrets-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     appVersion: 0.8.1
     created: "2023-04-29T20:12:54.609980309Z"
     dependencies:
@@ -1994,4 +2019,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-12-21T12:41:19.109280317Z"
+generated: "2023-12-21T12:51:14.434790975Z"
