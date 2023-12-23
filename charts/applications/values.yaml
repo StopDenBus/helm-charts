@@ -93,7 +93,7 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.1
+    targetRevision: 0.0.2
   mailu:
     chart: mailu
     helm:
