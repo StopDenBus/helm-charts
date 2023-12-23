@@ -119,7 +119,7 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.1.1
+    targetRevision: 0.1.2
   openebs:
     chart: openebs
     helm:
