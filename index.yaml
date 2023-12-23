@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-12-23T11:46:47.441639935Z"
+    description: A Helm chart for ArgoCD applications
+    digest: cd1d600b6c888d51b680061b6a9c2736846aed87c026bfe42a9c4fcae840a251
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.88/applications-0.0.88.tgz
+    version: 0.0.88
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-12-23T11:40:34.223571822Z"
     description: A Helm chart for ArgoCD applications
     digest: fa127a1340fcc27078cb2dec88a13898e5b409290b7aa34eead23178ca89424a
@@ -1838,6 +1848,21 @@ entries:
     version: 0.0.1
   openebs:
   - apiVersion: v2
+    appVersion: 2.4.0
+    created: "2023-12-23T11:46:47.576512018Z"
+    dependencies:
+    - alias: zfs-localpv
+      name: zfs-localpv
+      repository: https://openebs.github.io/zfs-localpv
+      version: 2.4.0
+    description: Containerized Attached Storage for Kubernetes
+    digest: 9bd40fbdbce818e8e01f6bef03ed53d1efb72f5a8708cd5e8c02470726b990d5
+    name: openebs
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/openebs-0.0.2/openebs-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     appVersion: 3.5.0
     created: "2023-04-16T12:33:24.754678089Z"
     dependencies:
@@ -2071,4 +2096,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-12-23T11:40:34.366049868Z"
+generated: "2023-12-23T11:46:47.576843036Z"
