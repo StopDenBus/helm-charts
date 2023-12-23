@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2023-12-23T11:40:34.223571822Z"
+    description: A Helm chart for ArgoCD applications
+    digest: fa127a1340fcc27078cb2dec88a13898e5b409290b7aa34eead23178ca89424a
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.87/applications-0.0.87.tgz
+    version: 0.0.87
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2023-12-23T11:27:15.368649637Z"
     description: A Helm chart for ArgoCD applications
     digest: c4e49cb1a71839a2a4b74577cc267cb10e07cb94d0fe84183934435e66a4fa12
@@ -1793,6 +1803,23 @@ entries:
     version: 0.0.1
   mariadb:
   - apiVersion: v2
+    appVersion: 11.2.2
+    created: "2023-12-23T11:40:34.365710444Z"
+    dependencies:
+    - alias: mariadb
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.0.1
+    description: MariaDB is an open source, community-developed SQL database server
+      that is widely in use around the world due to its enterprise features, flexibility,
+      and collaboration with leading tech firms.
+    digest: 967b9ba4ff148762a4027e6c69413b8754e0b82fbdd0cc59baa13af99ff974d8
+    name: mariadb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mariadb-0.0.2/mariadb-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     appVersion: 10.11.4
     created: "2023-07-28T11:07:15.229304895Z"
     dependencies:
@@ -2044,4 +2071,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2023-12-23T11:27:15.52145498Z"
+generated: "2023-12-23T11:40:34.366049868Z"
