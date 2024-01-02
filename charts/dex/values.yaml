@@ -43,7 +43,7 @@ dex:
           - https://vault.gusek.info/ui/vault/auth/oidc/oidc/callback
           - https://vault.gusek.info/oidc/callback
           - http://localhost:8250/oidc/callback
-    auth2:
+    oauth2:
       skipApprovalScreen: true
     # Enable at least one connector
     # See https://dexidp.io/docs/connectors/ for more options             
