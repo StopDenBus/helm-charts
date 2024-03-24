@@ -132,7 +132,7 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.3
+    targetRevision: 0.0.4
   php-hello-world:
     chart: php-hello-world
     helm:
