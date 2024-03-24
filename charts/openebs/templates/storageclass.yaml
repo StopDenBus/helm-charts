@@ -9,3 +9,4 @@ parameters:
   fstype: "zfs"
   poolname: "rpool/kubernetes"
 provisioner: zfs.csi.openebs.io
+allowVolumeExpansion: true
