@@ -7,4 +7,6 @@ nginx:
     hostNetwork: true
     ingressClassResource:
       default: true
+    updateStrategy:
+      type: Recreate
   
