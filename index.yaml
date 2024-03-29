@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-03-29T13:59:08.141909355Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 472dd6b71f8c45165180a2e04dc12430fc58ef81b2f1c518ae76ce8eb92a428b
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.94/applications-0.0.94.tgz
+    version: 0.0.94
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-03-28T13:00:30.566119889Z"
     description: A Helm chart for ArgoCD applications
     digest: 80b4bc34dc946eb174a91b3aa795b66e19e419fe8ab4f975f9a7f3b5a23bb7d3
@@ -923,6 +933,22 @@ entries:
     version: 0.0.1
   argocd:
   - apiVersion: v2
+    appVersion: 5.55.0
+    created: "2024-03-29T13:59:08.252464074Z"
+    dependencies:
+    - alias: argocd
+      name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 5.55.0
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 0d33de6de4d4f48876c89f664dee1d3576cd8378e37f5d095ee898e676b570f1
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/argocd-0.1.18/argocd-0.1.18.tgz
+    version: 0.1.18
+  - apiVersion: v2
     appVersion: 5.51.6
     created: "2023-12-21T12:41:19.108911933Z"
     dependencies:
@@ -1675,6 +1701,21 @@ entries:
     version: 0.0.1
   ingress-nginx:
   - apiVersion: v2
+    appVersion: 4.10.0
+    created: "2024-03-29T13:59:08.362726384Z"
+    dependencies:
+    - alias: nginx
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.10.0
+    description: A Helm chart for Kubernetes
+    digest: e48e0c6a6854f625ecda6edccdbe03fef0ce6cedfce318816ca1c8b0122b7103
+    name: ingress-nginx
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/ingress-nginx-0.1.3/ingress-nginx-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
     appVersion: 4.9.0
     created: "2023-12-23T11:27:15.521127036Z"
     dependencies:
@@ -2223,4 +2264,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-03-28T13:00:30.701951183Z"
+generated: "2024-03-29T13:59:08.363128113Z"
