@@ -12,6 +12,19 @@ argocd:
       reloader.stakater.com/auto: "true"
 
   configs:
+    cm:
+      exec.enabled: 'true'
+      url: https://argocd.apps.gusek.info
+      oidc.config: |
+        name: Dex
+        issuer: https://dex.apps.gusek.info/dex
+        clientID: argocd
+        clientSecret: $oidc.clientSecret
+    rbac:
+      policy.csv: |
+        g, kubernetes_admin, role:admin
+        g, kubernetes-admin@gusek.info, role:admin
+      policy.default: role:readonly
     repositories:
       argocd:
         url: git@github.com:StopDenBus/argocd.git
@@ -48,20 +61,6 @@ argocd:
         - hostname:
           - argocd.apps.gusek.info
       https: true
-  configs:
-    cm:
-      exec.enabled: 'true'
-      url: https://argocd.apps.gusek.info
-      oidc.config: |
-        name: Dex
-        issuer: https://dex.apps.gusek.info/dex
-        clientID: argocd
-        clientSecret: $oidc.clientSecret
-    rbac:
-      policy.csv: |
-        g, kubernetes_admin, role:admin
-        g, kubernetes-admin@gusek.info, role:admin
-      policy.default: role:readonly  
   
   applicationSet:
     enabled: false
