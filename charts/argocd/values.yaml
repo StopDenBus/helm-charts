@@ -43,13 +43,13 @@ argocd:
         nginx.ingress.kubernetes.io/ssl-passthrough: "false"
         nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
       ingressClassName: "nginx"
-      hosts:
-        - argocd.apps.gusek.info
+      hostname: argocd.apps.gusek.info
       tls:
-        - hosts:
+        - hostname:
           - argocd.apps.gusek.info
       https: true
-    config:
+  configs:
+    cm:
       exec.enabled: 'true'
       url: https://argocd.apps.gusek.info
       oidc.config: |
@@ -57,7 +57,7 @@ argocd:
         issuer: https://dex.apps.gusek.info/dex
         clientID: argocd
         clientSecret: $oidc.clientSecret
-    rbacConfig:
+    rbac:
       policy.csv: |
         g, kubernetes_admin, role:admin
         g, kubernetes-admin@gusek.info, role:admin
