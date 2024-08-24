@@ -55,19 +55,19 @@ applications:
       releaseName: istio
     namespace: istio-system
     project: default
-    syncPolicy:
-      automated:
-        selfHeal: true
-        prune: true
-      syncOptions:
-        - CreateNamespace=true
+    syncPolicy: {}
+      # automated:
+      #   selfHeal: true
+      #   prune: true
+      # syncOptions:
+      #   - CreateNamespace=true
     ignoreDifferences:
       - group: admissionregistration.k8s.io
         jqPathExpressions:
           - .webhooks[].failurePolicy
         kind: ValidatingWebhookConfiguration
         name: istio-validator-istio-system
-    targetRevision: 0.0.1
+    targetRevision: 0.0.2
   loki:
     chart: loki
     helm:
