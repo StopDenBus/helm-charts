@@ -67,7 +67,7 @@ applications:
           - .webhooks[].failurePolicy
         kind: ValidatingWebhookConfiguration
         name: istio-validator-istio-system
-    targetRevision: 0.0.3
+    targetRevision: 0.0.4
   loki:
     chart: loki
     helm:

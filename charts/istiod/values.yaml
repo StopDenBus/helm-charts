@@ -10,7 +10,7 @@ istio-cni:
 istio-gateway:
   profile: ambient
   service:
-    type: Loadbalancer
+    type: LoadBalancer
     ports:
     - name: status-port
       port: 15021
