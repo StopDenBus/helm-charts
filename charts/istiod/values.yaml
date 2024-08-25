@@ -1,11 +1,16 @@
 istio-base:
-  defaultRevision: "default"
+  profile: ambient
 
-istio-istiod: {}
+istio-istiod:
+  profile: ambient
+
+istio-cni:
+  profile: ambient
 
 istio-gateway:
+  profile: ambient
   service:
-    type: NodePort
+    type: Loadbalancer
     ports:
     - name: status-port
       port: 15021
@@ -15,10 +20,10 @@ istio-gateway:
       port: 80
       protocol: TCP
       targetPort: 80
-      nodePort: 30080
     - name: https
       port: 443
       protocol: TCP
       targetPort: 443
-      nodePort: 30443
 
+istio-ztunnel:
+  profile: ambient
