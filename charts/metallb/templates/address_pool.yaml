@@ -20,3 +20,10 @@ metadata:
 spec:
   addresses:
   - 192.168.0.20/32
+  serviceAllocation:
+    priority: 50
+    namespaces:
+      - istio-system
+    serviceSelectors:
+      - matchExpressions:
+          - {key: app, operator: In, values: [istiod]}  

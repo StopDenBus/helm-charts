@@ -119,7 +119,7 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.2
+    targetRevision: 0.0.3
   nginx:
     chart: ingress-nginx
     helm:
