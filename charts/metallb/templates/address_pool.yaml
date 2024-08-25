@@ -1,0 +1,22 @@
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: nginx
+spec:
+  addresses:
+    - 192.168.0.11/32
+  serviceAllocation:
+    priority: 50
+    namespaces:
+      - ingress-nginx
+    serviceSelectors:
+      - matchExpressions:
+          - {key: app.kubernetes.io/name, operator: In, values: [nginx]}
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
+  name: istio
+spec:
+  addresses:
+  - 192.168.0.20/32

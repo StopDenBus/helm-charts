@@ -107,6 +107,19 @@ applications:
       syncOptions:
         - CreateNamespace=true
     targetRevision: 0.0.2
+  metallb:
+    chart: metallb
+    helm:
+      releaseName: metallb
+    namespace: metallb-system
+    project: cluster-bootstrap
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true
+    targetRevision: 0.0.1
   nginx:
     chart: ingress-nginx
     helm:
