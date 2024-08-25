@@ -4,7 +4,7 @@ nginx:
     extraArgs:
       default-ssl-certificate: "ingress-nginx/wildcard-apps"
       enable-ssl-passthrough: true
-    hostNetwork: true
+    hostNetwork: false
     ingressClassResource:
       default: true
     updateStrategy:
