@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-08-25T15:08:25.217841267Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 2619ae493eef2b514feefdd3d70f27caa31cb2c18b8eeb54611af15cbb6bb626
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.106/applications-0.0.106.tgz
+    version: 0.0.106
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-08-25T15:04:47.602818269Z"
     description: A Helm chart for ArgoCD applications
     digest: 8017186d74f6fd1cd339b59872e89e3d380e308be9198c95906a94530441c2ba
@@ -2243,6 +2253,21 @@ entries:
     version: 0.0.1
   metallb:
   - apiVersion: v2
+    created: "2024-08-25T15:08:25.357572617Z"
+    dependencies:
+    - alias: metallb
+      name: metallb
+      repository: https://metallb.github.io/metallb
+      version: 0.14.8
+    description: A network load-balancer implementation for Kubernetes using standard
+      routing protocols
+    digest: a7abaa57599886e75afc9f077fc7485f0fbe7fbf46d57d5bf008ae16f1e7bbdd
+    name: metallb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/metallb-0.0.4/metallb-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
     created: "2024-08-25T15:00:39.379770411Z"
     dependencies:
     - alias: metallb
@@ -2567,4 +2592,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-08-25T15:04:47.603583415Z"
+generated: "2024-08-25T15:08:25.358129857Z"
