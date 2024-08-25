@@ -26,4 +26,4 @@ spec:
       - istio-system
     serviceSelectors:
       - matchExpressions:
-          - {key: app, operator: In, values: [istiod]}  
+          - {key: app, operator: In, values: [istio]}  
