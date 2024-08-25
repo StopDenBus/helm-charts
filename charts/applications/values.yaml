@@ -67,6 +67,11 @@ applications:
           - .webhooks[].failurePolicy
         kind: ValidatingWebhookConfiguration
         name: istio-validator-istio-system
+      - group: admissionregistration.k8s.io
+        jqPathExpressions:
+          - .webhooks[].failurePolicy
+        kind: ValidatingWebhookConfiguration
+        name: istiod-default-validator
     targetRevision: 0.0.4
   loki:
     chart: loki
