@@ -8,6 +8,11 @@ istio-cni:
   profile: ambient
 
 istio-gateway:
+  name: "ingress"
+  labels:
+    app: istio-ingressgateway
+    istio: ingressgateway  
+
   profile: ambient
   service:
     type: LoadBalancer

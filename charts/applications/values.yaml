@@ -72,7 +72,7 @@ applications:
           - .webhooks[].failurePolicy
         kind: ValidatingWebhookConfiguration
         name: istiod-default-validator
-    targetRevision: 0.0.4
+    targetRevision: 0.0.5
   loki:
     chart: loki
     helm:
