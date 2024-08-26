@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-08-26T13:50:04.98287766Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 64b56c4c4813b6f36cbdf181f8ab21ca34f741a5fb41ed78dbba23be0dbaa3e0
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.109/applications-0.0.109.tgz
+    version: 0.0.109
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-08-26T13:01:46.421695427Z"
     description: A Helm chart for ArgoCD applications
     digest: 53e642de0fa391091dc58971a85187106a22e8d74dc55d6ef82d02f572ad1d9f
@@ -1965,6 +1975,37 @@ entries:
   istio:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-08-26T13:50:05.1645113Z"
+    dependencies:
+    - alias: istio-base
+      name: base
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.23.0
+    - alias: istio-istiod
+      name: istiod
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.23.0
+    - alias: istio-cni
+      name: cni
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.23.0
+    - alias: istio-gateway
+      name: gateway
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.23.0
+    - alias: istio-ztunnel
+      name: ztunnel
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.23.0
+    description: Helm chart for istio control plane
+    digest: 084982d2db48252741ba186c93d76abc67cccfc95f35b518bd84022fc17e6c04
+    name: istio
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/istio-0.0.6/istio-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-08-26T12:57:27.83140034Z"
     dependencies:
     - alias: istio-base
@@ -2658,4 +2699,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-08-26T13:01:46.549841564Z"
+generated: "2024-08-26T13:50:05.164972148Z"
