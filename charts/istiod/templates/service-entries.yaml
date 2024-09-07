@@ -1,0 +1,14 @@
+{{- range .Values.istio_config.serviceEntries }}
+---
+apiVersion: networking.istio.io/v1
+kind: ServiceEntry
+metadata:
+  name: {{ .name }}
+spec:
+  hosts:
+    {{- .hosts | toYaml | nindent 4 }}
+  location: {{ .location }}
+  ports:
+    {{- .ports | toYaml | nindent 4 }}
+  resolution: {{ .resolution }}
+{{- end }}

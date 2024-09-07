@@ -32,3 +32,15 @@ istio-gateway:
 
 istio-ztunnel:
   profile: ambient
+
+istio_config:
+  serviceEntries:
+    - name: vault
+      hosts:
+        - vault.gusek.info
+      ports:
+        - name: https
+          number: 443
+          protocol: HTTPS
+      resolution: DNS
+      location: MESH_EXTERNAL
