@@ -47,7 +47,7 @@ spec:
   source:
     chart: {{ $properties.chart }}
     repoURL: {{ include "repoURL" $properties }}
-    targetRevision: {{ $properties.targetRevision }}
+    targetRevision: {{ $properties.targetRevision | default "0.*.*" }}
     {{- if $properties.helm }}
     {{- include "helmParameters" $properties | nindent 4 }}
     {{- end }}
@@ -75,7 +75,7 @@ spec:
   source:
     chart: {{ $properties.chart }}
     repoURL: {{ include "repoURL" $properties }}
-    targetRevision: {{ $properties.targetRevision }}
+    targetRevision: {{ $properties.targetRevision | default "0.*.*" }}
     {{- include "featureBrancheHelmParameters" $argument | nindent 4 }}
   destination:
     namespace: {{ $properties.namespace }}

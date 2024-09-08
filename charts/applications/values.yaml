@@ -9,7 +9,6 @@ applications:
     syncPolicy:
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.1.20
   dex:
     chart: dex
     helm:
@@ -22,7 +21,6 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.26
   external-secrets:
     chart: external-secrets
     helm:
@@ -35,7 +33,6 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.2
   grafana:
     chart: grafana
     helm:
@@ -48,7 +45,6 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.2
   istio:
     chart: istio
     helm:
@@ -72,7 +68,6 @@ applications:
           - .webhooks[].failurePolicy
         kind: ValidatingWebhookConfiguration
         name: istiod-default-validator
-    targetRevision: 0.*.*
   loki:
     chart: loki
     helm:
@@ -85,7 +80,6 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.9
   mariadb:
     chart: mariadb
     helm:
@@ -98,7 +92,6 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.2
   mailu:
     chart: mailu
     helm:
@@ -111,7 +104,6 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.2
   metallb:
     chart: metallb
     helm:
@@ -124,7 +116,6 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.5
   nginx:
     chart: ingress-nginx
     helm:
@@ -137,7 +128,6 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.1.5
   openebs:
     chart: openebs
     helm:
@@ -150,7 +140,6 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.4
   php-hello-world:
     chart: php-hello-world
     helm:
@@ -163,7 +152,6 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.0.31
     featureBranches:
       feature/cool-feature:
         tag: 40ba834d914638ecee75159a7f25cbed2d96e3fc
@@ -179,4 +167,4 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-    targetRevision: 0.1.0
+
