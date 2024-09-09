@@ -6,6 +6,7 @@ istio-istiod:
   meshConfig:
     outboundTrafficPolicy:
       mode: "REGISTRY_ONLY"
+    accessLogFile: "/dev/stdout"
 
 istio-cni:
   profile: ambient
