@@ -3,6 +3,9 @@ istio-base:
 
 istio-istiod:
   profile: ambient
+  meshConfig:
+    outboundTrafficPolicy:
+      mode: "REGISTRY_ONLY"
 
 istio-cni:
   profile: ambient
