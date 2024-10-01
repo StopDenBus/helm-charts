@@ -10,6 +10,9 @@ istio-istiod:
 
 istio-cni:
   profile: ambient
+  cni:
+    ambient:
+      dnsCapture: 'true'
 
 istio-gateway:
   name: "ingress"
