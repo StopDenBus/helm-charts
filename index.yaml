@@ -2497,6 +2497,20 @@ entries:
     version: 0.0.1
   mailu:
   - apiVersion: v2
+    created: "2024-10-04T15:06:24.754958663Z"
+    dependencies:
+    - alias: mailu
+      name: mailu
+      repository: https://mailu.github.io/helm-charts/
+      version: 1.5.0
+    description: This chart installs the Mailu mail system on kubernetes
+    digest: 654f9f1318c93c662233419c614adbb95571da05631a886b9a2be4ca234f3234
+    name: mailu
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mailu-0.0.6/mailu-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
     created: "2024-10-04T14:50:27.290061987Z"
     dependencies:
     - alias: mailu
@@ -2602,6 +2616,21 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/mariadb-0.0.1/mariadb-0.0.1.tgz
     version: 0.0.1
   metallb:
+  - apiVersion: v2
+    created: "2024-10-04T15:06:24.897762327Z"
+    dependencies:
+    - alias: metallb
+      name: metallb
+      repository: https://metallb.github.io/metallb
+      version: 0.14.8
+    description: A network load-balancer implementation for Kubernetes using standard
+      routing protocols
+    digest: c998baa44bd0741374f314aa8f640265038369acecc4dbc43fac66d19f4212fd
+    name: metallb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/metallb-0.0.7/metallb-0.0.7.tgz
+    version: 0.0.7
   - apiVersion: v2
     created: "2024-10-04T13:14:03.48286819Z"
     dependencies:
@@ -2972,4 +3001,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-10-04T14:50:27.2905454Z"
+generated: "2024-10-04T15:06:24.898196538Z"
