@@ -51,6 +51,8 @@ mailu:
     externalService:
       enabled: true
       type: "NodePort"
+    updateStrategy:
+      type: Recreate      
 
   fetchmail:
     enabled: true
