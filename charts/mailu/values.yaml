@@ -6,6 +6,8 @@ mailu:
         existingSecretPasswordKey: "mysql-mailu-password"
         username: "mailu"
     storageClass: "zfs"
+  
+  mailuVersion: "2024.06.20"
 
   hostnames:
     - mail.apps.gusek.info
