@@ -1,6 +1,21 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  name: mail
+spec:
+  addresses:
+    - 192.168.0.10/32
+  serviceAllocation:
+    priority: 50
+    namespaces:
+      - mail
+    serviceSelectors:
+      - matchExpressions:
+          - {key: app.kubernetes.io/name, operator: In, values: [mailu]}
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
   name: nginx
 spec:
   addresses:

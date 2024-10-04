@@ -5,7 +5,8 @@ metadata:
   name: pool
 spec:
   ipAddressPools:
-    - nginx
     - istio
+    - mail
+    - nginx
   interfaces:
     - vmbr0

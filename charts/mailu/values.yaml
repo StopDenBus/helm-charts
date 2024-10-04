@@ -48,7 +48,7 @@ mailu:
   front:
     externalService:
       enabled: true
-      type: "NodePort"
+      type: "LoadBalancer"
 
   fetchmail:
     enabled: true
