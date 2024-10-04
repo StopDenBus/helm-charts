@@ -6,7 +6,7 @@ metadata:
 spec:
   ipAddressPools:
     - istio
-    - mail
+    #- mail
     - nginx
   interfaces:
     - vmbr0
