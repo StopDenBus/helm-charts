@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-10-04T13:40:40.996471897Z"
+    description: A Helm chart for ArgoCD applications
+    digest: e95bf78239a99adfe3885434ad23830b3e85b685ed2b86fba05fd52327224c75
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.112/applications-0.0.112.tgz
+    version: 0.0.112
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-09-08T11:27:32.669969887Z"
     description: A Helm chart for ArgoCD applications
     digest: 9f21a1513362fd9d91668ee5b672b2338332476b1a70ccfae5316e4a7cefdd81
@@ -2948,4 +2958,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-10-04T13:31:40.467815326Z"
+generated: "2024-10-04T13:40:40.997158502Z"
