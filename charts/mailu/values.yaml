@@ -27,7 +27,7 @@ mailu:
   externalDatabase:
     enabled: true
     type: "mysql"
-    host: "mariadb.mariadb.svc.cluster.local"
+    host: "mysql.mysql.svc.cluster.local"
     existingSecret: mysql-mailu-secrets
     existingSecretDatabaseKey: "mysql-mailu-database"
     existingSecretUsernameKey: "mysql-mailu-username"
