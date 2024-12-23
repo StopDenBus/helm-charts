@@ -2507,6 +2507,20 @@ entries:
     version: 0.0.1
   mailu:
   - apiVersion: v2
+    created: "2024-12-23T20:39:30.234329633Z"
+    dependencies:
+    - alias: mailu
+      name: mailu
+      repository: https://mailu.github.io/helm-charts/
+      version: 1.5.0
+    description: This chart installs the Mailu mail system on kubernetes
+    digest: da64d628c7864d7b2d23234bd7879fe5f7c48f44c9478ead86a2d09c62b76e50
+    name: mailu
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mailu-0.0.9/mailu-0.0.9.tgz
+    version: 0.0.9
+  - apiVersion: v2
     created: "2024-12-23T15:17:32.291871164Z"
     dependencies:
     - alias: mailu
@@ -3087,4 +3101,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-23T20:34:57.262259682Z"
+generated: "2024-12-23T20:39:30.234696318Z"
