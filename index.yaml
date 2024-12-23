@@ -2631,6 +2631,21 @@ entries:
     version: 0.0.1
   metallb:
   - apiVersion: v2
+    created: "2024-12-23T14:31:43.330828005Z"
+    dependencies:
+    - alias: metallb
+      name: metallb
+      repository: https://metallb.github.io/metallb
+      version: 0.14.8
+    description: A network load-balancer implementation for Kubernetes using standard
+      routing protocols
+    digest: 09af22c724544d4abc6fe48e8542b3ab4d9b0466a034f59b97b63350244a4f3b
+    name: metallb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/metallb-0.0.8/metallb-0.0.8.tgz
+    version: 0.0.8
+  - apiVersion: v2
     created: "2024-10-04T15:06:24.897762327Z"
     dependencies:
     - alias: metallb
@@ -3015,4 +3030,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-10-04T15:18:18.614000254Z"
+generated: "2024-12-23T14:31:43.331190087Z"
