@@ -116,6 +116,18 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
+  mysql:
+    chart: mysql
+    helm:
+      releaseName: mysql
+    namespace: mysql
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true      
   nginx:
     chart: ingress-nginx
     helm:
