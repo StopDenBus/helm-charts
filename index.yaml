@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-12-23T20:34:57.075366266Z"
+    description: A Helm chart for ArgoCD applications
+    digest: b2d6cae2f2ee9ce3686b0c5b1577e36ca0ad0a5160a52fa84ecf5447222aa145
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.113/applications-0.0.113.tgz
+    version: 0.0.113
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-10-04T13:40:40.996471897Z"
     description: A Helm chart for ArgoCD applications
     digest: e95bf78239a99adfe3885434ad23830b3e85b685ed2b86fba05fd52327224c75
@@ -2764,6 +2774,24 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/metallb-0.0.1/metallb-0.0.1.tgz
     version: 0.0.1
+  mysql:
+  - apiVersion: v2
+    appVersion: 8.4.3
+    created: "2024-12-23T20:34:57.261481809Z"
+    dependencies:
+    - alias: mysql
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 12.2.0
+    description: MySQL is a fast, reliable, scalable, and easy to use open source
+      relational database system. Designed to handle mission-critical, heavy-load
+      production applications.
+    digest: 028161cc8209ce1d7161219c794638650773e3806d3e33e5d4201bf46d179a3f
+    name: mysql
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mysql-0.0.1/mysql-0.0.1.tgz
+    version: 0.0.1
   openebs:
   - apiVersion: v2
     appVersion: 2.5.0
@@ -3059,4 +3087,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-23T19:35:58.158972171Z"
+generated: "2024-12-23T20:34:57.262259682Z"
