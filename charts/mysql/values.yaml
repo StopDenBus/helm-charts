@@ -1,0 +1,17 @@
+mysql:
+  auth:
+    existingSecret: "mysql-secrets"
+    createDatabase: false
+
+  primary:
+    persistence:
+      storageClass: "zfs"
+    service:
+      type: "NodePort"
+      nodePorts:
+        mysql: 32307
+    pdb:
+      create: false
+
+
+
