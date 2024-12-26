@@ -2,9 +2,7 @@ name: Increase chart versions
 
 on:
   pull_request:
-    branches:
-      - main
-    types: [closed]
+    types: [ closed ]
   # push:
   #   branches:
   #     - feature/test_workflow  
