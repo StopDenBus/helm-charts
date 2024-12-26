@@ -2681,6 +2681,23 @@ entries:
   mariadb:
   - apiVersion: v2
     appVersion: 11.2.2
+    created: "2024-12-26T20:24:55.277298865Z"
+    dependencies:
+    - alias: mariadb
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.2.2
+    description: MariaDB is an open source, community-developed SQL database server
+      that is widely in use around the world due to its enterprise features, flexibility,
+      and collaboration with leading tech firms.
+    digest: b57ef7ddaeee76b521bed3016db8652ddf46706cbae30ca29af6893dafe482ba
+    name: mariadb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mariadb-0.0.3/mariadb-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: 11.2.2
     created: "2023-12-23T11:40:34.365710444Z"
     dependencies:
     - alias: mariadb
@@ -3149,6 +3166,21 @@ entries:
   sealed-secrets:
   - apiVersion: v2
     appVersion: v0.20.2
+    created: "2024-12-26T20:24:55.376678226Z"
+    dependencies:
+    - alias: sealed-secrets
+      name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 2.17.0
+    description: Helm chart for the sealed-secrets controller.
+    digest: 1d974a3b70df838905844f933f66ed997d9dae52396cef5627030ee37b03c654
+    name: sealed-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.2/sealed-secrets-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: v0.20.2
     created: "2024-12-26T20:15:12.079279926Z"
     dependencies:
     - alias: sealed-secrets
@@ -3177,4 +3209,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-26T20:15:12.080082599Z"
+generated: "2024-12-26T20:24:55.377033789Z"
