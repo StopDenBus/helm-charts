@@ -25,6 +25,6 @@ appVersion: "v2.8.2"
 
 dependencies:
   - name: loki
-    version: 2.8.2
+    version: 2.16.0
     repository: https://grafana.github.io/helm-charts
     alias: loki
