@@ -98,7 +98,7 @@ applications:
       releaseName: mailu
     namespace: mail
     project: default
-    syncPolicy: {}
+    syncPolicy:
       automated:
         selfHeal: true
         prune: true
