@@ -1,0 +1,53 @@
+name: Increase chart versions
+
+on:
+  # pull_request:
+  #   branches:
+  #     - main
+  #   types: [closed]
+  push:
+    branches:
+      - feature/test_workflow  
+  workflow_dispatch:
+
+jobs:
+  checkout:
+    if: github.event.pull_request.merged == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.DEPLOY_TOKEN }}
+          ref: main
+
+      - name: Configure Git
+        run: |
+          git config user.name "$GITHUB_ACTOR"
+          git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
+
+    getChangedFolders:
+      runs-on: ubuntu-latest
+      needs: checkout
+      outputs:
+        get_changed: ${{ steps.get_changed.outputs.changed }}
+      steps:
+        - uses: Stockopedia/action-get-changed-files@v1
+          id: get_changed
+          with:
+            github-token: ${{ secrets.GITHUB_TOKEN }}
+            ignore: "**/+(.github)"
+            foldersOnly: true # to only include folders in the output
+            format: json # either json, csv or newline
+
+    increase_chart_version:
+      runs-on: ubuntu-latest
+      needs: getChangedFolders
+      strategy:
+        matrix:
+          value: ${{fromJSON(needs.getChangedFolders.outputs.get_changed)}}
+      steps:
+        - run: |
+            echo "${{ matrix.value }}"
+
