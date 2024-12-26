@@ -48,6 +48,7 @@ jobs:
   increase_chart_version:
     runs-on: ubuntu-latest
     needs: getChangedFolders
+    if: ${{ needs.getChangedFolders.outputs.matrix != '' && toJson(fromJson(needs.getChangedFolders.outputs.matrix)) != '[]' }}
     strategy:
       matrix:
         value: ${{ fromJson(needs.getChangedFolders.outputs.matrix) }}
