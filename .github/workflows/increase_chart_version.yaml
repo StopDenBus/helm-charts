@@ -10,7 +10,7 @@ on:
 
 jobs:
   checkout:
-    #if: github.event.pull_request.merged == 'true'
+    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
       - name: Debug
@@ -71,4 +71,4 @@ jobs:
 
       - name: Push to main
         run: |
-          git push origin main
+          git push origin main --force-with-lease
