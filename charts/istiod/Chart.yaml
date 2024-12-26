@@ -37,7 +37,7 @@ dependencies:
     repository: https://istio-release.storage.googleapis.com/charts
     alias: istio-cni
   - name: gateway
-    version: 1.23.2
+    version: 1.24.2
     repository: https://istio-release.storage.googleapis.com/charts
     alias: istio-gateway
   - name: ztunnel
