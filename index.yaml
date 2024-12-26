@@ -1461,6 +1461,22 @@ entries:
   dex:
   - apiVersion: v2
     appVersion: 0.17.0
+    created: "2024-12-26T20:15:11.599983198Z"
+    dependencies:
+    - alias: dex
+      name: dex
+      repository: https://charts.dexidp.io
+      version: 0.19.1
+    description: OpenID Connect (OIDC) identity and OAuth 2.0 provider with pluggable
+      connectors.
+    digest: 730d42b6a8f815736250a25363744df14380126c610652c33fa5504efd467aea
+    name: dex
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.28/dex-0.0.28.tgz
+    version: 0.0.28
+  - apiVersion: v2
+    appVersion: 0.17.0
     created: "2024-12-26T18:49:08.0539659Z"
     dependencies:
     - alias: dex
@@ -3133,6 +3149,21 @@ entries:
   sealed-secrets:
   - apiVersion: v2
     appVersion: v0.20.2
+    created: "2024-12-26T20:15:12.079279926Z"
+    dependencies:
+    - alias: sealed-secrets
+      name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 2.17.0
+    description: Helm chart for the sealed-secrets controller.
+    digest: 6ff20529b82f4d3a2f216ae004c124c3945a1e37076a2f554ca9245d75f02f02
+    name: sealed-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.1/sealed-secrets-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: v0.20.2
     created: "2023-04-10T13:27:28.547069193Z"
     dependencies:
     - alias: sealed-secrets
@@ -3146,4 +3177,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-26T18:49:08.054691884Z"
+generated: "2024-12-26T20:15:12.080082599Z"
