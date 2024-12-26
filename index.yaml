@@ -1894,6 +1894,21 @@ entries:
   external-secrets:
   - apiVersion: v2
     appVersion: 0.9.10
+    created: "2024-12-26T20:47:58.541658024Z"
+    dependencies:
+    - alias: external-secrets
+      name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: 0.12.1
+    description: External secret management for Kubernetes
+    digest: 179fb6525a6a738477eda2ec647bdd099e4c59cd827e9b6f6f109a376d2f99f4
+    name: external-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-secrets-0.0.5/external-secrets-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 0.9.10
     created: "2023-12-21T12:51:14.434481966Z"
     dependencies:
     - alias: external-secrets
@@ -1925,6 +1940,21 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 9.5.2
+    created: "2024-12-26T20:47:58.722392891Z"
+    dependencies:
+    - alias: grafana
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 6.61.2
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 5abdbdff705fc83d123235e7818787fd8f1a1ccd71c7e63e646755dac7899b41
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.3/grafana-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: 9.5.2
     created: "2023-05-29T11:54:58.469826555Z"
     dependencies:
     - alias: grafana
@@ -1954,6 +1984,21 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.1/grafana-0.0.1.tgz
     version: 0.0.1
   ingress-nginx:
+  - apiVersion: v2
+    appVersion: 4.10.0
+    created: "2024-12-26T20:47:58.969677313Z"
+    dependencies:
+    - alias: nginx
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.11.3
+    description: A Helm chart for Kubernetes
+    digest: 925e7630325d8311ec18eb8c91623106be5ba793a0b640c703d53ac82934c0c1
+    name: ingress-nginx
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/ingress-nginx-0.1.7/ingress-nginx-0.1.7.tgz
+    version: 0.1.7
   - apiVersion: v2
     appVersion: 4.10.0
     created: "2024-08-25T14:46:37.795892676Z"
@@ -2045,6 +2090,37 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/ingress-nginx-0.1.0/ingress-nginx-0.1.0.tgz
     version: 0.1.0
   istio:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2024-12-26T20:47:59.181219805Z"
+    dependencies:
+    - alias: istio-base
+      name: base
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.23.2
+    - alias: istio-istiod
+      name: istiod
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.24.2
+    - alias: istio-cni
+      name: cni
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.24.2
+    - alias: istio-gateway
+      name: gateway
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.24.2
+    - alias: istio-ztunnel
+      name: ztunnel
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.23.2
+    description: Helm chart for istio control plane
+    digest: a66e85e3e61eb9b8ecfaddb5569aeed5db79589860d44f14d3c1a0aedb1ebf5a
+    name: istio
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/istio-0.0.13/istio-0.0.13.tgz
+    version: 0.0.13
   - apiVersion: v2
     appVersion: 0.0.1
     created: "2024-10-02T12:28:08.987581172Z"
@@ -3166,6 +3242,21 @@ entries:
   sealed-secrets:
   - apiVersion: v2
     appVersion: v0.20.2
+    created: "2024-12-26T20:47:59.541642875Z"
+    dependencies:
+    - alias: sealed-secrets
+      name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 2.17.0
+    description: Helm chart for the sealed-secrets controller.
+    digest: 0ed5ed4d6fbb48ce67a8d081067b3130e79b9ec6f542f40313eb2b640c197953
+    name: sealed-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.5/sealed-secrets-0.1.5.tgz
+    version: 0.1.5
+  - apiVersion: v2
+    appVersion: v0.20.2
     created: "2024-12-26T20:24:55.376678226Z"
     dependencies:
     - alias: sealed-secrets
@@ -3209,4 +3300,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-26T20:24:55.377033789Z"
+generated: "2024-12-26T20:47:59.54222939Z"
