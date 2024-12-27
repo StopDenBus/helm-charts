@@ -18,7 +18,7 @@ jobs:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.DEPLOY_TOKEN }}
@@ -30,7 +30,7 @@ jobs:
       matrix: ${{ steps.matrix.outputs.matrix }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.DEPLOY_TOKEN }}
@@ -54,7 +54,7 @@ jobs:
         value: ${{ fromJson(needs.getChangedFolders.outputs.matrix) }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
           token: ${{ secrets.DEPLOY_TOKEN }}
