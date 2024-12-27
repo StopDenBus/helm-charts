@@ -1124,6 +1124,22 @@ entries:
   argocd:
   - apiVersion: v2
     appVersion: 6.0.4
+    created: "2024-12-27T11:12:36.183664296Z"
+    dependencies:
+    - alias: argocd
+      name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 6.11.1
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: d283dd33f24463c0573f9960dc39b1c3de528c7d69f332123385187cb56dedf9
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/argocd-0.1.21/argocd-0.1.21.tgz
+    version: 0.1.21
+  - apiVersion: v2
+    appVersion: 6.0.4
     created: "2024-03-30T15:26:29.738952217Z"
     dependencies:
     - alias: argocd
@@ -3362,4 +3378,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-27T00:03:37.473510626Z"
+generated: "2024-12-27T11:12:36.184175562Z"
