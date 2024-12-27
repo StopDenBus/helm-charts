@@ -13,10 +13,10 @@ jobs:
     if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
     steps:
-      - name: Debug
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
-        run: echo "$GITHUB_CONTEXT"
+      # - name: Debug
+      #   env:
+      #     GITHUB_CONTEXT: ${{ toJSON(github) }}
+      #   run: echo "$GITHUB_CONTEXT"
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -61,8 +61,12 @@ jobs:
           ref: main
 
       - run: |
-          echo "Increase chart version for chart: ${{ matrix.value }}"
-          yq '.version |= (split(".") | .[-1] |= ((. tag = "!!int") + 1) | join("."))' -i ${{ matrix.value }}/Chart.yaml
+          if [ -f ${{ matrix.value }}/Chart.yaml ]; then
+            echo "Increase chart version for chart: ${{ matrix.value }}."
+            yq '.version |= (split(".") | .[-1] |= ((. tag = "!!int") + 1) | join("."))' -i ${{ matrix.value }}/Chart.yaml
+          else
+            echo "Skipping ${{ matrix.value }}, because it doesn't contain a Chart.yaml."
+          fi
 
       - name: Configure Git
         run: |
