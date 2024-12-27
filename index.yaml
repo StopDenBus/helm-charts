@@ -2092,6 +2092,37 @@ entries:
   istio:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-12-27T00:03:37.473146729Z"
+    dependencies:
+    - alias: istio-base
+      name: base
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.24.2
+    - alias: istio-istiod
+      name: istiod
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.24.2
+    - alias: istio-cni
+      name: cni
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.24.2
+    - alias: istio-gateway
+      name: gateway
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.24.2
+    - alias: istio-ztunnel
+      name: ztunnel
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.24.2
+    description: Helm chart for istio control plane
+    digest: 811909c3ec052d7810b5237cf7fcc7bea70d87578a19ff2e650be2f23aaf4dd0
+    name: istio
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/istio-0.0.15/istio-0.0.15.tgz
+    version: 0.0.15
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-12-26T20:49:46.453810799Z"
     dependencies:
     - alias: istio-base
@@ -3331,4 +3362,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-26T20:49:46.454602828Z"
+generated: "2024-12-27T00:03:37.473510626Z"
