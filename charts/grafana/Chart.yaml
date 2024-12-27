@@ -21,6 +21,6 @@ version: 0.0.3
 appVersion: "9.5.2"
 dependencies:
   - name: grafana
-    version: 6.61.2
+    version: 8.8.2
     repository: https://grafana.github.io/helm-charts
     alias: grafana
