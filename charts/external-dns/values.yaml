@@ -1,0 +1,17 @@
+external-dns:
+  sources:
+    - service
+  policy: sync
+  txtOwnerId: "kubernetes"
+  provider: rfc2136
+  domainFilters:
+    - apps.gusek.info
+  rfc2136:
+    host: samba.gusek.info
+    port: 53
+    zones:
+      - apps.gusek.info
+    tsigAxfr: true
+    tsigKeyname: externaldns
+    secretName: tsig-secrets
+  
