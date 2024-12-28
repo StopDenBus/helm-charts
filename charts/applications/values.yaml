@@ -21,6 +21,18 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
+  external-dns:
+    chart: external-dns
+    helm:
+      releaseName: external-dns
+    namespace: external-dns
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true
   external-secrets:
     chart: external-secrets
     helm:
