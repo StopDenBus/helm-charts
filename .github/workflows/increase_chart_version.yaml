@@ -60,20 +60,25 @@ jobs:
           token: ${{ secrets.DEPLOY_TOKEN }}
           ref: main
 
-      - run: |
+      - id: increaseVersion
+        run: |
           if [ -f ${{ matrix.value }}/Chart.yaml ]; then
             echo "Increase chart version for chart: ${{ matrix.value }}."
             yq '.version |= (split(".") | .[-1] |= ((. tag = "!!int") + 1) | join("."))' -i ${{ matrix.value }}/Chart.yaml
+            echo "skip=false" >> $GITHUB_OUTPUT
           else
             echo "Skipping ${{ matrix.value }}, because it doesn't contain a Chart.yaml."
+            echo "skip=true" >> $GITHUB_OUTPUT
           fi
 
       - name: Configure Git
+        if: ${{ steps.increaseVersion.outputs.skip == 'false' }}
         run: |
           git config  --local user.name "$GITHUB_ACTOR"
           git config  --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git commit -am "Bump chart version"
 
       - name: Push to main
+        if: ${{ steps.increaseVersion.outputs.skip == 'false' }}
         run: |
           git push origin main --force-with-lease
