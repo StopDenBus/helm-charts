@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2024-12-28T20:40:32.594492814Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 50a34c07daf4ab0ec661ea9f3eafca95c096549465478087e687d491fd91bb11
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.116/applications-0.0.116.tgz
+    version: 0.0.116
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-12-23T20:34:57.075366266Z"
     description: A Helm chart for ArgoCD applications
     digest: b2d6cae2f2ee9ce3686b0c5b1577e36ca0ad0a5160a52fa84ecf5447222aa145
@@ -1923,6 +1933,23 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.1/dex-0.0.1.tgz
     version: 0.0.1
+  external-dns:
+  - apiVersion: v2
+    appVersion: 0.0.0
+    created: "2024-12-28T20:40:32.706522606Z"
+    dependencies:
+    - alias: external-dns
+      name: external-dns
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.7.1
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 1ef24446237ef7658b75a45ca016392814ea09157cfe54598bb81c5295120b7e
+    name: external-dns
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-dns-0.0.2/external-dns-0.0.2.tgz
+    version: 0.0.2
   external-secrets:
   - apiVersion: v2
     appVersion: 0.9.10
@@ -3456,4 +3483,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2024-12-27T11:50:55.367068268Z"
+generated: "2024-12-28T20:40:32.706954224Z"
