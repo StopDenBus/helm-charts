@@ -25,6 +25,6 @@ appVersion: "8.4.3"
 
 dependencies:
   - name: mysql
-    version: 12.2.0
+    version: 12.2.1
     repository: https://charts.bitnami.com/bitnami
     alias: mysql
