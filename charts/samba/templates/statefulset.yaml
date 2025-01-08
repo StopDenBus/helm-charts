@@ -1,0 +1,247 @@
+apiVersion: {{ include "common.capabilities.statefulset.apiVersion" . }}
+kind: StatefulSet
+metadata:
+  name: {{ template "common.names.fullname" . }}
+  namespace: {{ include "common.names.namespace" . | quote }}
+  labels: {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) | nindent 4 }}
+    app.kubernetes.io/component: samba
+  {{- if or .Values.samba.statefulsetAnnotations .Values.commonAnnotations }}
+  {{- $annotations := include "common.tplvalues.merge" (dict "values" (list .Values.samba.statefulsetAnnotations .Values.commonAnnotations) "context" .) }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" $annotations "context" $ ) | nindent 4 }}
+  {{- end }}
+spec:
+  {{- if not .Values.samba.autoscaling.hpa.enabled }}
+  replicas: {{ .Values.samba.replicaCount }}
+  {{- end }}
+  podManagementPolicy: {{ .Values.podManagementPolicy | quote }}
+  {{- $podLabels := include "common.tplvalues.merge" (dict "values" (list .Values.samba.podLabels .Values.commonLabels) "context" .) }}
+  selector:
+    matchLabels: {{- include "common.labels.matchLabels" ( dict "customLabels" $podLabels "context" $ ) | nindent 6 }}
+      app.kubernetes.io/component: samba
+  serviceName: {{ template "common.names.fullname" . }}
+  {{- if .Values.samba.updateStrategy }}
+  updateStrategy: {{- toYaml .Values.samba.updateStrategy | nindent 4 }}
+  {{- end }}
+  template:
+    metadata:
+      {{- if .Values.samba.podAnnotations }}
+      annotations: {{- include "common.tplvalues.render" (dict "value" .Values.samba.podAnnotations "context" $) | nindent 8 }}
+      {{- end }}
+      labels: {{- include "common.labels.standard" ( dict "customLabels" $podLabels "context" $ ) | nindent 8 }}
+        app.kubernetes.io/component: samba
+    spec:
+      {{- include "samba.imagePullSecrets" . | nindent 6 }}
+      serviceAccountName: {{ template "samba.serviceAccountName" . }}
+      automountServiceAccountToken: {{ .Values.samba.automountServiceAccountToken }}
+      {{- if .Values.samba.hostAliases }}
+      hostAliases: {{- include "common.tplvalues.render" (dict "value" .Values.samba.hostAliases "context" $) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.samba.affinity }}
+      affinity: {{- include "common.tplvalues.render" ( dict "value" .Values.samba.affinity "context" $) | nindent 8 }}
+      {{- else }}
+      affinity:
+        podAffinity: {{- include "common.affinities.pods" (dict "type" .Values.samba.podAffinityPreset "component" "samba" "customLabels" $podLabels "context" $) | nindent 10 }}
+        podAntiAffinity: {{- include "common.affinities.pods" (dict "type" .Values.samba.podAntiAffinityPreset "component" "samba" "customLabels" $podLabels "context" $) | nindent 10 }}
+        nodeAffinity: {{- include "common.affinities.nodes" (dict "type" .Values.samba.nodeAffinityPreset.type "key" .Values.samba.nodeAffinityPreset.key "values" .Values.samba.nodeAffinityPreset.values) | nindent 10 }}
+      {{- end }}
+      {{- if .Values.samba.nodeSelector }}
+      nodeSelector: {{- include "common.tplvalues.render" ( dict "value" .Values.samba.nodeSelector "context" $) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.samba.tolerations }}
+      tolerations: {{- include "common.tplvalues.render" (dict "value" .Values.samba.tolerations "context" .) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.samba.priorityClassName }}
+      priorityClassName: {{ .Values.samba.priorityClassName | quote }}
+      {{- end }}
+      {{- if .Values.samba.schedulerName }}
+      schedulerName: {{ .Values.samba.schedulerName | quote }}
+      {{- end }}
+      {{- if .Values.samba.topologySpreadConstraints }}
+      topologySpreadConstraints: {{- include "common.tplvalues.render" (dict "value" .Values.samba.topologySpreadConstraints "context" .) | nindent 8 }}
+      {{- end }}
+      {{- if .Values.samba.podSecurityContext.enabled }}
+      securityContext: {{- omit .Values.samba.podSecurityContext "enabled" | toYaml | nindent 8 }}
+      {{- end }}
+      {{- if .Values.samba.terminationGracePeriodSeconds }}
+      terminationGracePeriodSeconds: {{ .Values.samba.terminationGracePeriodSeconds }}
+      {{- end }}
+      initContainers:
+        {{- if and .Values.volumePermissions.enabled .Values.persistence.named.enabled }}
+        - name: volume-permissions
+          image: {{ include "samba.volumePermissions.image" . }}
+          imagePullPolicy: {{ .Values.volumePermissions.image.pullPolicy | quote }}
+          command:
+            - /bin/bash
+            - -ec
+            - |
+              chown -R {{ .Values.named.containerSecurityContext.runAsUser }}:{{ .Values.samba.podSecurityContext.fsGroup }} {{ .Values.persistence.named.mountPath }}
+          {{- if .Values.volumePermissions.containerSecurityContext.enabled }}
+          securityContext: {{- include "common.compatibility.renderSecurityContext" (dict "secContext" .Values.volumePermissions.containerSecurityContext "context" $) | nindent 12 }}
+          {{- end }}
+          {{- if .Values.volumePermissions.resources }}
+          resources: {{- toYaml .Values.volumePermissions.resources | nindent 12 }}
+          {{- else if ne .Values.volumePermissions.resourcesPreset "none" }}
+          resources: {{- include "common.resources.preset" (dict "type" .Values.volumePermissions.resourcesPreset) | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: data
+              mountPath: {{ .Values.persistence.mountPath }}
+              {{- if .Values.persistence.subPath }}
+              subPath: {{ .Values.persistence.subPath }}
+              {{- end }}
+        {{- end }}
+        {{- if .Values.samba.initContainers }}
+          {{- include "common.tplvalues.render" (dict "value" .Values.samba.initContainers "context" $) | nindent 8 }}
+        {{- end }}
+      containers:
+        - name: named
+          image: {{ template "samba.image" . }}
+          imagePullPolicy: {{ .Values.named.image.pullPolicy }}
+          {{- if .Values.named.containerSecurityContext.enabled }}
+          securityContext: {{- include "common.compatibility.renderSecurityContext" (dict "secContext" .Values.named.containerSecurityContext "context" $) | nindent 12 }}
+          {{- end }}
+          {{- if .Values.diagnosticMode.enabled }}
+          command: {{- include "common.tplvalues.render" (dict "value" .Values.diagnosticMode.command "context" $) | nindent 12 }}
+          {{- else if .Values.named.command }}
+          command: {{- include "common.tplvalues.render" (dict "value" .Values.named.command "context" $) | nindent 12 }}
+          {{- end }}
+          {{- if .Values.diagnosticMode.enabled }}
+          args: {{- include "common.tplvalues.render" (dict "value" .Values.diagnosticMode.args "context" $) | nindent 12 }}
+          {{- else if .Values.named.args }}
+          args: {{- include "common.tplvalues.render" (dict "value" .Values.named.args "context" $) | nindent 12 }}
+          {{- end }}
+          env:
+            - name: BITNAMI_DEBUG
+              value: {{ ternary "true" "false" (or .Values.named.image.debug .Values.diagnosticMode.enabled) | quote }}
+            {{- if .Values.named.extraEnvVars }}
+            {{- include "common.tplvalues.render" (dict "value" .Values.named.extraEnvVars "context" $) | nindent 12 }}
+            {{- end }}
+          envFrom:
+            {{- if .Values.named.extraEnvVarsCM }}
+            - configMapRef:
+                name: {{ include "common.tplvalues.render" (dict "value" .Values.named.extraEnvVarsCM "context" $) }}
+            {{- end }}
+            {{- if .Values.named.extraEnvVarsSecret }}
+            - secretRef:
+                name: {{ include "common.tplvalues.render" (dict "value" .Values.named.extraEnvVarsSecret "context" $) }}
+            {{- end }}
+          {{- if .Values.named.resources }}
+          resources: {{- toYaml .Values.named.resources | nindent 12 }}
+          {{- else if ne .Values.named.resourcesPreset "none" }}
+          resources: {{- include "common.resources.preset" (dict "type" .Values.named.resourcesPreset) | nindent 12 }}
+          {{- end }}
+          ports:
+            - name: domain
+              containerPort: {{ .Values.named.containerPorts.domain }}
+            - name: rdns
+              containerPort: {{ .Values.named.containerPorts.rdns }}
+            {{- if .Values.named.extraContainerPorts }}
+            {{- include "common.tplvalues.render" (dict "value" .Values.named.extraContainerPorts "context" $) | nindent 12 }}
+            {{- end }}
+          {{- if not .Values.diagnosticMode.enabled }}
+          {{- if .Values.named.customLivenessProbe }}
+          livenessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.named.customLivenessProbe "context" $) | nindent 12 }}
+          {{- else if .Values.named.livenessProbe.enabled }}
+          livenessProbe: {{- include "common.tplvalues.render" (dict "value" (omit .Values.named.livenessProbe "enabled") "context" $) | nindent 12 }}
+          {{- end }}
+          {{- if .Values.named.customReadinessProbe }}
+          readinessProbe: {{- include "common.tplvalues.render" (dict "value" .Values.named.customReadinessProbe "context" $) | nindent 12 }}
+          {{- else if .Values.named.readinessProbe.enabled }}
+          readinessProbe: {{- include "common.tplvalues.render" (dict "value" (omit .Values.named.readinessProbe "enabled") "context" $) | nindent 12 }}
+          {{- end }}
+          {{- if .Values.named.customStartupProbe }}
+          startupProbe: {{- include "common.tplvalues.render" (dict "value" .Values.named.customStartupProbe "context" $) | nindent 12 }}
+          {{- else if .Values.named.startupProbe.enabled }}
+          startupProbe: {{- include "common.tplvalues.render" (dict "value" (omit .Values.named.startupProbe "enabled") "context" $) | nindent 12 }}
+          {{- end }}
+          {{- end }}
+          {{- if .Values.named.lifecycleHooks }}
+          lifecycle: {{- include "common.tplvalues.render" (dict "value" .Values.named.lifecycleHooks "context" $) | nindent 12 }}
+          {{- end }}
+          volumeMounts:
+            - name: named-conf
+              mountPath: /etc/bind/named.conf
+              subPath: named.conf
+            - name: named-conf
+              mountPath: /etc/bind/named-acls.conf
+              subPath: named-acls.conf
+            - name: named-conf
+              mountPath: /etc/bind/named.conf.options
+              subPath: named.conf.options
+            - name: named-conf
+              mountPath: /etc/bind/named.conf.local
+              subPath: named.conf.local
+            - name: named-conf
+              mountPath: /etc/bind/named.conf.zones
+              subPath: named.conf.zones
+            - name: named-conf
+              mountPath: /etc/bind/db.local
+              subPath: db.local
+            - name: named-conf
+              mountPath: /etc/bind/db.127
+              subPath: db.127
+            - name: named-conf
+              mountPath: /etc/bind/db.0
+              subPath: db.0
+            - name: named-conf
+              mountPath: /etc/bind/db.255
+              subPath: db.255
+            - name: named-data
+              mountPath: /var/bind
+            - name: named-conf
+              mountPath: /var/bind/db.apps.gusek.info
+              subPath: db.apps.gusek.info
+            - name: named-key
+              mountPath: /etc/bind/named-keys.conf
+              subPath: named-keys.conf
+            - name: named-empty-dir
+              mountPath: /var/run/named
+          {{- if .Values.named.extraVolumeMounts }}
+          {{- include "common.tplvalues.render" (dict "value" .Values.named.extraVolumeMounts "context" $) | nindent 12 }}
+          {{- end }}          
+        {{- if .Values.samba.sidecars }}
+        {{- include "common.tplvalues.render" ( dict "value" .Values.samba.sidecars "context" $) | nindent 8 }}
+        {{- end }}
+      volumes:
+        - name: named-conf
+          configMap:
+            name: named
+        - name: named-key
+          secret:
+            secretName: named-key-secret
+        - name: named-empty-dir
+          emptyDir: {}
+        - name: named-data
+        {{- if .Values.persistence.enabled }}
+          persistentVolumeClaim:
+            claimName: {{ default (include "common.names.fullname" .) .Values.persistence.existingClaim }}
+        {{- else }}
+          emptyDir: {}
+        {{- end }}
+        {{- if .Values.samba.extraVolumes }}
+        {{- include "common.tplvalues.render" (dict "value" .Values.samba.extraVolumes "context" $) | nindent 8 }}
+        {{- end }}
+  {{- if .Values.persistence.named.enabled }}
+  volumeClaimTemplates:
+    - metadata:
+        name: named-data
+        {{- if or .Values.persistence.named.annotations .Values.commonAnnotations }}
+        {{- $claimAnnotations := include "common.tplvalues.merge" (dict "values" .Values.persistence.named.annotations .Values.commonAnnotations "context" .) | fromYaml }}
+        annotations: {{- include "common.tplvalues.render" ( dict "value" $claimAnnotations "context" $ ) | nindent 10 }}
+        {{- end }}
+        {{- if .Values.commonLabels }}
+        labels: {{- include "common.labels.matchLabels" ( dict "customLabels" .Values.commonLabels "context" $ ) | nindent 10 }}
+        {{- end }}
+      spec:
+        accessModes:
+        {{- range .Values.persistence.named.accessModes }}
+          - {{ . | quote }}
+        {{- end }}
+        resources:
+          requests:
+            storage: {{ .Values.persistence.named.size | quote }}
+        {{- if .Values.persistence.named.selector }}
+        selector: {{- include "common.tplvalues.render" (dict "value" .Values.persistence.named.selector "context" $) | nindent 10 }}
+        {{- end }}
+        {{- include "common.storage.class" (dict "persistence" .Values.persistence.named "global" .Values.global) | nindent 8 }}
+  {{- end }}

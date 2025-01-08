@@ -1,0 +1,1223 @@
+## @section Global parameters
+## Global Docker image parameters
+## Please, note that this will override the image parameters, including dependencies, configured to use the global value
+## Current available global Docker image parameters: imageRegistry, imagePullSecrets and storageClass
+##
+
+## @param global.imageRegistry Global Docker image registry
+## @param global.imagePullSecrets Global Docker registry secret names as an array
+## @param global.defaultStorageClass Global default StorageClass for Persistent Volume(s)
+##
+global:
+  imageRegistry: ""
+  ## e.g:
+  ## imagePullSecrets:
+  ##   - myRegistryKeySecretName
+  ##
+  imagePullSecrets: []
+  defaultStorageClass: ""
+  ## Security parameters
+  ##
+  security:
+    ## @param global.security.allowInsecureImages Allows skipping image verification
+    allowInsecureImages: false
+  ## Compatibility adaptations for Kubernetes platforms
+  ##
+  compatibility:
+    ## Compatibility adaptations for Openshift
+    ##
+    openshift:
+      ## @param global.compatibility.openshift.adaptSecurityContext Adapt the securityContext sections of the deployment to make them compatible with Openshift restricted-v2 SCC: remove runAsUser, runAsGroup and fsGroup and let the platform use their allowed default IDs. Possible values: auto (apply if the detected running cluster is Openshift), force (perform the adaptation always), disabled (do not perform adaptation)
+      ##
+      adaptSecurityContext: auto
+    ## @param global.compatibility.omitEmptySeLinuxOptions If set to true, removes the seLinuxOptions from the securityContexts when it is set to an empty object
+    ##
+    omitEmptySeLinuxOptions: false
+
+## @section Common parameters
+##
+
+## @param kubeVersion Override Kubernetes version
+##
+kubeVersion: ""
+## @param nameOverride String to partially override common.names.name
+##
+nameOverride: ""
+## @param fullnameOverride String to fully override common.names.fullname
+##
+fullnameOverride: ""
+## @param namespaceOverride String to fully override common.names.namespace
+##
+namespaceOverride: ""
+## @param commonLabels Labels to add to all deployed objects
+##
+commonLabels: {}
+## @param commonAnnotations Annotations to add to all deployed objects
+##
+commonAnnotations: {}
+## @param clusterDomain Kubernetes cluster domain name
+##
+clusterDomain: cluster.local
+## @param extraDeploy Array of extra objects to deploy with the release
+##
+extraDeploy: []
+## Diagnostic mode
+## @param diagnosticMode.enabled Enable diagnostic mode (all probes will be disabled and the command will be overridden)
+## @param diagnosticMode.command Command to override all containers in the chart release
+## @param diagnosticMode.args Args to override all containers in the chart release
+##
+diagnosticMode:
+  enabled: false
+  command:
+    - sleep
+  args:
+    - infinity
+
+## @section samba Parameters
+##
+
+samba:
+  ## samba image
+  ## @param samba.image.registry [default: REGISTRY_NAME] samba image registry
+  ## @param samba.image.repository [default: REPOSITORY_NAME/stopdenbus/samba/samba] samba image repository
+  ## @skip samba.image.tag samba image tag (immutable tags are recommended)
+  ## @param samba.image.digest samba image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag image tag (immutable tags are recommended)
+  ## @param samba.image.pullPolicy samba image pull policy
+  ## @param samba.image.pullSecrets samba image pull secrets
+  ## @param samba.image.debug Enable samba image debug mode
+  ##
+  image:
+    registry: ghcr.io
+    repository: stopdenbus/samba/samba
+    tag: v0.0.1
+    digest: ""
+    ## Specify a imagePullPolicy
+    ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+    ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
+    ##
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ## e.g:
+    ## pullSecrets:
+    ##   - myRegistryKeySecretName
+    ##
+    pullSecrets: []
+    debug: false
+  ## @param samba.replicaCount Number of samba replicas to deploy
+  ##
+  replicaCount: 1
+  ## @param samba.containerPorts.http samba HTTP container port
+  ## @param samba.containerPorts.https samba HTTPS container port
+  ##
+  containerPorts:
+    http: 80
+    https: 443
+  ## @param samba.extraContainerPorts Optionally specify extra list of additional ports for samba containers
+  ## e.g:
+  ## extraContainerPorts:
+  ##   - name: myservice
+  ##     containerPort: 9090
+  ##
+  extraContainerPorts: []
+  ## Configure extra options for samba containers' liveness and readiness probes
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
+  ## @param samba.livenessProbe.enabled Enable livenessProbe on samba containers
+  ## @param samba.livenessProbe.initialDelaySeconds Initial delay seconds for livenessProbe
+  ## @param samba.livenessProbe.periodSeconds Period seconds for livenessProbe
+  ## @param samba.livenessProbe.timeoutSeconds Timeout seconds for livenessProbe
+  ## @param samba.livenessProbe.failureThreshold Failure threshold for livenessProbe
+  ## @param samba.livenessProbe.successThreshold Success threshold for livenessProbe
+  ##
+  livenessProbe:
+    enabled: true
+    initialDelaySeconds: 180
+    periodSeconds: 20
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  ## @param samba.readinessProbe.enabled Enable readinessProbe on samba containers
+  ## @param samba.readinessProbe.initialDelaySeconds Initial delay seconds for readinessProbe
+  ## @param samba.readinessProbe.periodSeconds Period seconds for readinessProbe
+  ## @param samba.readinessProbe.timeoutSeconds Timeout seconds for readinessProbe
+  ## @param samba.readinessProbe.failureThreshold Failure threshold for readinessProbe
+  ## @param samba.readinessProbe.successThreshold Success threshold for readinessProbe
+  ##
+  readinessProbe:
+    enabled: true
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  ## @param samba.startupProbe.enabled Enable startupProbe on samba containers
+  ## @param samba.startupProbe.initialDelaySeconds Initial delay seconds for startupProbe
+  ## @param samba.startupProbe.periodSeconds Period seconds for startupProbe
+  ## @param samba.startupProbe.timeoutSeconds Timeout seconds for startupProbe
+  ## @param samba.startupProbe.failureThreshold Failure threshold for startupProbe
+  ## @param samba.startupProbe.successThreshold Success threshold for startupProbe
+  ##
+  startupProbe:
+    enabled: false
+    initialDelaySeconds: 60
+    periodSeconds: 10
+  customStartupProbe: {}
+  ## samba resource requests and limits
+  ## ref: http://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+  ## @param samba.resourcesPreset Set samba container resources according to one common preset (allowed values: none, nano, small, medium, large, xlarge, 2xlarge). This is ignored if samba.resources is set (samba.resources is recommended for production).
+  ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
+  ##
+  resourcesPreset: "nano"
+  ## @param samba.resources Set samba container requests and limits for different resources like CPU or memory (essential for production workloads)
+  ## Example:
+  ## resources:
+  ##   requests:
+  ##     cpu: 2
+  ##     memory: 512Mi
+  ##   limits:
+  ##     cpu: 3
+  ##     memory: 1024Mi
+  ##
+  resources: {}
+  ## Configure Pods Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-pod
+  ## @param samba.podSecurityContext.enabled Enable samba pods' Security Context
+  ## @param samba.podSecurityContext.fsGroupChangePolicy Set filesystem group change policy for samba pods
+  ## @param samba.podSecurityContext.sysctls Set kernel settings using the sysctl interface for samba pods
+  ## @param samba.podSecurityContext.supplementalGroups Set filesystem extra groups for samba pods
+  ## @param samba.podSecurityContext.fsGroup Set fsGroup in samba pods' Security Context
+  ##
+  podSecurityContext:
+    enabled: true
+    fsGroupChangePolicy: Always
+    sysctls: []
+    supplementalGroups: []
+    fsGroup: 101
+  ## Configure Container Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+  ## @param samba.containerSecurityContext.enabled Enabled samba container' Security Context
+  ## @param samba.containerSecurityContext.seLinuxOptions [object,nullable] Set SELinux options in samba container
+  ## @param samba.containerSecurityContext.runAsUser Set runAsUser in samba container' Security Context
+  ## @param samba.containerSecurityContext.runAsNonRoot Set runAsNonRoot in samba container' Security Context
+  ## @param samba.containerSecurityContext.readOnlyRootFilesystem Set readOnlyRootFilesystem in samba container' Security Context
+  ## @param samba.containerSecurityContext.privileged Set privileged in samba container' Security Context
+  ## @param samba.containerSecurityContext.allowPrivilegeEscalation Set allowPrivilegeEscalation in samba container' Security Context
+  ## @param samba.containerSecurityContext.capabilities.drop List of capabilities to be dropped in samba container
+  ## @param samba.containerSecurityContext.seccompProfile.type Set seccomp profile in samba container
+  ##
+  containerSecurityContext:
+    enabled: true
+    seLinuxOptions: {}
+    runAsUser: 1001
+    runAsGroup: 1001
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+    privileged: false
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop: ["ALL"]
+    seccompProfile:
+      type: "RuntimeDefault"
+
+  ## @param samba.existingConfigmap The name of an existing ConfigMap with your custom configuration for samba
+  ##
+  existingConfigmap:
+  ## @param samba.command Override default samba container command (useful when using custom images)
+  ##
+  command: []
+  ## @param samba.args Override default samba container args (useful when using custom images)
+  ##
+  args: []
+  ## @param samba.automountServiceAccountToken Mount Service Account token in samba pods
+  ##
+  automountServiceAccountToken: false
+  ## @param samba.hostAliases samba pods host aliases
+  ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+  ##
+  hostAliases: []
+  ## @param samba.daemonsetAnnotations Annotations for samba daemonset
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  daemonsetAnnotations: {}
+  ## @param samba.deploymentAnnotations Annotations for samba deployment
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  deploymentAnnotations: {}
+  ## @param samba.statefulsetAnnotations Annotations for samba statefulset
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  statefulsetAnnotations: {}
+  ## @param samba.podLabels Extra labels for samba pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+  ##
+  podLabels: {}
+  ## @param samba.podAnnotations Annotations for samba pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  podAnnotations: {}
+  ## @param samba.podAffinityPreset Pod affinity preset. Ignored if `samba.affinity` is set. Allowed values: `soft` or `hard`
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAffinityPreset: ""
+  ## @param samba.podAntiAffinityPreset Pod anti-affinity preset. Ignored if `samba.affinity` is set. Allowed values: `soft` or `hard`
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAntiAffinityPreset: soft
+  ## Node samba.affinity preset
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+  ##
+  nodeAffinityPreset:
+    ## @param samba.nodeAffinityPreset.type Node affinity preset type. Ignored if `samba.affinity` is set. Allowed values: `soft` or `hard`
+    ##
+    type: ""
+    ## @param samba.nodeAffinityPreset.key Node label key to match. Ignored if `samba.affinity` is set
+    ##
+    key: ""
+    ## @param samba.nodeAffinityPreset.values Node label values to match. Ignored if `samba.affinity` is set
+    ## E.g.
+    ## values:
+    ##   - e2e-az1
+    ##   - e2e-az2
+    ##
+    values: []
+  ## @param samba.affinity Affinity for samba pods assignment
+  ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  ## NOTE: `samba.podAffinityPreset`, `samba.podAntiAffinityPreset`, and `samba.nodeAffinityPreset` will be ignored when it's set
+  ##
+  affinity: {}
+  ## @param samba.nodeSelector Node labels for samba pods assignment
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  ##
+  nodeSelector: {}
+  ## @param samba.tolerations Tolerations for samba pods assignment
+  ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  ##
+  tolerations: []
+  ## ONLY FOR DEPLOYMENTS:
+  ## @param samba.updateStrategy.type samba deployment strategy type
+  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
+  ## ONLY FOR STATEFULSETS:
+  ## @param samba.updateStrategy.type samba statefulset strategy type
+  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
+  ##
+  updateStrategy:
+    ## ONLY FOR DEPLOYMENTS:
+    ## Can be set to RollingUpdate or Recreate
+    ## ONLY FOR STATEFULSETS:
+    ## Can be set to RollingUpdate or OnDelete
+    ##
+    type: RollingUpdate
+  ## ONLY FOR STATEFULSETS:
+  ## @param samba.podManagementPolicy Pod management policy for samba statefulset
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#pod-management-policies
+  ##
+  podManagementPolicy: OrderedReady
+  ## @param samba.priorityClassName samba pods' priorityClassName
+  ##
+  priorityClassName: ""
+  ## @param samba.topologySpreadConstraints Topology Spread Constraints for samba pod assignment spread across your cluster among failure-domains
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/#spread-constraints-for-pods
+  ##
+  topologySpreadConstraints: []
+  ## @param samba.schedulerName Name of the k8s scheduler (other than default) for samba pods
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  schedulerName: ""
+  ## @param samba.terminationGracePeriodSeconds Seconds samba pods need to terminate gracefully
+  ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods
+  ##
+  terminationGracePeriodSeconds: ""
+  ## @param samba.lifecycleHooks for samba containers to automate configuration before or after startup
+  ##
+  lifecycleHooks: {}
+  ## @param samba.extraEnvVars Array with extra environment variables to add to samba containers
+  ## e.g:
+  ## extraEnvVars:
+  ##   - name: FOO
+  ##     value: "bar"
+  ##
+  extraEnvVars: []
+  ## @param samba.extraEnvVarsCM Name of existing ConfigMap containing extra env vars for samba containers
+  ##
+  extraEnvVarsCM: ""
+  ## @param samba.extraEnvVarsSecret Name of existing Secret containing extra env vars for samba containers
+  ##
+  extraEnvVarsSecret: ""
+  ## @param samba.extraVolumes Optionally specify extra list of additional volumes for the samba pods
+  ##
+  extraVolumes: []
+  ## @param samba.extraVolumeMounts Optionally specify extra list of additional volumeMounts for the samba containers
+  ##
+  extraVolumeMounts: []
+  ## @param samba.sidecars Add additional sidecar containers to the samba pods
+  ## e.g:
+  ## sidecars:
+  ##   - name: your-image-name
+  ##     image: your-image
+  ##     imagePullPolicy: Always
+  ##     ports:
+  ##       - name: portname
+  ##         containerPort: 1234
+  ##
+  sidecars:
+    - name: caps
+      image: ollijanatuinen/capsh
+      command: ["/bin/sleep", "3650d"]
+      imagePullPolicy: IfNotPresent      
+  ## @param samba.initContainers Add additional init containers to the samba pods
+  ## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
+  ## e.g:
+  ## initContainers:
+  ##  - name: your-image-name
+  ##    image: your-image
+  ##    imagePullPolicy: Always
+  ##    command: ['sh', '-c', 'echo "hello world"']
+  ##
+  initContainers:
+    - name: fetch-root-server-list
+      image: ghcr.io/stopdenbus/samba/samba:v0.0.1
+      imagePullPolicy: IfNotPresent
+      command:
+        - /bin/sh
+        - -c
+        - '/usr/bin/wget -q -O /var/bind/named.root http://www.internic.net/zones/named.root'
+      volumeMounts:
+        - name: named-data
+          mountPath: /var/bind
+  ## Pod Disruption Budget configuration
+  ## ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb
+  ## @param samba.pdb.create Enable/disable a Pod Disruption Budget creation
+  ## @param samba.pdb.minAvailable Minimum number/percentage of pods that should remain scheduled
+  ## @param samba.pdb.maxUnavailable Maximum number/percentage of pods that may be made unavailable. Defaults to `1` if both `samba.pdb.minAvailable` and `samba.pdb.maxUnavailable` are empty.
+  ##
+  pdb:
+    create: false
+    minAvailable: ""
+    maxUnavailable: ""
+  ## Autoscaling configuration
+  ## ref: https://kubernetes.io/docs/concepts/workloads/autoscaling/
+  ##
+  autoscaling:
+    ## @param samba.autoscaling.vpa.enabled Enable VPA for samba pods
+    ## @param samba.autoscaling.vpa.annotations Annotations for VPA resource
+    ## @param samba.autoscaling.vpa.controlledResources VPA List of resources that the vertical pod autoscaler can control. Defaults to cpu and memory
+    ## @param samba.autoscaling.vpa.maxAllowed VPA Max allowed resources for the pod
+    ## @param samba.autoscaling.vpa.minAllowed VPA Min allowed resources for the pod
+    ##
+    vpa:
+      enabled: false
+      annotations: {}
+      controlledResources: []
+      maxAllowed: {}
+      minAllowed: {}
+      ## @param samba.autoscaling.vpa.updatePolicy.updateMode Autoscaling update policy
+      ## Specifies whether recommended updates are applied when a Pod is started and whether recommended updates are applied during the life of a Pod
+      ## Possible values are "Off", "Initial", "Recreate", and "Auto".
+      ##
+      updatePolicy:
+        updateMode: Auto
+    ## @param samba.autoscaling.hpa.enabled Enable HPA for samba pods
+    ## @param samba.autoscaling.hpa.minReplicas Minimum number of replicas
+    ## @param samba.autoscaling.hpa.maxReplicas Maximum number of replicas
+    ## @param samba.autoscaling.hpa.targetCPU Target CPU utilization percentage
+    ## @param samba.autoscaling.hpa.targetMemory Target Memory utilization percentage
+    ##
+    hpa:
+      enabled: false
+      minReplicas: ""
+      maxReplicas: ""
+      targetCPU: ""
+      targetMemory: ""
+  ## Configure Container Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+  ## @param samba.containerSecurityContext.enabled Enabled samba container' Security Context
+  ## @param samba.containerSecurityContext.seLinuxOptions [object,nullable] Set SELinux options in samba container
+  ## @param samba.containerSecurityContext.runAsUser Set runAsUser in samba container' Security Context
+  ## @param samba.containerSecurityContext.runAsNonRoot Set runAsNonRoot in samba container' Security Context
+  ## @param samba.containerSecurityContext.readOnlyRootFilesystem Set readOnlyRootFilesystem in samba container' Security Context
+  ## @param samba.containerSecurityContext.privileged Set privileged in samba container' Security Context
+  ## @param samba.containerSecurityContext.allowPrivilegeEscalation Set allowPrivilegeEscalation in samba container' Security Context
+  ## @param samba.containerSecurityContext.capabilities.drop List of capabilities to be dropped in samba container
+  ## @param samba.containerSecurityContext.seccompProfile.type Set seccomp profile in samba container
+  ##
+  containerSecurityContext:
+    enabled: true
+    seLinuxOptions: {}
+    runAsUser: 1001
+    runAsGroup: 1001
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+    privileged: false
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop: ["ALL"]
+    seccompProfile:
+      type: "RuntimeDefault"
+
+## named
+##
+named:
+  ## named image
+  ## @param named.image.registry [default: REGISTRY_NAME] named image registry
+  ## @param named.image.repository [default: REPOSITORY_NAME/stopdenbus/named/named] named image repository
+  ## @skip named.image.tag named image tag (immutable tags are recommended)
+  ## @param named.image.digest named image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag image tag (immutable tags are recommended)
+  ## @param named.image.pullPolicy named image pull policy
+  ## @param named.image.pullSecrets named image pull secrets
+  ## @param named.image.debug Enable named image debug mode
+  ##
+  image:
+    registry: ghcr.io
+    repository: stopdenbus/samba/samba
+    tag: v0.0.1
+    digest: ""
+    ## Specify a imagePullPolicy
+    ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+    ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
+    ##
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ## e.g:
+    ## pullSecrets:
+    ##   - myRegistryKeySecretName
+    ##
+    pullSecrets: []
+    debug: false
+  ## @param named.replicaCount Number of named replicas to deploy
+  ##
+  replicaCount: 1
+  ## @param named.containerPorts.http named HTTP container port
+  ## @param named.containerPorts.https named HTTPS container port
+  ##
+  containerPorts:
+    domain: 53
+    rdns: 953
+  ## @param named.extraContainerPorts Optionally specify extra list of additional ports for named containers
+  ## e.g:
+  ## extraContainerPorts:
+  ##   - name: myservice
+  ##     containerPort: 9090
+  ##
+  extraContainerPorts: []
+  ## Configure extra options for named containers' liveness and readiness probes
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
+  ## @param named.livenessProbe.enabled Enable livenessProbe on named containers
+  ## @param named.livenessProbe.initialDelaySeconds Initial delay seconds for livenessProbe
+  ## @param named.livenessProbe.periodSeconds Period seconds for livenessProbe
+  ## @param named.livenessProbe.timeoutSeconds Timeout seconds for livenessProbe
+  ## @param named.livenessProbe.failureThreshold Failure threshold for livenessProbe
+  ## @param named.livenessProbe.successThreshold Success threshold for livenessProbe
+  ##
+  livenessProbe:
+    enabled: true
+    tcpSocket:
+      port: 53
+    initialDelaySeconds: 180
+    periodSeconds: 20
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  ## @param named.readinessProbe.enabled Enable readinessProbe on named containers
+  ## @param named.readinessProbe.initialDelaySeconds Initial delay seconds for readinessProbe
+  ## @param named.readinessProbe.periodSeconds Period seconds for readinessProbe
+  ## @param named.readinessProbe.timeoutSeconds Timeout seconds for readinessProbe
+  ## @param named.readinessProbe.failureThreshold Failure threshold for readinessProbe
+  ## @param named.readinessProbe.successThreshold Success threshold for readinessProbe
+  ##
+  readinessProbe:
+    enabled: true
+    tcpSocket:
+      port: 53
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 6
+    successThreshold: 1
+  ## @param named.startupProbe.enabled Enable startupProbe on named containers
+  ## @param named.startupProbe.initialDelaySeconds Initial delay seconds for startupProbe
+  ## @param named.startupProbe.periodSeconds Period seconds for startupProbe
+  ## @param named.startupProbe.timeoutSeconds Timeout seconds for startupProbe
+  ## @param named.startupProbe.failureThreshold Failure threshold for startupProbe
+  ## @param named.startupProbe.successThreshold Success threshold for startupProbe
+  ##
+  startupProbe:
+    enabled: false
+    initialDelaySeconds: 60
+    periodSeconds: 10
+  customStartupProbe: {}
+  ## named resource requests and limits
+  ## ref: http://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+  ## @param named.resourcesPreset Set named container resources according to one common preset (allowed values: none, nano, small, medium, large, xlarge, 2xlarge). This is ignored if named.resources is set (named.resources is recommended for production).
+  ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
+  ##
+  resourcesPreset: "nano"
+  ## @param named.resources Set named container requests and limits for different resources like CPU or memory (essential for production workloads)
+  ## Example:
+  ## resources:
+  ##   requests:
+  ##     cpu: 2
+  ##     memory: 512Mi
+  ##   limits:
+  ##     cpu: 3
+  ##     memory: 1024Mi
+  ##
+  resources: {}
+  ## Configure Container Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+  ## @param named.containerSecurityContext.enabled Enabled named container' Security Context
+  ## @param named.containerSecurityContext.seLinuxOptions [object,nullable] Set SELinux options in named container
+  ## @param named.containerSecurityContext.runAsUser Set runAsUser in named container' Security Context
+  ## @param named.containerSecurityContext.runAsNonRoot Set runAsNonRoot in named container' Security Context
+  ## @param named.containerSecurityContext.readOnlyRootFilesystem Set readOnlyRootFilesystem in named container' Security Context
+  ## @param named.containerSecurityContext.privileged Set privileged in named container' Security Context
+  ## @param named.containerSecurityContext.allowPrivilegeEscalation Set allowPrivilegeEscalation in named container' Security Context
+  ## @param named.containerSecurityContext.capabilities.drop List of capabilities to be dropped in named container
+  ## @param named.containerSecurityContext.seccompProfile.type Set seccomp profile in named container
+  ##
+  containerSecurityContext:
+    enabled: false
+    seLinuxOptions: {}
+    runAsUser: 100
+    runAsGroup: 101
+    runAsNonRoot: true
+    readOnlyRootFilesystem: true
+    privileged: false
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop: [ All ]
+    seccompProfile:
+      type: "RuntimeDefault"
+
+  ## @param named.existingConfigmap The name of an existing ConfigMap with your custom configuration for named
+  ##
+  existingConfigmap:
+  ## @param named.command Override default named container command (useful when using custom images)
+  ##
+  # /usr/sbin/named -c /etc/bind/named.conf -g -u named -4
+  command:
+    - /usr/sbin/named
+  ## @param named.args Override default named container args (useful when using custom images)
+  ##
+  args:
+    - "-c"
+    - "/etc/bind/named.conf"
+    - "-g"
+    - "-u"
+    - "named"
+    - "-4"
+  ## @param named.automountServiceAccountToken Mount Service Account token in named pods
+  ##
+  automountServiceAccountToken: false
+  ## @param named.hostAliases named pods host aliases
+  ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
+  ##
+  hostAliases: []
+  ## @param named.daemonsetAnnotations Annotations for named daemonset
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  daemonsetAnnotations: {}
+  ## @param named.deploymentAnnotations Annotations for named deployment
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  deploymentAnnotations: {}
+  ## @param named.statefulsetAnnotations Annotations for named statefulset
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  statefulsetAnnotations: {}
+  ## @param named.podLabels Extra labels for named pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+  ##
+  podLabels: {}
+  ## @param named.podAnnotations Annotations for named pods
+  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+  ##
+  podAnnotations: {}
+  ## @param named.podAffinityPreset Pod affinity preset. Ignored if `named.affinity` is set. Allowed values: `soft` or `hard`
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAffinityPreset: ""
+  ## @param named.podAntiAffinityPreset Pod anti-affinity preset. Ignored if `named.affinity` is set. Allowed values: `soft` or `hard`
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
+  ##
+  podAntiAffinityPreset: soft
+  ## Node named.affinity preset
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+  ##
+  nodeAffinityPreset:
+    ## @param named.nodeAffinityPreset.type Node affinity preset type. Ignored if `named.affinity` is set. Allowed values: `soft` or `hard`
+    ##
+    type: ""
+    ## @param named.nodeAffinityPreset.key Node label key to match. Ignored if `named.affinity` is set
+    ##
+    key: ""
+    ## @param named.nodeAffinityPreset.values Node label values to match. Ignored if `named.affinity` is set
+    ## E.g.
+    ## values:
+    ##   - e2e-az1
+    ##   - e2e-az2
+    ##
+    values: []
+  ## @param named.affinity Affinity for named pods assignment
+  ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
+  ## NOTE: `named.podAffinityPreset`, `named.podAntiAffinityPreset`, and `named.nodeAffinityPreset` will be ignored when it's set
+  ##
+  affinity: {}
+  ## @param named.nodeSelector Node labels for named pods assignment
+  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
+  ##
+  nodeSelector: {}
+  ## @param named.tolerations Tolerations for named pods assignment
+  ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
+  ##
+  tolerations: []
+  ## ONLY FOR DEPLOYMENTS:
+  ## @param named.updateStrategy.type named deployment strategy type
+  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
+  ## ONLY FOR STATEFULSETS:
+  ## @param named.updateStrategy.type named statefulset strategy type
+  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
+  ##
+  updateStrategy:
+    ## ONLY FOR DEPLOYMENTS:
+    ## Can be set to RollingUpdate or Recreate
+    ## ONLY FOR STATEFULSETS:
+    ## Can be set to RollingUpdate or OnDelete
+    ##
+    type: RollingUpdate
+  ## ONLY FOR STATEFULSETS:
+  ## @param named.podManagementPolicy Pod management policy for named statefulset
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#pod-management-policies
+  ##
+  podManagementPolicy: OrderedReady
+  ## @param named.priorityClassName named pods' priorityClassName
+  ##
+  priorityClassName: ""
+  ## @param named.topologySpreadConstraints Topology Spread Constraints for named pod assignment spread across your cluster among failure-domains
+  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/#spread-constraints-for-pods
+  ##
+  topologySpreadConstraints: []
+  ## @param named.schedulerName Name of the k8s scheduler (other than default) for named pods
+  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
+  ##
+  schedulerName: ""
+  ## @param named.terminationGracePeriodSeconds Seconds named pods need to terminate gracefully
+  ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods
+  ##
+  terminationGracePeriodSeconds: ""
+  ## @param named.lifecycleHooks for named containers to automate configuration before or after startup
+  ##
+  lifecycleHooks: {}
+  ## @param named.extraEnvVars Array with extra environment variables to add to named containers
+  ## e.g:
+  ## extraEnvVars:
+  ##   - name: FOO
+  ##     value: "bar"
+  ##
+  extraEnvVars: []
+  ## @param named.extraEnvVarsCM Name of existing ConfigMap containing extra env vars for named containers
+  ##
+  extraEnvVarsCM: ""
+  ## @param named.extraEnvVarsSecret Name of existing Secret containing extra env vars for named containers
+  ##
+  extraEnvVarsSecret: ""
+  ## @param named.extraVolumes Optionally specify extra list of additional volumes for the named pods
+  ##
+  extraVolumes: []
+  ## @param named.extraVolumeMounts Optionally specify extra list of additional volumeMounts for the named containers
+  ##
+  extraVolumeMounts: []
+  ## @param named.sidecars Add additional sidecar containers to the named pods
+  ## e.g:
+  ## sidecars:
+  ##   - name: your-image-name
+  ##     image: your-image
+  ##     imagePullPolicy: Always
+  ##     ports:
+  ##       - name: portname
+  ##         containerPort: 1234
+  ##
+  sidecars: []  
+  ## Pod Disruption Budget configuration
+  ## ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb
+  ## @param named.pdb.create Enable/disable a Pod Disruption Budget creation
+  ## @param named.pdb.minAvailable Minimum number/percentage of pods that should remain scheduled
+  ## @param named.pdb.maxUnavailable Maximum number/percentage of pods that may be made unavailable. Defaults to `1` if both `named.pdb.minAvailable` and `named.pdb.maxUnavailable` are empty.
+  ##
+  pdb:
+    create: false
+    minAvailable: ""
+    maxUnavailable: ""
+  ## Autoscaling configuration
+  ## ref: https://kubernetes.io/docs/concepts/workloads/autoscaling/
+  ##
+  autoscaling:
+    ## @param named.autoscaling.vpa.enabled Enable VPA for named pods
+    ## @param named.autoscaling.vpa.annotations Annotations for VPA resource
+    ## @param named.autoscaling.vpa.controlledResources VPA List of resources that the vertical pod autoscaler can control. Defaults to cpu and memory
+    ## @param named.autoscaling.vpa.maxAllowed VPA Max allowed resources for the pod
+    ## @param named.autoscaling.vpa.minAllowed VPA Min allowed resources for the pod
+    ##
+    vpa:
+      enabled: false
+      annotations: {}
+      controlledResources: []
+      maxAllowed: {}
+      minAllowed: {}
+      ## @param named.autoscaling.vpa.updatePolicy.updateMode Autoscaling update policy
+      ## Specifies whether recommended updates are applied when a Pod is started and whether recommended updates are applied during the life of a Pod
+      ## Possible values are "Off", "Initial", "Recreate", and "Auto".
+      ##
+      updatePolicy:
+        updateMode: Auto
+    ## @param named.autoscaling.hpa.enabled Enable HPA for named pods
+    ## @param named.autoscaling.hpa.minReplicas Minimum number of replicas
+    ## @param named.autoscaling.hpa.maxReplicas Maximum number of replicas
+    ## @param named.autoscaling.hpa.targetCPU Target CPU utilization percentage
+    ## @param named.autoscaling.hpa.targetMemory Target Memory utilization percentage
+    ##
+    hpa:
+      enabled: false
+      minReplicas: ""
+      maxReplicas: ""
+      targetCPU: ""
+      targetMemory: ""
+
+
+## @section Traffic Exposure Parameters
+##
+
+## samba service parameters
+##
+service:
+  ## @param service.type samba service type
+  ##
+  type: LoadBalancer
+  ## @param service.ports.http samba service HTTP port
+  ## @param service.ports.https samba service HTTPS port
+  ##
+  ports:
+    http: 80
+    https: 443
+    domain: 53
+  ## Node ports to expose
+  ## @param service.nodePorts.http Node port for HTTP
+  ## @param service.nodePorts.https Node port for HTTPS
+  ## NOTE: choose port between <30000-32767>
+  ##
+  nodePorts:
+    http: ""
+    https: ""
+    domain: ""
+    rdns: ""
+  ## @param service.clusterIP samba service Cluster IP
+  ## e.g.:
+  ## clusterIP: None
+  ##
+  clusterIP: ""
+  ## @param service.loadBalancerIP samba service Load Balancer IP
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#type-loadbalancer
+  ##
+  loadBalancerIP: ""
+  ## @param service.loadBalancerSourceRanges samba service Load Balancer sources
+  ## ref: https://kubernetes.io/docs/tasks/access-application-cluster/configure-cloud-provider-firewall/#restrict-access-for-loadbalancer-service
+  ## e.g:
+  ## loadBalancerSourceRanges:
+  ##   - 10.10.10.0/24
+  ##
+  loadBalancerSourceRanges: []
+  ## @param service.externalTrafficPolicy samba service external traffic policy
+  ## ref http://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+  ##
+  externalTrafficPolicy: Cluster
+  ## @param service.annotations Additional custom annotations for samba service
+  ##
+  annotations: {}
+  ## @param service.extraPorts Extra ports to expose in samba service (normally used with the `sidecars` value)
+  ##
+  extraPorts: []
+  ## @param service.sessionAffinity Control where client requests go, to the same pod or round-robin
+  ## Values: ClientIP or None
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/service/
+  ##
+  sessionAffinity: None
+  ## @param service.sessionAffinityConfig Additional settings for the sessionAffinity
+  ## sessionAffinityConfig:
+  ##   clientIP:
+  ##     timeoutSeconds: 300
+  ##
+  sessionAffinityConfig: {}
+## Network Policies
+## Ref: https://kubernetes.io/docs/concepts/services-networking/network-policies/
+##
+networkPolicy:
+  ## @param networkPolicy.enabled Specifies whether a NetworkPolicy should be created
+  ##
+  enabled: false
+  ## @param networkPolicy.allowExternal Don't require server label for connections
+  ## The Policy model to apply. When set to false, only pods with the correct
+  ## server label will have network access to the ports server is listening
+  ## on. When true, server will accept connections from any source
+  ## (with the correct destination port).
+  ##
+  allowExternal: true
+  ## @param networkPolicy.allowExternalEgress Allow the pod to access any range of port and all destinations.
+  ##
+  allowExternalEgress: true
+  ## @param networkPolicy.addExternalClientAccess Allow access from pods with client label set to "true". Ignored if `networkPolicy.allowExternal` is true.
+  ##
+  addExternalClientAccess: true
+  ## @param networkPolicy.extraIngress [array] Add extra ingress rules to the NetworkPolicy
+  ## e.g:
+  ## extraIngress:
+  ##   - ports:
+  ##       - port: 1234
+  ##     from:
+  ##       - podSelector:
+  ##           - matchLabels:
+  ##               - role: frontend
+  ##       - podSelector:
+  ##           - matchExpressions:
+  ##               - key: role
+  ##                 operator: In
+  ##                 values:
+  ##                   - frontend
+  extraIngress: []
+  ## @param networkPolicy.extraEgress [array] Add extra ingress rules to the NetworkPolicy (ignored if allowExternalEgress=true)
+  ## e.g:
+  ## extraEgress:
+  ##   - ports:
+  ##       - port: 1234
+  ##     to:
+  ##       - podSelector:
+  ##           - matchLabels:
+  ##               - role: frontend
+  ##       - podSelector:
+  ##           - matchExpressions:
+  ##               - key: role
+  ##                 operator: In
+  ##                 values:
+  ##                   - frontend
+  ##
+  extraEgress: []
+  ## @param networkPolicy.ingressPodMatchLabels [object] Labels to match to allow traffic from other pods. Ignored if `networkPolicy.allowExternal` is true.
+  ## e.g:
+  ## ingressPodMatchLabels:
+  ##   my-client: "true"
+  #
+  ingressPodMatchLabels: {}
+  ## @param networkPolicy.ingressNSMatchLabels [object] Labels to match to allow traffic from other namespaces. Ignored if `networkPolicy.allowExternal` is true.
+  ## @param networkPolicy.ingressNSPodMatchLabels [object] Pod labels to match to allow traffic from other namespaces. Ignored if `networkPolicy.allowExternal` is true.
+  ##
+  ingressNSMatchLabels: {}
+  ingressNSPodMatchLabels: {}
+## samba ingress parameters
+## ref: http://kubernetes.io/docs/concepts/services-networking/ingress/
+##
+ingress:
+  ## @param ingress.enabled Enable ingress record generation for samba
+  ##
+  enabled: false
+  ## @param ingress.pathType Ingress path type
+  ##
+  pathType: ImplementationSpecific
+  ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
+  ##
+  apiVersion: ""
+  ## @param ingress.hostname Default host for the ingress record
+  ##
+  hostname: "example.local"
+  ## @param ingress.ingressClassName IngressClass that will be be used to implement the Ingress (Kubernetes 1.18+)
+  ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
+  ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
+  ##
+  ingressClassName: ""
+  ## @param ingress.path Default path for the ingress record
+  ## NOTE: You may need to set this to '/*' in order to use this with ALB ingress controllers
+  ##
+  path: /
+  ## @param ingress.annotations Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
+  ## Use this parameter to set the required annotations for cert-manager, see
+  ## ref: https://cert-manager.io/docs/usage/ingress/#supported-annotations
+  ## e.g:
+  ## annotations:
+  ##   kubernetes.io/ingress.class: nginx
+  ##   cert-manager.io/cluster-issuer: cluster-issuer-name
+  ##
+  annotations: {}
+  ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
+  ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
+  ## You can:
+  ##   - Use the `ingress.secrets` parameter to create this TLS secret
+  ##   - Rely on cert-manager to create it by setting the corresponding annotations
+  ##   - Rely on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
+  ##
+  tls: false
+  ## @param ingress.selfSigned Create a TLS secret for this ingress record using self-signed certificates generated by Helm
+  ##
+  selfSigned: false
+  ## @param ingress.extraHosts An array with additional hostname(s) to be covered with the ingress record
+  ## e.g:
+  ## extraHosts:
+  ##   - name: example.local
+  ##     path: /
+  ##
+  extraHosts: []
+  ## @param ingress.extraPaths An array with additional arbitrary paths that may need to be added to the ingress under the main host
+  ## e.g:
+  ## extraPaths:
+  ## - path: /*
+  ##   backend:
+  ##     serviceName: ssl-redirect
+  ##     servicePort: use-annotation
+  ##
+  extraPaths: []
+  ## @param ingress.extraTls TLS configuration for additional hostname(s) to be covered with this ingress record
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
+  ## e.g:
+  ## extraTls:
+  ## - hosts:
+  ##     - example.local
+  ##   secretName: example.local-tls
+  ##
+  extraTls: []
+  ## @param ingress.secrets Custom TLS certificates as secrets
+  ## NOTE: 'key' and 'certificate' are expected in PEM format
+  ## NOTE: 'name' should line up with a 'secretName' set further up
+  ## If it is not set and you're using cert-manager, this is unneeded, as it will create a secret for you with valid certificates
+  ## If it is not set and you're NOT using cert-manager either, self-signed certificates will be created valid for 365 days
+  ## It is also possible to create and manage the certificates outside of this helm chart
+  ## Please see README.md for more information
+  ## e.g:
+  ## secrets:
+  ##   - name: example.local-tls
+  ##     key: |-
+  ##       -----BEGIN RSA PRIVATE KEY-----
+  ##       ...
+  ##       -----END RSA PRIVATE KEY-----
+  ##     certificate: |-
+  ##       -----BEGIN CERTIFICATE-----
+  ##       ...
+  ##       -----END CERTIFICATE-----
+  ##
+  secrets: []
+  ## @param ingress.extraRules Additional rules to be covered with this ingress record
+  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-rules
+  ## e.g:
+  ## extraRules:
+  ## - host: example.local
+  ##     http:
+  ##       path: /
+  ##       backend:
+  ##         service:
+  ##           name: example-svc
+  ##           port:
+  ##             name: http
+  ##
+  extraRules: []
+
+## @section Persistence Parameters
+##
+
+## Enable persistence using Persistent Volume Claims
+## ref: https://kubernetes.io/docs/concepts/storage/persistent-volumes/
+##
+persistence:
+  named:
+    ## @param persistence.enabled Enable persistence using Persistent Volume Claims
+    ##
+    enabled: true
+    ## @param persistence.mountPath Path to mount the volume at.
+    ##
+    mountPath: /var/bind
+    ## @param persistence.subPath The subdirectory of the volume to mount to, useful in dev environments and one PV for multiple services
+    ##
+    subPath: ""
+    ## @param persistence.storageClass Storage class of backing PVC
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    storageClass: "zfs"
+    ## @param persistence.annotations Persistent Volume Claim annotations
+    ##
+    annotations: {}
+    ## @param persistence.accessModes Persistent Volume Access Modes
+    ##
+    accessModes:
+      - ReadWriteOnce
+    ## @param persistence.size Size of data volume
+    ##
+    size: 1Gi
+    ## @param persistence.existingClaim The name of an existing PVC to use for persistence
+    ##
+    existingClaim: ""
+    ## @param persistence.selector Selector to match an existing Persistent Volume for WordPress data PVC
+    ## If set, the PVC can't have a PV dynamically provisioned for it
+    ## E.g.
+    ## selector:
+    ##   matchLabels:
+    ##     app: my-app
+    ##
+    selector: {}
+    ## @param persistence.dataSource Custom PVC data source
+    ##
+    dataSource: {}
+## @section Init Container Parameters
+##
+
+## 'volumePermissions' init container parameters
+## Changes the owner and group of the persistent volume mount point to runAsUser:fsGroup values
+##   based on the *podSecurityContext/*containerSecurityContext parameters
+##
+volumePermissions:
+  ## @param volumePermissions.enabled Enable init container that changes the owner/group of the PV mount point to `runAsUser:fsGroup`
+  ##
+  enabled: false
+  ## OS Shell + Utility image
+  ## ref: https://hub.docker.com/r/bitnami/os-shell/tags/
+  ## @param volumePermissions.image.registry [default: REGISTRY_NAME] OS Shell + Utility image registry
+  ## @param volumePermissions.image.repository [default: REPOSITORY_NAME/os-shell] OS Shell + Utility image repository
+  ## @skip volumePermissions.image.tag OS Shell + Utility image tag (immutable tags are recommended)
+  ## @param volumePermissions.image.pullPolicy OS Shell + Utility image pull policy
+  ## @param volumePermissions.image.pullSecrets OS Shell + Utility image pull secrets
+  ##
+  image:
+    registry: ghcr.io
+    repository: bitnami/os-shell
+    tag: 12-debian-12-r34
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ## e.g:
+    ## pullSecrets:
+    ##   - myRegistryKeySecretName
+    ##
+    pullSecrets: []
+  ## Init container's resource requests and limits
+  ## ref: http://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
+  ## @param volumePermissions.resourcesPreset Set init container resources according to one common preset (allowed values: none, nano, small, medium, large, xlarge, 2xlarge). This is ignored if volumePermissions.resources is set (volumePermissions.resources is recommended for production).
+  ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
+  ##
+  resourcesPreset: "nano"
+  ## @param volumePermissions.resources Set init container requests and limits for different resources like CPU or memory (essential for production workloads)
+  ## Example:
+  ## resources:
+  ##   requests:
+  ##     cpu: 2
+  ##     memory: 512Mi
+  ##   limits:
+  ##     cpu: 3
+  ##     memory: 1024Mi
+  ##
+  resources: {}
+  ## Init container Container Security Context
+  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
+  ## @param volumePermissions.containerSecurityContext.enabled Enabled init container' Security Context
+  ## @param volumePermissions.containerSecurityContext.seLinuxOptions [object,nullable] Set SELinux options in init container
+  ## @param volumePermissions.containerSecurityContext.runAsUser Set init container's Security Context runAsUser
+  ## NOTE: when runAsUser is set to special value "auto", init container will try to chown the
+  ##   data folder to auto-determined user&group, using commands: `id -u`:`id -G | cut -d" " -f2`
+  ##   "auto" is especially useful for OpenShift which has scc with dynamic user ids (and 0 is not allowed)
+  ##
+  containerSecurityContext:
+    enabled: true
+    seLinuxOptions: {}
+    runAsUser: 0
+
+## @section Other Parameters
+##
+
+## RBAC configuration
+##
+rbac:
+  ## @param rbac.create Specifies whether RBAC resources should be created
+  ##
+  create: false
+  ## @param rbac.rules Custom RBAC rules to set
+  ## e.g:
+  ## rules:
+  ##   - apiGroups:
+  ##       - ""
+  ##     resources:
+  ##       - pods
+  ##     verbs:
+  ##       - get
+  ##       - list
+  ##
+  rules: []
+
+## ServiceAccount configuration
+##
+serviceAccount:
+  ## @param serviceAccount.create Specifies whether a ServiceAccount should be created
+  ##
+  create: true
+  ## @param serviceAccount.name The name of the ServiceAccount to use.
+  ## If not set and create is true, a name is generated using the common.names.fullname template
+  ##
+  name: ""
+  ## @param serviceAccount.annotations Additional Service Account annotations (evaluated as a template)
+  ##
+  annotations: {}
+  ## @param serviceAccount.automountServiceAccountToken Automount service account token for the server service account
+  ##
+  automountServiceAccountToken: true
+
+## Prometheus metrics
+##
+metrics:
+  ## @param metrics.enabled Enable the export of Prometheus metrics
+  ##
+  enabled: false
+  ## Prometheus Operator ServiceMonitor configuration
+  ##
+  serviceMonitor:
+    ## @param metrics.serviceMonitor.enabled if `true`, creates a Prometheus Operator ServiceMonitor (also requires `metrics.enabled` to be `true`)
+    ##
+    enabled: false
+    ## @param metrics.serviceMonitor.namespace Namespace in which Prometheus is running
+    ##
+    namespace: ""
+    ## @param metrics.serviceMonitor.annotations Additional custom annotations for the ServiceMonitor
+    ##
+    annotations: {}
+    ## @param metrics.serviceMonitor.labels Extra labels for the ServiceMonitor
+    ##
+    labels: {}
+    ## @param metrics.serviceMonitor.jobLabel The name of the label on the target service to use as the job name in Prometheus
+    ##
+    jobLabel: ""
+    ## @param metrics.serviceMonitor.honorLabels honorLabels chooses the metric's labels on collisions with target labels
+    ##
+    honorLabels: false
+    ## @param metrics.serviceMonitor.interval Interval at which metrics should be scraped.
+    ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint
+    ## e.g:
+    ## interval: 10s
+    ##
+    interval: ""
+    ## @param metrics.serviceMonitor.scrapeTimeout Timeout after which the scrape is ended
+    ## ref: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#endpoint
+    ## e.g:
+    ## scrapeTimeout: 10s
+    ##
+    scrapeTimeout: ""
+    ## @param metrics.serviceMonitor.metricRelabelings Specify additional relabeling of metrics
+    ##
+    metricRelabelings: []
+    ## @param metrics.serviceMonitor.relabelings Specify general relabeling
+    ##
+    relabelings: []
+    ## @param metrics.serviceMonitor.selector Prometheus instance selector labels
+    ## ref: https://github.com/bitnami/charts/tree/main/bitnami/prometheus-operator#prometheus-configuration
+    ## selector:
+    ##   prometheus: my-prometheus
+    ##
+    selector: {}
+
