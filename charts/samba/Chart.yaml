@@ -1,0 +1,16 @@
+apiVersion: v2
+name: samba
+description: Samba is the standard Windows interoperability suite of programs for Linux and Unix.
+type: application
+
+annotations:
+  category: Infrastructure
+  licenses: Apache-2.0
+version: 0.1.0
+appVersion: 0.0.1
+dependencies:
+  - name: common
+    repository: oci://registry-1.docker.io/bitnamicharts
+    tags:
+      - bitnami-common
+    version: 2.x.x
