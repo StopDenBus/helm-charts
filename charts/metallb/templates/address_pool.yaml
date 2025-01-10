@@ -1,6 +1,21 @@
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
+  name: nginx
+spec:
+  addresses:
+    - 192.168.0.11/32
+  serviceAllocation:
+    priority: 50
+    namespaces:
+      - ingress-nginx
+    serviceSelectors:
+      - matchExpressions:
+          - {key: app.kubernetes.io/name, operator: In, values: [nginx]}
+---
+apiVersion: metallb.io/v1beta1
+kind: IPAddressPool
+metadata:
   name: mail
 spec:
   addresses:
@@ -16,17 +31,17 @@ spec:
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
 metadata:
-  name: nginx
+  name: samba
 spec:
   addresses:
-    - 192.168.0.11/32
+    - 192.168.0.13/32
   serviceAllocation:
     priority: 50
     namespaces:
-      - ingress-nginx
+      - samba
     serviceSelectors:
       - matchExpressions:
-          - {key: app.kubernetes.io/name, operator: In, values: [nginx]}
+          - {key: app.kubernetes.io/name, operator: In, values: [samba]}
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool

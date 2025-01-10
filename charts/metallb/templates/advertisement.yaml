@@ -8,5 +8,6 @@ spec:
     - istio
     - mail
     - nginx
+    - samba
   interfaces:
     - vmbr0
