@@ -1,67 +1,17 @@
-{{- /*
-Copyright Broadcom, Inc. All Rights Reserved.
-SPDX-License-Identifier: APACHE-2.0
-*/}}
-
+{{- range $name, $value := .Values.config }}
+{{- with $ -}}
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ template "common.names.fullname" . }}
+  name: {{ $name }}
   namespace: {{ include "common.names.namespace" . | quote }}
   labels: {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) | nindent 4 }}
-    app.kubernetes.io/component: samba
+    app.kubernetes.io/component: {{ $name }}
   {{- if .Values.commonAnnotations }}
   annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
   {{- end }}
 data:
-  smb.conf: |
-    # Global parameters
-    [global]
-    workgroup = GUSEK
-    realm                 = gusek.info
-    netbios name          = SAMBA
-    server role           = active directory domain controller
-    server services       = -dns
-    dns forwarder         = 8.8.8.8
-    idmap_ldb:use rfc2307 = yes
-    # disable smb1
-    min protocol          = SMB2
-    allow dns updates     = nonsecure and secure
-    tls enabled           = yes
-    tls keyfile           = /etc/samba/tls/privkey.pem
-    tls certfile          = /etc/samba/tls/cert.pem
-    tls cafile            = /etc/samba/tls/fullchain.pem
-    log level             = 3
-    dns zone transfer clients allow = 192.168.0.10, 192.168.0.50
-
-    [netlogon]
-    path                  = /var/lib/samba/sysvol/gusek.info/scripts
-    read only             = No
-
-    [sysvol]
-    path                  = /var/lib/samba/sysvol
-    read only             = No
-
-    [Profiles]
-    path                  = /var/lib/samba/profiles
-    read only             = no
-    store dos attributes  = Yes
-    create mask           = 0600
-    directory mask        = 0700
-    csc policy            = disable
-
-    [data]
-    path                  = /samba/data
-    read only             = No
-    create mask           = 0666
-    directory mask        = 0777
-    force user            = root
-    force group           = root
-
-    [Bilder]
-    path                  = /samba/Bilder
-    read only             = No
-    create mask           = 0666
-    directory mask        = 0777
-    force user            = root
-    force group           = root
+  {{- include "common.tplvalues.render" ( dict "value" $value "context" $ ) | nindent 2 }}
+---
+{{- end }}
+{{- end }}
