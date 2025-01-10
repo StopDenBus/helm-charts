@@ -31,7 +31,6 @@ In order to replicate the container startup scripts execute this command:
 {{- end }}
 
 {{- include "common.warnings.rollingTag" .Values.samba.image }}
-{{- include "common.warnings.rollingTag" .Values.named.image }}
 {{- include "samba.validateValues" . }}
-{{- include "common.warnings.modifiedImages" (dict "images" (list .Values.samba.image .Values.named.image) "context" $) }}
-{{- include "common.errors.insecureImages" (dict "images" (list .Values.samba.image .Values.named.image) "context" $) }}
+{{- include "common.warnings.modifiedImages" (dict "images" (list .Values.samba.image ) "context" $) }}
+{{- include "common.errors.insecureImages" (dict "images" (list .Values.samba.image ) "context" $) }}

@@ -89,7 +89,7 @@ samba:
   image:
     registry: ghcr.io
     repository: stopdenbus/samba/samba
-    tag: v0.0.1
+    tag: 2025-08-10_020892
     digest: ""
     ## Specify a imagePullPolicy
     ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -112,8 +112,22 @@ samba:
   ## @param samba.containerPorts.https samba HTTPS container port
   ##
   containerPorts:
-    http: 80
-    https: 443
+    domain: 53
+    epm: 135
+    gc: 3268
+    gcs: 3269
+    kdc_88: 88
+    kdc_464: 464
+    ldap: 389
+    ldaps: 636
+    nbt_137: 137
+    nbt_138: 138
+    ntp: 123
+    rdns: 953    
+    smb_139: 139
+    smb_tcp: 445
+    smb_49153: 49153
+
   ## @param samba.extraContainerPorts Optionally specify extra list of additional ports for samba containers
   ## e.g:
   ## extraContainerPorts:
@@ -132,6 +146,8 @@ samba:
   ##
   livenessProbe:
     enabled: true
+    tcpSocket:
+      port: 53
     initialDelaySeconds: 180
     periodSeconds: 20
     timeoutSeconds: 5
@@ -146,6 +162,8 @@ samba:
   ##
   readinessProbe:
     enabled: true
+    tcpSocket:
+      port: 53
     initialDelaySeconds: 30
     periodSeconds: 10
     timeoutSeconds: 5
@@ -168,7 +186,7 @@ samba:
   ## @param samba.resourcesPreset Set samba container resources according to one common preset (allowed values: none, nano, small, medium, large, xlarge, 2xlarge). This is ignored if samba.resources is set (samba.resources is recommended for production).
   ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
   ##
-  resourcesPreset: "nano"
+  resourcesPreset: "small"
   ## @param samba.resources Set samba container requests and limits for different resources like CPU or memory (essential for production workloads)
   ## Example:
   ## resources:
@@ -193,7 +211,7 @@ samba:
     fsGroupChangePolicy: Always
     sysctls: []
     supplementalGroups: []
-    fsGroup: 101
+    fsGroup: 0
   ## Configure Container Security Context
   ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
   ## @param samba.containerSecurityContext.enabled Enabled samba container' Security Context
@@ -207,35 +225,41 @@ samba:
   ## @param samba.containerSecurityContext.seccompProfile.type Set seccomp profile in samba container
   ##
   containerSecurityContext:
-    enabled: true
+    enabled: false
     seLinuxOptions: {}
-    runAsUser: 1001
-    runAsGroup: 1001
-    runAsNonRoot: true
+    runAsUser: 0
+    runAsGroup: 0
+    runAsNonRoot: false
     readOnlyRootFilesystem: true
-    privileged: false
-    allowPrivilegeEscalation: false
+    privileged: true
+    allowPrivilegeEscalation: true
     capabilities:
-      drop: ["ALL"]
+      add: ["SYS_ADMIN"]
     seccompProfile:
-      type: "RuntimeDefault"
+      type: "RuntimeDefault"     
 
   ## @param samba.existingConfigmap The name of an existing ConfigMap with your custom configuration for samba
   ##
   existingConfigmap:
   ## @param samba.command Override default samba container command (useful when using custom images)
   ##
-  command: []
+  command:
+    - /usr/bin/supervisord
   ## @param samba.args Override default samba container args (useful when using custom images)
   ##
-  args: []
+  args:
+    - --configuration=/etc/supervisord.conf
   ## @param samba.automountServiceAccountToken Mount Service Account token in samba pods
   ##
   automountServiceAccountToken: false
   ## @param samba.hostAliases samba pods host aliases
   ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
   ##
-  hostAliases: []
+  hostAliases:
+    - ip: "192.168.0.13"
+      hostnames:
+      - "samba.gusek.info"
+      - "samba"  
   ## @param samba.daemonsetAnnotations Annotations for samba daemonset
   ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
   ##
@@ -337,7 +361,9 @@ samba:
   ##   - name: FOO
   ##     value: "bar"
   ##
-  extraEnvVars: []
+  extraEnvVars:
+    - name: LDB_MODULES_DISABLE_DEEPBIND
+      value: "1"
   ## @param samba.extraEnvVarsCM Name of existing ConfigMap containing extra env vars for samba containers
   ##
   extraEnvVarsCM: ""
@@ -360,11 +386,11 @@ samba:
   ##       - name: portname
   ##         containerPort: 1234
   ##
-  sidecars:
-    - name: caps
-      image: ollijanatuinen/capsh
-      command: ["/bin/sleep", "3650d"]
-      imagePullPolicy: IfNotPresent      
+  sidecars: {}
+    # - name: caps
+    #   image: ollijanatuinen/capsh
+    #   command: ["/bin/sleep", "3650d"]
+    #   imagePullPolicy: IfNotPresent      
   ## @param samba.initContainers Add additional init containers to the samba pods
   ## ref: https://kubernetes.io/docs/concepts/workloads/pods/init-containers/
   ## e.g:
@@ -376,15 +402,25 @@ samba:
   ##
   initContainers:
     - name: fetch-root-server-list
-      image: ghcr.io/stopdenbus/samba/samba:v0.0.1
+      image: ghcr.io/stopdenbus/samba/samba:2025-08-10_020892
       imagePullPolicy: IfNotPresent
       command:
         - /bin/sh
         - -c
-        - '/usr/bin/wget -q -O /var/bind/named.root http://www.internic.net/zones/named.root'
+        - /root/init.sh
       volumeMounts:
         - name: named-data
           mountPath: /var/bind
+        - name: var-run-empty-dir
+          mountPath: /var/run
+        - name: init
+          mountPath: /root/init.sh
+          subPath: init.sh
+        - name: samba-cache
+          mountPath: /var/cache/samba
+        - name: samba-data
+          mountPath: /var/lib/samba
+
   ## Pod Disruption Budget configuration
   ## ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb
   ## @param samba.pdb.create Enable/disable a Pod Disruption Budget creation
@@ -429,362 +465,6 @@ samba:
       maxReplicas: ""
       targetCPU: ""
       targetMemory: ""
-  ## Configure Container Security Context
-  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
-  ## @param samba.containerSecurityContext.enabled Enabled samba container' Security Context
-  ## @param samba.containerSecurityContext.seLinuxOptions [object,nullable] Set SELinux options in samba container
-  ## @param samba.containerSecurityContext.runAsUser Set runAsUser in samba container' Security Context
-  ## @param samba.containerSecurityContext.runAsNonRoot Set runAsNonRoot in samba container' Security Context
-  ## @param samba.containerSecurityContext.readOnlyRootFilesystem Set readOnlyRootFilesystem in samba container' Security Context
-  ## @param samba.containerSecurityContext.privileged Set privileged in samba container' Security Context
-  ## @param samba.containerSecurityContext.allowPrivilegeEscalation Set allowPrivilegeEscalation in samba container' Security Context
-  ## @param samba.containerSecurityContext.capabilities.drop List of capabilities to be dropped in samba container
-  ## @param samba.containerSecurityContext.seccompProfile.type Set seccomp profile in samba container
-  ##
-  containerSecurityContext:
-    enabled: true
-    seLinuxOptions: {}
-    runAsUser: 1001
-    runAsGroup: 1001
-    runAsNonRoot: true
-    readOnlyRootFilesystem: true
-    privileged: false
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop: ["ALL"]
-    seccompProfile:
-      type: "RuntimeDefault"
-
-## named
-##
-named:
-  ## named image
-  ## @param named.image.registry [default: REGISTRY_NAME] named image registry
-  ## @param named.image.repository [default: REPOSITORY_NAME/stopdenbus/named/named] named image repository
-  ## @skip named.image.tag named image tag (immutable tags are recommended)
-  ## @param named.image.digest named image digest in the way sha256:aa.... Please note this parameter, if set, will override the tag image tag (immutable tags are recommended)
-  ## @param named.image.pullPolicy named image pull policy
-  ## @param named.image.pullSecrets named image pull secrets
-  ## @param named.image.debug Enable named image debug mode
-  ##
-  image:
-    registry: ghcr.io
-    repository: stopdenbus/samba/samba
-    tag: v0.0.1
-    digest: ""
-    ## Specify a imagePullPolicy
-    ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
-    ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
-    ##
-    pullPolicy: IfNotPresent
-    ## Optionally specify an array of imagePullSecrets.
-    ## Secrets must be manually created in the namespace.
-    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
-    ## e.g:
-    ## pullSecrets:
-    ##   - myRegistryKeySecretName
-    ##
-    pullSecrets: []
-    debug: false
-  ## @param named.replicaCount Number of named replicas to deploy
-  ##
-  replicaCount: 1
-  ## @param named.containerPorts.http named HTTP container port
-  ## @param named.containerPorts.https named HTTPS container port
-  ##
-  containerPorts:
-    domain: 53
-    rdns: 953
-  ## @param named.extraContainerPorts Optionally specify extra list of additional ports for named containers
-  ## e.g:
-  ## extraContainerPorts:
-  ##   - name: myservice
-  ##     containerPort: 9090
-  ##
-  extraContainerPorts: []
-  ## Configure extra options for named containers' liveness and readiness probes
-  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/#configure-probes
-  ## @param named.livenessProbe.enabled Enable livenessProbe on named containers
-  ## @param named.livenessProbe.initialDelaySeconds Initial delay seconds for livenessProbe
-  ## @param named.livenessProbe.periodSeconds Period seconds for livenessProbe
-  ## @param named.livenessProbe.timeoutSeconds Timeout seconds for livenessProbe
-  ## @param named.livenessProbe.failureThreshold Failure threshold for livenessProbe
-  ## @param named.livenessProbe.successThreshold Success threshold for livenessProbe
-  ##
-  livenessProbe:
-    enabled: true
-    tcpSocket:
-      port: 53
-    initialDelaySeconds: 180
-    periodSeconds: 20
-    timeoutSeconds: 5
-    failureThreshold: 6
-    successThreshold: 1
-  ## @param named.readinessProbe.enabled Enable readinessProbe on named containers
-  ## @param named.readinessProbe.initialDelaySeconds Initial delay seconds for readinessProbe
-  ## @param named.readinessProbe.periodSeconds Period seconds for readinessProbe
-  ## @param named.readinessProbe.timeoutSeconds Timeout seconds for readinessProbe
-  ## @param named.readinessProbe.failureThreshold Failure threshold for readinessProbe
-  ## @param named.readinessProbe.successThreshold Success threshold for readinessProbe
-  ##
-  readinessProbe:
-    enabled: true
-    tcpSocket:
-      port: 53
-    initialDelaySeconds: 30
-    periodSeconds: 10
-    timeoutSeconds: 5
-    failureThreshold: 6
-    successThreshold: 1
-  ## @param named.startupProbe.enabled Enable startupProbe on named containers
-  ## @param named.startupProbe.initialDelaySeconds Initial delay seconds for startupProbe
-  ## @param named.startupProbe.periodSeconds Period seconds for startupProbe
-  ## @param named.startupProbe.timeoutSeconds Timeout seconds for startupProbe
-  ## @param named.startupProbe.failureThreshold Failure threshold for startupProbe
-  ## @param named.startupProbe.successThreshold Success threshold for startupProbe
-  ##
-  startupProbe:
-    enabled: false
-    initialDelaySeconds: 60
-    periodSeconds: 10
-  customStartupProbe: {}
-  ## named resource requests and limits
-  ## ref: http://kubernetes.io/docs/concepts/configuration/manage-compute-resources-container/
-  ## @param named.resourcesPreset Set named container resources according to one common preset (allowed values: none, nano, small, medium, large, xlarge, 2xlarge). This is ignored if named.resources is set (named.resources is recommended for production).
-  ## More information: https://github.com/bitnami/charts/blob/main/bitnami/common/templates/_resources.tpl#L15
-  ##
-  resourcesPreset: "nano"
-  ## @param named.resources Set named container requests and limits for different resources like CPU or memory (essential for production workloads)
-  ## Example:
-  ## resources:
-  ##   requests:
-  ##     cpu: 2
-  ##     memory: 512Mi
-  ##   limits:
-  ##     cpu: 3
-  ##     memory: 1024Mi
-  ##
-  resources: {}
-  ## Configure Container Security Context
-  ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/#set-the-security-context-for-a-container
-  ## @param named.containerSecurityContext.enabled Enabled named container' Security Context
-  ## @param named.containerSecurityContext.seLinuxOptions [object,nullable] Set SELinux options in named container
-  ## @param named.containerSecurityContext.runAsUser Set runAsUser in named container' Security Context
-  ## @param named.containerSecurityContext.runAsNonRoot Set runAsNonRoot in named container' Security Context
-  ## @param named.containerSecurityContext.readOnlyRootFilesystem Set readOnlyRootFilesystem in named container' Security Context
-  ## @param named.containerSecurityContext.privileged Set privileged in named container' Security Context
-  ## @param named.containerSecurityContext.allowPrivilegeEscalation Set allowPrivilegeEscalation in named container' Security Context
-  ## @param named.containerSecurityContext.capabilities.drop List of capabilities to be dropped in named container
-  ## @param named.containerSecurityContext.seccompProfile.type Set seccomp profile in named container
-  ##
-  containerSecurityContext:
-    enabled: false
-    seLinuxOptions: {}
-    runAsUser: 100
-    runAsGroup: 101
-    runAsNonRoot: true
-    readOnlyRootFilesystem: true
-    privileged: false
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop: [ All ]
-    seccompProfile:
-      type: "RuntimeDefault"
-
-  ## @param named.existingConfigmap The name of an existing ConfigMap with your custom configuration for named
-  ##
-  existingConfigmap:
-  ## @param named.command Override default named container command (useful when using custom images)
-  ##
-  # /usr/sbin/named -c /etc/bind/named.conf -g -u named -4
-  command:
-    - /usr/sbin/named
-  ## @param named.args Override default named container args (useful when using custom images)
-  ##
-  args:
-    - "-c"
-    - "/etc/bind/named.conf"
-    - "-g"
-    - "-u"
-    - "named"
-    - "-4"
-  ## @param named.automountServiceAccountToken Mount Service Account token in named pods
-  ##
-  automountServiceAccountToken: false
-  ## @param named.hostAliases named pods host aliases
-  ## https://kubernetes.io/docs/concepts/services-networking/add-entries-to-pod-etc-hosts-with-host-aliases/
-  ##
-  hostAliases: []
-  ## @param named.daemonsetAnnotations Annotations for named daemonset
-  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  ##
-  daemonsetAnnotations: {}
-  ## @param named.deploymentAnnotations Annotations for named deployment
-  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  ##
-  deploymentAnnotations: {}
-  ## @param named.statefulsetAnnotations Annotations for named statefulset
-  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  ##
-  statefulsetAnnotations: {}
-  ## @param named.podLabels Extra labels for named pods
-  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
-  ##
-  podLabels: {}
-  ## @param named.podAnnotations Annotations for named pods
-  ## ref: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
-  ##
-  podAnnotations: {}
-  ## @param named.podAffinityPreset Pod affinity preset. Ignored if `named.affinity` is set. Allowed values: `soft` or `hard`
-  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
-  ##
-  podAffinityPreset: ""
-  ## @param named.podAntiAffinityPreset Pod anti-affinity preset. Ignored if `named.affinity` is set. Allowed values: `soft` or `hard`
-  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#inter-pod-affinity-and-anti-affinity
-  ##
-  podAntiAffinityPreset: soft
-  ## Node named.affinity preset
-  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
-  ##
-  nodeAffinityPreset:
-    ## @param named.nodeAffinityPreset.type Node affinity preset type. Ignored if `named.affinity` is set. Allowed values: `soft` or `hard`
-    ##
-    type: ""
-    ## @param named.nodeAffinityPreset.key Node label key to match. Ignored if `named.affinity` is set
-    ##
-    key: ""
-    ## @param named.nodeAffinityPreset.values Node label values to match. Ignored if `named.affinity` is set
-    ## E.g.
-    ## values:
-    ##   - e2e-az1
-    ##   - e2e-az2
-    ##
-    values: []
-  ## @param named.affinity Affinity for named pods assignment
-  ## ref: https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#affinity-and-anti-affinity
-  ## NOTE: `named.podAffinityPreset`, `named.podAntiAffinityPreset`, and `named.nodeAffinityPreset` will be ignored when it's set
-  ##
-  affinity: {}
-  ## @param named.nodeSelector Node labels for named pods assignment
-  ## ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
-  ##
-  nodeSelector: {}
-  ## @param named.tolerations Tolerations for named pods assignment
-  ## ref: https://kubernetes.io/docs/concepts/configuration/taint-and-toleration/
-  ##
-  tolerations: []
-  ## ONLY FOR DEPLOYMENTS:
-  ## @param named.updateStrategy.type named deployment strategy type
-  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/deployment/#strategy
-  ## ONLY FOR STATEFULSETS:
-  ## @param named.updateStrategy.type named statefulset strategy type
-  ## ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#update-strategies
-  ##
-  updateStrategy:
-    ## ONLY FOR DEPLOYMENTS:
-    ## Can be set to RollingUpdate or Recreate
-    ## ONLY FOR STATEFULSETS:
-    ## Can be set to RollingUpdate or OnDelete
-    ##
-    type: RollingUpdate
-  ## ONLY FOR STATEFULSETS:
-  ## @param named.podManagementPolicy Pod management policy for named statefulset
-  ## Ref: https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/#pod-management-policies
-  ##
-  podManagementPolicy: OrderedReady
-  ## @param named.priorityClassName named pods' priorityClassName
-  ##
-  priorityClassName: ""
-  ## @param named.topologySpreadConstraints Topology Spread Constraints for named pod assignment spread across your cluster among failure-domains
-  ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-topology-spread-constraints/#spread-constraints-for-pods
-  ##
-  topologySpreadConstraints: []
-  ## @param named.schedulerName Name of the k8s scheduler (other than default) for named pods
-  ## ref: https://kubernetes.io/docs/tasks/administer-cluster/configure-multiple-schedulers/
-  ##
-  schedulerName: ""
-  ## @param named.terminationGracePeriodSeconds Seconds named pods need to terminate gracefully
-  ## ref: https://kubernetes.io/docs/concepts/workloads/pods/pod/#termination-of-pods
-  ##
-  terminationGracePeriodSeconds: ""
-  ## @param named.lifecycleHooks for named containers to automate configuration before or after startup
-  ##
-  lifecycleHooks: {}
-  ## @param named.extraEnvVars Array with extra environment variables to add to named containers
-  ## e.g:
-  ## extraEnvVars:
-  ##   - name: FOO
-  ##     value: "bar"
-  ##
-  extraEnvVars: []
-  ## @param named.extraEnvVarsCM Name of existing ConfigMap containing extra env vars for named containers
-  ##
-  extraEnvVarsCM: ""
-  ## @param named.extraEnvVarsSecret Name of existing Secret containing extra env vars for named containers
-  ##
-  extraEnvVarsSecret: ""
-  ## @param named.extraVolumes Optionally specify extra list of additional volumes for the named pods
-  ##
-  extraVolumes: []
-  ## @param named.extraVolumeMounts Optionally specify extra list of additional volumeMounts for the named containers
-  ##
-  extraVolumeMounts: []
-  ## @param named.sidecars Add additional sidecar containers to the named pods
-  ## e.g:
-  ## sidecars:
-  ##   - name: your-image-name
-  ##     image: your-image
-  ##     imagePullPolicy: Always
-  ##     ports:
-  ##       - name: portname
-  ##         containerPort: 1234
-  ##
-  sidecars: []  
-  ## Pod Disruption Budget configuration
-  ## ref: https://kubernetes.io/docs/tasks/run-application/configure-pdb
-  ## @param named.pdb.create Enable/disable a Pod Disruption Budget creation
-  ## @param named.pdb.minAvailable Minimum number/percentage of pods that should remain scheduled
-  ## @param named.pdb.maxUnavailable Maximum number/percentage of pods that may be made unavailable. Defaults to `1` if both `named.pdb.minAvailable` and `named.pdb.maxUnavailable` are empty.
-  ##
-  pdb:
-    create: false
-    minAvailable: ""
-    maxUnavailable: ""
-  ## Autoscaling configuration
-  ## ref: https://kubernetes.io/docs/concepts/workloads/autoscaling/
-  ##
-  autoscaling:
-    ## @param named.autoscaling.vpa.enabled Enable VPA for named pods
-    ## @param named.autoscaling.vpa.annotations Annotations for VPA resource
-    ## @param named.autoscaling.vpa.controlledResources VPA List of resources that the vertical pod autoscaler can control. Defaults to cpu and memory
-    ## @param named.autoscaling.vpa.maxAllowed VPA Max allowed resources for the pod
-    ## @param named.autoscaling.vpa.minAllowed VPA Min allowed resources for the pod
-    ##
-    vpa:
-      enabled: false
-      annotations: {}
-      controlledResources: []
-      maxAllowed: {}
-      minAllowed: {}
-      ## @param named.autoscaling.vpa.updatePolicy.updateMode Autoscaling update policy
-      ## Specifies whether recommended updates are applied when a Pod is started and whether recommended updates are applied during the life of a Pod
-      ## Possible values are "Off", "Initial", "Recreate", and "Auto".
-      ##
-      updatePolicy:
-        updateMode: Auto
-    ## @param named.autoscaling.hpa.enabled Enable HPA for named pods
-    ## @param named.autoscaling.hpa.minReplicas Minimum number of replicas
-    ## @param named.autoscaling.hpa.maxReplicas Maximum number of replicas
-    ## @param named.autoscaling.hpa.targetCPU Target CPU utilization percentage
-    ## @param named.autoscaling.hpa.targetMemory Target Memory utilization percentage
-    ##
-    hpa:
-      enabled: false
-      minReplicas: ""
-      maxReplicas: ""
-      targetCPU: ""
-      targetMemory: ""
-
 
 ## @section Traffic Exposure Parameters
 ##
@@ -802,16 +482,28 @@ service:
     http: 80
     https: 443
     domain: 53
+    epm: 135
+    gc: 3268
+    gcs: 3269
+    kdc_88: 88
+    kdc_464: 464
+    ldap: 389
+    ldaps: 636
+    nbt_137: 137
+    nbt_138: 138
+    ntp: 123
+    rdns: 953    
+    smb_139: 139
+    smb_445: 445
+    smb_49153: 49153
   ## Node ports to expose
   ## @param service.nodePorts.http Node port for HTTP
   ## @param service.nodePorts.https Node port for HTTPS
+  ## @param service.nodePorts.domain
+  ## @param service.nodePorts.rdns
   ## NOTE: choose port between <30000-32767>
   ##
-  nodePorts:
-    http: ""
-    https: ""
-    domain: ""
-    rdns: ""
+  nodePorts: {}
   ## @param service.clusterIP samba service Cluster IP
   ## e.g.:
   ## clusterIP: None
@@ -834,7 +526,8 @@ service:
   externalTrafficPolicy: Cluster
   ## @param service.annotations Additional custom annotations for samba service
   ##
-  annotations: {}
+  annotations:
+    metallb.io/allow-shared-ip: "share_this_service_ip"
   ## @param service.extraPorts Extra ports to expose in samba service (normally used with the `sidecars` value)
   ##
   extraPorts: []
@@ -913,110 +606,6 @@ networkPolicy:
   ##
   ingressNSMatchLabels: {}
   ingressNSPodMatchLabels: {}
-## samba ingress parameters
-## ref: http://kubernetes.io/docs/concepts/services-networking/ingress/
-##
-ingress:
-  ## @param ingress.enabled Enable ingress record generation for samba
-  ##
-  enabled: false
-  ## @param ingress.pathType Ingress path type
-  ##
-  pathType: ImplementationSpecific
-  ## @param ingress.apiVersion Force Ingress API version (automatically detected if not set)
-  ##
-  apiVersion: ""
-  ## @param ingress.hostname Default host for the ingress record
-  ##
-  hostname: "example.local"
-  ## @param ingress.ingressClassName IngressClass that will be be used to implement the Ingress (Kubernetes 1.18+)
-  ## This is supported in Kubernetes 1.18+ and required if you have more than one IngressClass marked as the default for your cluster .
-  ## ref: https://kubernetes.io/blog/2020/04/02/improvements-to-the-ingress-api-in-kubernetes-1.18/
-  ##
-  ingressClassName: ""
-  ## @param ingress.path Default path for the ingress record
-  ## NOTE: You may need to set this to '/*' in order to use this with ALB ingress controllers
-  ##
-  path: /
-  ## @param ingress.annotations Additional annotations for the Ingress resource. To enable certificate autogeneration, place here your cert-manager annotations.
-  ## Use this parameter to set the required annotations for cert-manager, see
-  ## ref: https://cert-manager.io/docs/usage/ingress/#supported-annotations
-  ## e.g:
-  ## annotations:
-  ##   kubernetes.io/ingress.class: nginx
-  ##   cert-manager.io/cluster-issuer: cluster-issuer-name
-  ##
-  annotations: {}
-  ## @param ingress.tls Enable TLS configuration for the host defined at `ingress.hostname` parameter
-  ## TLS certificates will be retrieved from a TLS secret with name: `{{- printf "%s-tls" .Values.ingress.hostname }}`
-  ## You can:
-  ##   - Use the `ingress.secrets` parameter to create this TLS secret
-  ##   - Rely on cert-manager to create it by setting the corresponding annotations
-  ##   - Rely on Helm to create self-signed certificates by setting `ingress.selfSigned=true`
-  ##
-  tls: false
-  ## @param ingress.selfSigned Create a TLS secret for this ingress record using self-signed certificates generated by Helm
-  ##
-  selfSigned: false
-  ## @param ingress.extraHosts An array with additional hostname(s) to be covered with the ingress record
-  ## e.g:
-  ## extraHosts:
-  ##   - name: example.local
-  ##     path: /
-  ##
-  extraHosts: []
-  ## @param ingress.extraPaths An array with additional arbitrary paths that may need to be added to the ingress under the main host
-  ## e.g:
-  ## extraPaths:
-  ## - path: /*
-  ##   backend:
-  ##     serviceName: ssl-redirect
-  ##     servicePort: use-annotation
-  ##
-  extraPaths: []
-  ## @param ingress.extraTls TLS configuration for additional hostname(s) to be covered with this ingress record
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#tls
-  ## e.g:
-  ## extraTls:
-  ## - hosts:
-  ##     - example.local
-  ##   secretName: example.local-tls
-  ##
-  extraTls: []
-  ## @param ingress.secrets Custom TLS certificates as secrets
-  ## NOTE: 'key' and 'certificate' are expected in PEM format
-  ## NOTE: 'name' should line up with a 'secretName' set further up
-  ## If it is not set and you're using cert-manager, this is unneeded, as it will create a secret for you with valid certificates
-  ## If it is not set and you're NOT using cert-manager either, self-signed certificates will be created valid for 365 days
-  ## It is also possible to create and manage the certificates outside of this helm chart
-  ## Please see README.md for more information
-  ## e.g:
-  ## secrets:
-  ##   - name: example.local-tls
-  ##     key: |-
-  ##       -----BEGIN RSA PRIVATE KEY-----
-  ##       ...
-  ##       -----END RSA PRIVATE KEY-----
-  ##     certificate: |-
-  ##       -----BEGIN CERTIFICATE-----
-  ##       ...
-  ##       -----END CERTIFICATE-----
-  ##
-  secrets: []
-  ## @param ingress.extraRules Additional rules to be covered with this ingress record
-  ## ref: https://kubernetes.io/docs/concepts/services-networking/ingress/#ingress-rules
-  ## e.g:
-  ## extraRules:
-  ## - host: example.local
-  ##     http:
-  ##       path: /
-  ##       backend:
-  ##         service:
-  ##           name: example-svc
-  ##           port:
-  ##             name: http
-  ##
-  extraRules: []
 
 ## @section Persistence Parameters
 ##
@@ -1032,6 +621,53 @@ persistence:
     ## @param persistence.mountPath Path to mount the volume at.
     ##
     mountPath: /var/bind
+    ## @param persistence.subPath The subdirectory of the volume to mount to, useful in dev environments and one PV for multiple services
+    ##
+    subPath: ""
+    ## @param persistence.storageClass Storage class of backing PVC
+    ## If defined, storageClassName: <storageClass>
+    ## If set to "-", storageClassName: "", which disables dynamic provisioning
+    ## If undefined (the default) or set to null, no storageClassName spec is
+    ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
+    ##   GKE, AWS & OpenStack)
+    ##
+    storageClass: "zfs"
+    ## @param persistence.annotations Persistent Volume Claim annotations
+    ##
+    annotations: {}
+    ## @param persistence.accessModes Persistent Volume Access Modes
+    ##
+    accessModes:
+      - ReadWriteOnce
+    ## @param persistence.size Size of data volume
+    ##
+    size: 1Gi
+    ## @param persistence.existingClaim The name of an existing PVC to use for persistence
+    ##
+    existingClaim: ""
+    ## @param persistence.selector Selector to match an existing Persistent Volume for WordPress data PVC
+    ## If set, the PVC can't have a PV dynamically provisioned for it
+    ## E.g.
+    ## selector:
+    ##   matchLabels:
+    ##     app: my-app
+    ##
+    selector: {}
+    ## @param persistence.dataSource Custom PVC data source
+    ##
+    dataSource: {}
+  samba:
+    cache:
+      accessModes:
+        - ReadWriteOnce
+      size: 1Gi
+
+    ## @param persistence.enabled Enable persistence using Persistent Volume Claims
+    ##
+    enabled: true
+    ## @param persistence.mountPath Path to mount the volume at.
+    ##
+    mountPath: /var/lib/samba
     ## @param persistence.subPath The subdirectory of the volume to mount to, useful in dev environments and one PV for multiple services
     ##
     subPath: ""
@@ -1221,3 +857,265 @@ metrics:
     ##
     selector: {}
 
+config:
+  init: 
+    init.sh: |
+      #!/bin/sh
+      /usr/bin/wget -q -O /var/bind/named.root http://www.internic.net/zones/named.root
+      chown bind:bind /var/bind/named.root
+      for directory in named samba supervisord
+      do
+        mkdir -p /var/run/$directory
+      done
+      chown bind:bind /var/run/named
+      chown -R bind:bind /var/bind
+      chmod 0755 /var/cache/samba/msg.lock
+      ln -s /usr/lib/x86_64-linux-gnu/samba/ /usr/lib/samba
+      chown -R root:bind /var/lib/samba/bind-dns/
+  named:
+    named.conf: |
+      include "/etc/bind/named-acls.conf";
+      include "/etc/bind/named.conf.options";
+      include "/etc/bind/named.conf.local";
+      include "/etc/bind/named.conf.zones";
+      include "/etc/bind/named-keys.conf";
+    named-acls.conf: |
+      acl internals { 127.0.0.0/8; 192.168.0.0/24; 10.244.0.0/16; };
+    named.conf.options: |
+      options {
+            directory "/var/bind";
+            version "Go Away 0.0.7";
+            notify no;
+            empty-zones-enable no;
+            auth-nxdomain yes;
+            forwarders { 8.8.8.8; 8.8.4.4; };
+            allow-transfer { none; };
+
+            dnssec-validation no;
+            
+            // If you only use IPv4. 
+            listen-on-v6 { none; };
+            // listen on these ipnumbers. 
+            listen-on port {{ .Values.samba.containerPorts.domain }} { any; };
+
+            // Added Per Debian buster Bind9. 
+            // Due to : resolver: info: resolver priming query complete messages in the logs. 
+            // See: https://gitlab.isc.org/isc-projects/bind9/commit/4a827494618e776a78b413d863bc23badd14ea42
+            minimal-responses yes;
+
+            //  Add any subnets or hosts you want to allow to use this DNS server
+            allow-query { "internals";  };
+            allow-query-cache { "internals"; };
+
+            //  Add any subnets or hosts you want to allow to use recursive queries
+            recursion yes;
+            allow-recursion {  "internals"; };
+
+            // https://wiki.samba.org/index.php/Dns-backend_bind
+            // DNS dynamic updates via Kerberos (optional, but recommended)
+            // ONE of the following lines should be enabled AFTER you provision or join a DC with bind9_dlz 
+            // or AFTER upgrading your dns from internal to bind9_dlz 
+            // Before Samba 4.9.0
+            // tkey-gssapi-keytab "/var/lib/samba/private/dns.keytab";
+            // From Samba 4.9.0 ( You will need to run samba_upgradedns if upgrading your Samba version. ) 
+            tkey-gssapi-keytab "/var/lib/samba/bind-dns/dns.keytab";
+        };
+    named.conf.local: |
+      include "/var/lib/samba/bind-dns/named.conf";
+    named.conf.zones: |
+      // prime the server with knowledge of the root servers
+      zone "." {
+        type hint;
+        file "/var/bind/named.root";
+      };
+
+      // be authoritative for the localhost forward and reverse zones, and for
+      // broadcast zones as per RFC 1912
+
+      zone "localhost" {
+              type master;
+              file "/etc/bind/db.local";
+      };
+
+      zone "127.in-addr.arpa" {
+              type master;
+              file "/etc/bind/db.127";
+      };
+
+      zone "0.in-addr.arpa" {
+              type master;
+              file "/etc/bind/db.0";
+      };
+
+      zone "255.in-addr.arpa" {
+              type master;
+              file "/etc/bind/db.255";
+      };
+
+      zone "apps.gusek.info" {
+        type master;
+        file "/var/bind/db.apps.gusek.info";
+        allow-transfer {
+          key "externaldns";
+        };
+        update-policy {
+          grant externaldns zonesub ANY;
+        };
+      };
+    db.local: |
+      ;
+      ; BIND data file for local loopback interface
+      ;
+      $TTL    604800
+      @       IN      SOA     localhost. root.localhost. (
+                                    2         ; Serial
+                              604800         ; Refresh
+                                86400         ; Retry
+                              2419200         ; Expire
+                              604800 )       ; Negative Cache TTL
+      ;
+      @       IN      NS      localhost.
+      @       IN      A       127.0.0.1
+      @       IN      AAAA    ::1
+    db.127: |
+      ;
+      ; BIND reverse data file for local loopback interface
+      ;
+      $TTL    604800
+      @       IN      SOA     localhost. root.localhost. (
+                                    1         ; Serial
+                              604800         ; Refresh
+                                86400         ; Retry
+                              2419200         ; Expire
+                              604800 )       ; Negative Cache TTL
+      ;
+      @       IN      NS      localhost.
+      1.0.0   IN      PTR     localhost.
+    db.0: |
+      ;
+      ; BIND reverse data file for "this host on this network" zone
+      ;
+      $TTL    604800
+      @       IN      SOA     localhost. root.localhost. (
+                                    1         ; Serial
+                              604800         ; Refresh
+                                86400         ; Retry
+                              2419200         ; Expire
+                              604800 )       ; Negative Cache TTL
+      ;
+      @       IN      NS      localhost.
+    db.255: |
+      ;
+      ; BIND reverse data file for broadcast zone
+      ;
+      $TTL    604800
+      @       IN      SOA     localhost. root.localhost. (
+                                    1         ; Serial
+                              604800         ; Refresh
+                                86400         ; Retry
+                              2419200         ; Expire
+                              604800 )       ; Negative Cache TTL
+      ;
+      @       IN      NS      localhost.
+    db.apps.gusek.info: |
+      $ORIGIN .
+      $TTL 604800     ; 1 week
+      apps.gusek.info         IN SOA  apps.gusek.info. root.apps.gusek.info. (
+                                      25         ; serial
+                                      60         ; refresh (1 minute)
+                                      60         ; retry (1 minute)
+                                      60         ; expire (1 minute)
+                                      60         ; minimum (1 minute)
+                                      )
+                              NS      samba.gusek.info.
+      $ORIGIN apps.gusek.info.
+      $TTL 600        ; 10 minutes
+      *                       A       192.168.0.10
+  samba:
+    krb5.conf: |
+      [libdefaults]
+              default_realm = GUSEK.INFO
+              dns_lookup_realm = false
+              dns_lookup_kdc = true
+
+      [realms]
+      GUSEK.INFO = {
+              default_domain = gusek.info
+      }
+
+      [domain_realm]
+              stoppi.gusek.info = GUSEK.INFO
+    smb.conf: |
+      # Global parameters
+      [global]
+      workgroup                   = GUSEK
+      realm                       = GUSEK.INFO
+      netbios name                = SAMBA
+      server role                 = active directory domain controller
+      acl_xattr:security_acl_name = user.NTACL
+      server services             = -dns
+      dns forwarder               = 8.8.8.8
+      idmap_ldb:use rfc2307       = yes
+      min protocol                = SMB2
+      allow dns updates           = nonsecure and secure
+      tls enabled                 = yes
+      # tls keyfile                 = /etc/samba/tls/privkey.pem
+      # tls certfile                = /etc/samba/tls/cert.pem
+      # tls cafile                  = /etc/samba/tls/fullchain.pem
+      log level                   = 3
+    
+      [netlogon]
+      path                        = /var/lib/samba/sysvol/gusek.info/scripts
+      read only                   = No
+
+      [sysvol]
+      path                        = /var/lib/samba/sysvol
+      read only                   = No
+
+      # [Profiles]
+      # path                  = /var/lib/samba/profiles
+      # read only             = no
+      # store dos attributes  = Yes
+      # create mask           = 0600
+      # directory mask        = 0700
+      # csc policy            = disable
+
+      # [data]
+      # path                  = /samba/data
+      # read only             = No
+      # create mask           = 0666
+      # directory mask        = 0777
+      # force user            = root
+      # force group           = root
+
+      # [Bilder]
+      # path                  = /samba/Bilder
+      # read only             = No
+      # create mask           = 0666
+      # directory mask        = 0777
+      # force user            = root
+      # force group           = root        
+  supervisor:
+    supervisord.conf: |
+      [supervisord]
+      childlogdir=/var/run/supervisord            ; 'AUTO' child log dir, default $TEMP
+      logfile=/dev/stdout                         ; main log file; default $CWD/supervisord.log
+      logfile_maxbytes = 0                        ; max main logfile bytes b4 rotation; default 50MB
+      nodaemon=true                               ; start in foreground if true; default false
+      pidfile=/var/run/supervisord/supervisor.pid ; supervisord pidfile; default supervisord.pid
+      user=root                                   ; setuid to this UNIX account at startup; recommended if root
+
+      [supervisorctl]
+      serverurl=unix:///var/run/supervisord/supervisor.sock ; use a unix:// URL for a unix socket      
+      
+      [unix_http_server]
+      file=/var/run/supervisord/supervisor.sock  ; the path to the socket file
+
+      [program:named]
+      command=/usr/sbin/named -c /etc/bind/named.conf -g -u bind -4
+      redirect_stderr=true
+      stdout_logfile=/dev/stdout
+      stdout_logfile_maxbytes = 0
+
+      [program:samba]
+      command=/usr/sbin/samba --interactive --no-process-group
