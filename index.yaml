@@ -2960,6 +2960,21 @@ entries:
   loki:
   - apiVersion: v2
     appVersion: v2.8.2
+    created: "2025-02-08T13:20:14.444284937Z"
+    dependencies:
+    - alias: loki
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: 6.25.1
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: 83d956259583ee92a4cf3f6716e2f439f420f8224bd9091bcba4035ba88a3dbe
+    name: loki
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/loki-0.0.13/loki-0.0.13.tgz
+    version: 0.0.13
+  - apiVersion: v2
+    appVersion: v2.8.2
     created: "2025-01-18T12:18:46.995742796Z"
     dependencies:
     - alias: loki
@@ -3967,4 +3982,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-06T17:12:04.297881419Z"
+generated: "2025-02-08T13:20:14.44472082Z"
