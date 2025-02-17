@@ -1663,6 +1663,22 @@ entries:
   dex:
   - apiVersion: v2
     appVersion: 0.17.0
+    created: "2025-02-17T15:56:55.710083351Z"
+    dependencies:
+    - alias: dex
+      name: dex
+      repository: https://charts.dexidp.io
+      version: 0.21.1
+    description: OpenID Connect (OIDC) identity and OAuth 2.0 provider with pluggable
+      connectors.
+    digest: ee346f622ed2f697eee2830a332eaa91a465576271e06cab0df5b4c6029e827a
+    name: dex
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.30/dex-0.0.30.tgz
+    version: 0.0.30
+  - apiVersion: v2
+    appVersion: 0.17.0
     created: "2025-01-21T19:05:41.705469637Z"
     dependencies:
     - alias: dex
@@ -4165,4 +4181,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2025-02-15T20:31:36.056182648Z"
+generated: "2025-02-17T15:56:55.710702222Z"
