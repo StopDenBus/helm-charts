@@ -2521,6 +2521,21 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 9.5.2
+    created: "2025-03-17T15:25:31.612371762Z"
+    dependencies:
+    - alias: grafana
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 8.10.4
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: d64fe1b2cc20bbecc798ab11c9fedabe52383f172c4406c824030dcfa51b642b
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.13/grafana-0.0.13.tgz
+    version: 0.0.13
+  - apiVersion: v2
+    appVersion: 9.5.2
     created: "2025-02-23T12:08:44.179155415Z"
     dependencies:
     - alias: grafana
@@ -4583,4 +4598,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-15T11:39:18.236726121Z"
+generated: "2025-03-17T15:25:31.6127955Z"
