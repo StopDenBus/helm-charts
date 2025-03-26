@@ -3886,6 +3886,23 @@ entries:
   mariadb:
   - apiVersion: v2
     appVersion: 11.2.2
+    created: "2025-03-26T16:48:18.600920253Z"
+    dependencies:
+    - alias: mariadb
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.4.2
+    description: MariaDB is an open source, community-developed SQL database server
+      that is widely in use around the world due to its enterprise features, flexibility,
+      and collaboration with leading tech firms.
+    digest: a9b269efeae8663d9948124b5912616ceb2d55bab3aa21ba08d33d03d793a3ab
+    name: mariadb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mariadb-0.0.9/mariadb-0.0.9.tgz
+    version: 0.0.9
+  - apiVersion: v2
+    appVersion: 11.2.2
     created: "2025-02-28T18:34:10.797406713Z"
     dependencies:
     - alias: mariadb
@@ -4691,4 +4708,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-26T16:47:47.794512928Z"
+generated: "2025-03-26T16:48:18.601473913Z"
