@@ -4635,6 +4635,21 @@ entries:
   sealed-secrets:
   - apiVersion: v2
     appVersion: v0.20.2
+    created: "2025-03-27T18:48:57.910223203Z"
+    dependencies:
+    - alias: sealed-secrets
+      name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 2.17.2
+    description: Helm chart for the sealed-secrets controller.
+    digest: b3327928a4885ee9127318aef70a5ef8cd9156593236d87aa471023680e51088
+    name: sealed-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.7/sealed-secrets-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
+    appVersion: v0.20.2
     created: "2025-01-16T15:36:44.354908011Z"
     dependencies:
     - alias: sealed-secrets
@@ -4708,4 +4723,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2025-03-26T16:48:18.601473913Z"
+generated: "2025-03-27T18:48:57.910671296Z"
