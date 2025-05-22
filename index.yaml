@@ -2689,6 +2689,21 @@ entries:
   external-secrets:
   - apiVersion: v2
     appVersion: 0.9.10
+    created: "2025-05-22T16:03:49.135661948Z"
+    dependencies:
+    - alias: external-secrets
+      name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: 0.17.0
+    description: External secret management for Kubernetes
+    digest: 0d2082f3ba281a943d20ce38c8d44377054187e606504339d2252ea5fc974e4c
+    name: external-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-secrets-0.0.17/external-secrets-0.0.17.tgz
+    version: 0.0.17
+  - apiVersion: v2
+    appVersion: 0.9.10
     created: "2025-05-07T18:21:29.106514183Z"
     dependencies:
     - alias: external-secrets
@@ -2898,6 +2913,21 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/external-secrets-0.0.1/external-secrets-0.0.1.tgz
     version: 0.0.1
   grafana:
+  - apiVersion: v2
+    appVersion: 9.5.2
+    created: "2025-05-22T16:03:49.236459293Z"
+    dependencies:
+    - alias: grafana
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 9.0.1
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 639bbb1ca6283f24a91edf579a3fd1b63ff14bcd8f6fe29846b97449e16cf77d
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.24/grafana-0.0.24.tgz
+    version: 0.0.24
   - apiVersion: v2
     appVersion: 9.5.2
     created: "2025-05-07T18:21:42.323173601Z"
@@ -5401,4 +5431,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-22T16:03:41.339692339Z"
+generated: "2025-05-22T16:03:49.237043846Z"
