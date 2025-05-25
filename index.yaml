@@ -1134,6 +1134,22 @@ entries:
   argocd:
   - apiVersion: v2
     appVersion: 6.0.4
+    created: "2025-05-25T13:17:25.802302478Z"
+    dependencies:
+    - alias: argocd
+      name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 8.0.9
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: c3d0127ba1cec37fc104530098a91e6d9459c19c5dccf2bbbb94be017a32b552
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/argocd-0.1.52/argocd-0.1.52.tgz
+    version: 0.1.52
+  - apiVersion: v2
+    appVersion: 6.0.4
     created: "2025-05-22T16:03:21.799882861Z"
     dependencies:
     - alias: argocd
@@ -1951,6 +1967,22 @@ entries:
   dex:
   - apiVersion: v2
     appVersion: 0.17.0
+    created: "2025-05-25T13:17:25.915938488Z"
+    dependencies:
+    - alias: dex
+      name: dex
+      repository: https://charts.dexidp.io
+      version: 0.23.0
+    description: OpenID Connect (OIDC) identity and OAuth 2.0 provider with pluggable
+      connectors.
+    digest: 03243fce68037e6522d81459144f8647caca9fa7285a02b8918f0318f7c3719e
+    name: dex
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.34/dex-0.0.34.tgz
+    version: 0.0.34
+  - apiVersion: v2
+    appVersion: 0.17.0
     created: "2025-03-22T10:40:45.495243814Z"
     dependencies:
     - alias: dex
@@ -2464,6 +2496,22 @@ entries:
   external-dns:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2025-05-25T13:17:26.021482822Z"
+    dependencies:
+    - alias: external-dns
+      name: external-dns
+      repository: https://charts.bitnami.com/bitnami
+      version: 8.8.2
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: fc518d961a6605b373e3c0f5376ff01495ec65ee401144367b57039f2ca67cfd
+    name: external-dns
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-dns-0.0.16/external-dns-0.0.16.tgz
+    version: 0.0.16
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2025-05-09T18:00:23.64661765Z"
     dependencies:
     - alias: external-dns
@@ -2687,6 +2735,21 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/external-dns-0.0.2/external-dns-0.0.2.tgz
     version: 0.0.2
   external-secrets:
+  - apiVersion: v2
+    appVersion: 0.9.10
+    created: "2025-05-25T13:17:26.158836398Z"
+    dependencies:
+    - alias: external-secrets
+      name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: 0.17.0
+    description: External secret management for Kubernetes
+    digest: 5b506b7d4853060e0445aad6d42586663e7bfd17922b52d089b5b0ab67a3281c
+    name: external-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-secrets-0.0.18/external-secrets-0.0.18.tgz
+    version: 0.0.18
   - apiVersion: v2
     appVersion: 0.9.10
     created: "2025-05-22T16:03:49.135661948Z"
@@ -2913,6 +2976,21 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/external-secrets-0.0.1/external-secrets-0.0.1.tgz
     version: 0.0.1
   grafana:
+  - apiVersion: v2
+    appVersion: 9.5.2
+    created: "2025-05-25T13:17:26.243706676Z"
+    dependencies:
+    - alias: grafana
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 9.0.1
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 04098e468fb0b50abfb0b80bb4125533dcd215b8e8628e018b3793250a6202d7
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.25/grafana-0.0.25.tgz
+    version: 0.0.25
   - apiVersion: v2
     appVersion: 9.5.2
     created: "2025-05-22T16:03:49.236459293Z"
@@ -4334,6 +4412,20 @@ entries:
     version: 0.0.1
   mailu:
   - apiVersion: v2
+    created: "2025-05-25T13:17:26.37275576Z"
+    dependencies:
+    - alias: mailu
+      name: mailu
+      repository: https://mailu.github.io/helm-charts/
+      version: 2.1.2
+    description: This chart installs the Mailu mail system on kubernetes
+    digest: cfb3172f8d2b700c3a2fb5ce0f85540f8a3552ecfdb284c25de6be30b7ed0bf5
+    name: mailu
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mailu-0.0.12/mailu-0.0.12.tgz
+    version: 0.0.12
+  - apiVersion: v2
     created: "2024-12-28T20:49:51.944702041Z"
     dependencies:
     - alias: mailu
@@ -4488,6 +4580,23 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/mailu-0.0.1/mailu-0.0.1.tgz
     version: 0.0.1
   mariadb:
+  - apiVersion: v2
+    appVersion: 11.2.2
+    created: "2025-05-25T13:17:26.507520131Z"
+    dependencies:
+    - alias: mariadb
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.5.5
+    description: MariaDB is an open source, community-developed SQL database server
+      that is widely in use around the world due to its enterprise features, flexibility,
+      and collaboration with leading tech firms.
+    digest: 916d6c1f322230e6ac30c7e69ead092007ff80f426118919c9e59ecb5108db6a
+    name: mariadb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mariadb-0.0.13/mariadb-0.0.13.tgz
+    version: 0.0.13
   - apiVersion: v2
     appVersion: 11.2.2
     created: "2025-05-25T13:08:07.171016022Z"
@@ -4874,6 +4983,23 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/metallb-0.0.1/metallb-0.0.1.tgz
     version: 0.0.1
   mysql:
+  - apiVersion: v2
+    appVersion: 8.4.3
+    created: "2025-05-25T13:17:26.660062035Z"
+    dependencies:
+    - alias: mysql
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.0.0
+    description: MySQL is a fast, reliable, scalable, and easy to use open source
+      relational database system. Designed to handle mission-critical, heavy-load
+      production applications.
+    digest: 8e03191ec8c9fbdec2c6abeaf8da77089261b8fb538ea19c919dd4be497f0179
+    name: mysql
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mysql-0.0.13/mysql-0.0.13.tgz
+    version: 0.0.13
   - apiVersion: v2
     appVersion: 8.4.3
     created: "2025-05-22T16:03:41.339095337Z"
@@ -5463,4 +5589,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-25T13:08:07.266086654Z"
+generated: "2025-05-25T13:17:26.660924141Z"
