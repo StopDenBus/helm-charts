@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-05-26T15:30:07.567304661Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 19ccdecc0431148b114d8d66953aea4cfebf85977d2cbf300f660e2609dc1dd9
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.117/applications-0.0.117.tgz
+    version: 0.0.117
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2024-12-28T20:40:32.594492814Z"
     description: A Helm chart for ArgoCD applications
     digest: 50a34c07daf4ab0ec661ea9f3eafca95c096549465478087e687d491fd91bb11
@@ -5589,4 +5599,15 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.0/sealed-secrets-0.1.0.tgz
     version: 0.1.0
-generated: "2025-05-25T13:17:26.660924141Z"
+  wishlist-backend:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2025-05-26T15:30:07.696811412Z"
+    description: A Helm chart for Kubernetes
+    digest: 1c2a979f520222a43bafeba9f9e597f6b59fb22ea6a12f9778aa1375eed7705e
+    name: wishlist-backend
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-backend-0.0.1/wishlist-backend-0.0.1.tgz
+    version: 0.0.1
+generated: "2025-05-26T15:30:07.697531079Z"
