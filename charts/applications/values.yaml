@@ -191,4 +191,15 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-
+  wishlist-backend:
+    chart: wishlist-backend
+    helm:
+      releaseName: wishlist-backend
+    namespace: wishlist
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true
