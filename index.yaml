@@ -5633,6 +5633,16 @@ entries:
   wishlist-backend:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-05-28T16:43:08.463118348Z"
+    description: A Helm chart for Kubernetes
+    digest: 876afd4afa2fb5d3adcc6fba16d69d3bd0700d59f9b03954dc9020d8860be824
+    name: wishlist-backend
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-backend-0.0.2/wishlist-backend-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-05-26T15:30:07.696811412Z"
     description: A Helm chart for Kubernetes
     digest: 1c2a979f520222a43bafeba9f9e597f6b59fb22ea6a12f9778aa1375eed7705e
@@ -5641,4 +5651,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-backend-0.0.1/wishlist-backend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-05-28T16:36:39.100944759Z"
+generated: "2025-05-28T16:43:08.464683066Z"
