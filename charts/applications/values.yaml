@@ -203,3 +203,15 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
+  wishlist-frontend:
+    chart: wishlist-frontend
+    helm:
+      releaseName: wishlist-frontend
+    namespace: wishlist
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true        
