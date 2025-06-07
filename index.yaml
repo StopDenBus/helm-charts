@@ -4572,6 +4572,20 @@ entries:
     version: 0.0.1
   mailu:
   - apiVersion: v2
+    created: "2025-06-07T12:59:09.276507607Z"
+    dependencies:
+    - alias: mailu
+      name: mailu
+      repository: https://mailu.github.io/helm-charts/
+      version: 2.2.2
+    description: This chart installs the Mailu mail system on kubernetes
+    digest: a7197dfc000c8ffd92113ebe69de6fa117c1fa0bd42577bc8c70903068d13c6f
+    name: mailu
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mailu-0.0.13/mailu-0.0.13.tgz
+    version: 0.0.13
+  - apiVersion: v2
     created: "2025-05-25T13:17:26.37275576Z"
     dependencies:
     - alias: mailu
@@ -5845,4 +5859,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-06-07T11:04:35.4017398Z"
+generated: "2025-06-07T12:59:09.277198695Z"
