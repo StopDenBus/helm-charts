@@ -4742,6 +4742,23 @@ entries:
   mariadb:
   - apiVersion: v2
     appVersion: 11.2.2
+    created: "2025-06-07T11:04:35.229191831Z"
+    dependencies:
+    - alias: mariadb
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 20.5.7
+    description: MariaDB is an open source, community-developed SQL database server
+      that is widely in use around the world due to its enterprise features, flexibility,
+      and collaboration with leading tech firms.
+    digest: 39924b8a05832759c0c6bf5a47a4e8cb9693426d07d795ddd96b08d3bf56b55c
+    name: mariadb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mariadb-0.0.14/mariadb-0.0.14.tgz
+    version: 0.0.14
+  - apiVersion: v2
+    appVersion: 11.2.2
     created: "2025-05-25T13:17:26.507520131Z"
     dependencies:
     - alias: mariadb
@@ -5158,6 +5175,23 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/metallb-0.0.1/metallb-0.0.1.tgz
     version: 0.0.1
   mysql:
+  - apiVersion: v2
+    appVersion: 8.4.3
+    created: "2025-06-07T11:04:35.401183733Z"
+    dependencies:
+    - alias: mysql
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 13.0.1
+    description: MySQL is a fast, reliable, scalable, and easy to use open source
+      relational database system. Designed to handle mission-critical, heavy-load
+      production applications.
+    digest: 9323f2ce47542d5716b3873203ab544ab53e3901abcadac31dc08e385d2f913e
+    name: mysql
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mysql-0.0.14/mysql-0.0.14.tgz
+    version: 0.0.14
   - apiVersion: v2
     appVersion: 8.4.3
     created: "2025-05-25T13:17:26.660062035Z"
@@ -5811,4 +5845,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-06-07T11:04:06.085459957Z"
+generated: "2025-06-07T11:04:35.4017398Z"
