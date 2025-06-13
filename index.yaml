@@ -3078,6 +3078,21 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 9.5.2
+    created: "2025-06-13T15:11:01.651831348Z"
+    dependencies:
+    - alias: grafana
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 9.2.3
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: c7b22c34c38681181d28dd7025ef0b94b48d9747c3e2230c27c78cd4294a69ef
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.28/grafana-0.0.28.tgz
+    version: 0.0.28
+  - apiVersion: v2
+    appVersion: 9.5.2
     created: "2025-06-02T15:28:01.36049323Z"
     dependencies:
     - alias: grafana
@@ -5772,6 +5787,21 @@ entries:
   sealed-secrets:
   - apiVersion: v2
     appVersion: v0.20.2
+    created: "2025-06-13T15:11:01.783811934Z"
+    dependencies:
+    - alias: sealed-secrets
+      name: sealed-secrets
+      repository: https://bitnami-labs.github.io/sealed-secrets
+      version: 2.17.3
+    description: Helm chart for the sealed-secrets controller.
+    digest: eb33271bed31c22dae7a45d45e62dd327883d47e0ad50f51f7189416d3c56b22
+    name: sealed-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/sealed-secrets-0.1.8/sealed-secrets-0.1.8.tgz
+    version: 0.1.8
+  - apiVersion: v2
+    appVersion: v0.20.2
     created: "2025-03-27T18:48:57.910223203Z"
     dependencies:
     - alias: sealed-secrets
@@ -5892,4 +5922,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-06-13T15:10:50.289673108Z"
+generated: "2025-06-13T15:11:01.78479508Z"
