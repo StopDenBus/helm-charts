@@ -2628,6 +2628,22 @@ entries:
   external-dns:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2025-07-20T14:08:29.84847374Z"
+    dependencies:
+    - alias: external-dns
+      name: external-dns
+      repository: https://charts.bitnami.com/bitnami
+      version: 9.0.0
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 7f2abd90f51fa758b7d91fda4d0176b77d25651992115e4a0d29be2da231623b
+    name: external-dns
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-dns-0.0.22/external-dns-0.0.22.tgz
+    version: 0.0.22
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2025-07-09T06:11:36.380249753Z"
     dependencies:
     - alias: external-dns
@@ -6339,4 +6355,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-07-16T07:09:21.305595245Z"
+generated: "2025-07-20T14:08:30.055410248Z"
