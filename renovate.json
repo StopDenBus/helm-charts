@@ -8,7 +8,10 @@
       "matchFileNames": ["charts/**/*"],
       "semanticCommitType": "fix",
       "semanticCommitScope": "{{parentDir}}",
-      "bumpVersion": "patch"
+      "bumpVersion": "patch",
+      "matchUpdateTypes": ["minor", "patch"],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
     }
   ]
 }
