@@ -9,6 +9,7 @@ spec:
     priority: 50
     namespaces:
       - ingress-nginx
+      - pihole
     serviceSelectors:
       - matchExpressions:
           - {key: app.kubernetes.io/name, operator: In, values: [nginx, pihole]}
