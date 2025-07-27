@@ -11,7 +11,7 @@ spec:
       - ingress-nginx
     serviceSelectors:
       - matchExpressions:
-          - {key: app.kubernetes.io/name, operator: In, values: [nginx]}
+          - {key: app.kubernetes.io/name, operator: In, values: [nginx, pihole]}
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool

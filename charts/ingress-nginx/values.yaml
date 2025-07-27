@@ -9,4 +9,8 @@ nginx:
       default: true
     updateStrategy:
       type: Recreate
+  controller:
+    service:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: nginx
   
