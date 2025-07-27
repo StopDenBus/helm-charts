@@ -3703,6 +3703,21 @@ entries:
   ingress-nginx:
   - apiVersion: v2
     appVersion: 4.10.0
+    created: "2025-07-27T13:18:11.19884682Z"
+    dependencies:
+    - alias: nginx
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.13.0
+    description: A Helm chart for Kubernetes
+    digest: dc5b152dc0b1f027e1fa8152e42b92fdc9698db20ec21fabdfc8f8d1f78d4ba1
+    name: ingress-nginx
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/ingress-nginx-0.1.13/ingress-nginx-0.1.13.tgz
+    version: 0.1.13
+  - apiVersion: v2
+    appVersion: 4.10.0
     created: "2025-07-08T05:49:05.662658624Z"
     dependencies:
     - alias: nginx
@@ -5435,6 +5450,21 @@ entries:
     version: 0.0.1
   metallb:
   - apiVersion: v2
+    created: "2025-07-27T13:18:11.318449886Z"
+    dependencies:
+    - alias: metallb
+      name: metallb
+      repository: https://metallb.github.io/metallb
+      version: 0.15.2
+    description: A network load-balancer implementation for Kubernetes using standard
+      routing protocols
+    digest: 9066718593ab229b44f6fb970fdae0f70619c509f32888039febdf09337cc697
+    name: metallb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/metallb-0.0.14/metallb-0.0.14.tgz
+    version: 0.0.14
+  - apiVersion: v2
     created: "2025-06-07T11:03:25.337185594Z"
     dependencies:
     - alias: metallb
@@ -6386,4 +6416,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-07-26T16:29:20.019941404Z"
+generated: "2025-07-27T13:18:11.319133243Z"
