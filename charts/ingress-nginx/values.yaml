@@ -7,6 +7,8 @@ nginx:
     hostNetwork: false
     ingressClassResource:
       default: true
+    service:
+      annotations:
+        metallb.universe.tf/allow-shared-ip: nginx
     updateStrategy:
       type: Recreate
-  
