@@ -164,6 +164,18 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
+  pihole:
+    chart: pihole
+    helm:
+      releaseName: pihole
+    namespace: pihole
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true        
   php-hello-world:
     chart: php-hello-world
     helm:
