@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-07-28T14:28:33.901515012Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 01c6182284e8b62daffc98b600d1905dedd1badb8b01ec10aa218a8e54c9ba20
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.119/applications-0.0.119.tgz
+    version: 0.0.119
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-06-02T15:19:25.441450254Z"
     description: A Helm chart for ArgoCD applications
     digest: 1d9239b7c5db0e35c2293061c6a56ad3ef5fe7a25bc85ec5d02330dcd02559f5
@@ -6303,6 +6313,22 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/php-hello-world-0.0.1/php-hello-world-0.0.1.tgz
     version: 0.0.1
+  pihole:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2025-07-28T14:28:34.042532803Z"
+    dependencies:
+    - alias: pihole
+      name: pihole
+      repository: https://mojo2600.github.io/pihole-kubernetes/
+      version: v2.31.0
+    description: Installs pihole in kubernetes
+    digest: 57aa8a2a3ebc5b6c98eeb7b65b0cca357dcde3587db9ec1616314e9bd2b4d2aa
+    name: pihole
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/pihole-0.0.1/pihole-0.0.1.tgz
+    version: 0.0.1
   sealed-secrets:
   - apiVersion: v2
     appVersion: v0.20.2
@@ -6461,4 +6487,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-07-27T14:30:52.278982612Z"
+generated: "2025-07-28T14:28:34.044109239Z"
