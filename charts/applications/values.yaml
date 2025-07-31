@@ -92,18 +92,18 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-  mariadb:
-    chart: mariadb
-    helm:
-      releaseName: mariadb
-    namespace: mariadb
-    project: default
-    syncPolicy:
-      automated:
-        selfHeal: true
-        prune: true
-      syncOptions:
-        - CreateNamespace=true
+  # mariadb:
+  #   chart: mariadb
+  #   helm:
+  #     releaseName: mariadb
+  #   namespace: mariadb
+  #   project: default
+  #   syncPolicy:
+  #     automated:
+  #       selfHeal: true
+  #       prune: true
+  #     syncOptions:
+  #       - CreateNamespace=true
   mailu:
     chart: mailu
     helm:
