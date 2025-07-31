@@ -1,6 +1,7 @@
 name: Release Charts
 
 on:
+  merge_group:
   pull_request:
     types: [ closed ]
     paths-ignore:
