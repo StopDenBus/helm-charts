@@ -6420,6 +6420,21 @@ entries:
   pihole:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-08-03T14:02:05.152950868Z"
+    dependencies:
+    - alias: pihole
+      name: pihole
+      repository: https://mojo2600.github.io/pihole-kubernetes/
+      version: v2.31.0
+    description: Installs pihole in kubernetes
+    digest: dd128b36aef7c138d8b030344fc874f9d5b55825e808eedb2803d4d904abf9de
+    name: pihole
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/pihole-0.0.2/pihole-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-07-28T14:28:34.042532803Z"
     dependencies:
     - alias: pihole
@@ -6591,4 +6606,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-07-31T18:40:15.682738419Z"
+generated: "2025-08-03T14:02:05.153941745Z"
