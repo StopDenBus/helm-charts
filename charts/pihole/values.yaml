@@ -23,8 +23,8 @@ pihole:
 
   dnsmasq:
     upstreamServers:
-      - server=/gusek.info/192.168.0.2
-      - server=/apps.gusek.info/192.168.0.2
+      - server=/gusek.info/192.168.0.13
+      - server=/apps.gusek.info/192.168.0.13
 
   ingress:
     enabled: true
