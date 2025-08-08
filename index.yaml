@@ -5932,6 +5932,23 @@ entries:
   mysql:
   - apiVersion: v2
     appVersion: 8.4.3
+    created: "2025-08-08T17:32:29.384297443Z"
+    dependencies:
+    - alias: mysql
+      name: mysql
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.0.2
+    description: MySQL is a fast, reliable, scalable, and easy to use open source
+      relational database system. Designed to handle mission-critical, heavy-load
+      production applications.
+    digest: 77183e337b5bcd6525e47c46ff7cbcfc8f5d81ffdb102cc4dc20807442ff862e
+    name: mysql
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mysql-0.0.18/mysql-0.0.18.tgz
+    version: 0.0.18
+  - apiVersion: v2
+    appVersion: 8.4.3
     created: "2025-07-16T07:09:21.305080193Z"
     dependencies:
     - alias: mysql
@@ -6717,4 +6734,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-08-08T12:33:18.66692181Z"
+generated: "2025-08-08T17:32:29.385102992Z"
