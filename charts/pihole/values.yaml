@@ -21,10 +21,12 @@ pihole:
   DNS1: "9.9.9.9"
   DNS2: "185.222.222.222"
 
+  # dns masq config
   dnsmasq:
+    customDnsEntries:
+      - address=/samba.gusek.info/192.168.0.13
     upstreamServers:
       - server=/gusek.info/192.168.0.13
-      - server=/apps.gusek.info/192.168.0.13
 
   ingress:
     enabled: true
