@@ -7,7 +7,7 @@ external-dns:
   domainFilters:
     - apps.gusek.info
   rfc2136:
-    host: samba.gusek.info
+    host: samba-udp.samba.svc.cluster.local
     port: 53
     zones:
       - apps.gusek.info
