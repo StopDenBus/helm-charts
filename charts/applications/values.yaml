@@ -45,6 +45,7 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
+        - ServerSideApply=true
   grafana:
     chart: grafana
     helm:
