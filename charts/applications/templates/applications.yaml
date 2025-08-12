@@ -39,6 +39,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ $app }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: {{ $properties.project }}
   {{- if $properties.plugin }}
@@ -67,6 +69,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: {{ include "featureBrancheName" $argument }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
 spec:
   project: {{ $properties.project }}
   {{- if $properties.plugin }}
