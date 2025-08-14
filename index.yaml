@@ -6816,6 +6816,26 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-08-14T09:45:18.682692769Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: Samba is the standard Windows interoperability suite of programs
+      for Linux and Unix.
+    digest: ca006db24555a7020d530d6e7488487fa73a52b2206e6a6547f5134545aa942c
+    name: samba
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/samba-0.1.1/samba-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      category: Infrastructure
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-08-14T09:37:11.316749544Z"
     dependencies:
     - name: common
@@ -6989,4 +7009,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-08-14T09:37:11.318014808Z"
+generated: "2025-08-14T09:45:18.683373006Z"
