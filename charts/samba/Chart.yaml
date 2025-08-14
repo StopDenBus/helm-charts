@@ -2,11 +2,10 @@ apiVersion: v2
 name: samba
 description: Samba is the standard Windows interoperability suite of programs for Linux and Unix.
 type: application
-
 annotations:
   category: Infrastructure
   licenses: Apache-2.0
-version: 0.1.0
+version: 0.1.1
 appVersion: 0.0.1
 dependencies:
   - name: common

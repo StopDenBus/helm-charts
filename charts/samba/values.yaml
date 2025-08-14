@@ -1119,3 +1119,6 @@ config:
 
       [program:samba]
       command=/usr/sbin/samba --interactive --no-process-group
+      redirect_stderr=true
+      stdout_logfile=/dev/stdout
+      stdout_logfile_maxbytes = 0
