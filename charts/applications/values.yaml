@@ -203,18 +203,6 @@ applications:
         selfHeal: true
         prune: true
       syncOptions:
-        - CreateNamespace=true        
-  sealed-secrets:
-    chart: sealed-secrets
-    helm:
-      releaseName: sealed-secrets-controller
-    namespace: kube-system
-    project: cluster-bootstrap
-    syncPolicy:
-      automated:
-        selfHeal: true
-        prune: true
-      syncOptions:
         - CreateNamespace=true
   wishlist-backend:
     chart: wishlist-backend
