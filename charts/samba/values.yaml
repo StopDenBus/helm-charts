@@ -723,9 +723,9 @@ volumePermissions:
   ## @param volumePermissions.image.pullSecrets OS Shell + Utility image pull secrets
   ##
   image:
-    registry: ghcr.io
-    repository: bitnami/os-shell
-    tag: 12-debian-12-r34
+    registry: registry.hub.docker.com
+    repository: nicolaka/netshoot
+    tag: v0.14
     pullPolicy: IfNotPresent
     ## Optionally specify an array of imagePullSecrets.
     ## Secrets must be manually created in the namespace.
