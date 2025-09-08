@@ -89,7 +89,7 @@ samba:
   image:
     registry: ghcr.io
     repository: stopdenbus/samba/samba
-    tag: 2025-08-10_020892
+    tag: 25.09.08
     digest: ""
     ## Specify a imagePullPolicy
     ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
@@ -402,7 +402,7 @@ samba:
   ##
   initContainers:
     - name: fetch-root-server-list
-      image: ghcr.io/stopdenbus/samba/samba:2025-08-10_020892
+      image: ghcr.io/stopdenbus/samba/samba:25.09.08
       imagePullPolicy: IfNotPresent
       command:
         - /bin/sh
