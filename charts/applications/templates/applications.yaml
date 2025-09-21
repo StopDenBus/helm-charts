@@ -18,6 +18,24 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: samba
+spec:
+  project: default
+  source:
+    repoURL: git@github.com:StopDenBus/helm-charts.git
+    targetRevision: HEAD
+    path: charts/samba
+  destination:
+    namespace: samba
+    server: https://kubernetes.default.svc
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
+---
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
   name: gusek.info
 spec:
   project: gusek.info
