@@ -1,4 +1,6 @@
 samba:
   samba:
     image:
+      registry: ghcr.io
+      repository: stopdenbus/samba/samba
       tag: 25.09.08
