@@ -192,18 +192,18 @@ applications:
     featureBranches:
       feature/cool-feature:
         tag: 40ba834d914638ecee75159a7f25cbed2d96e3fc
-  samba:
-    chart: samba
-    helm:
-      releaseName: samba
-    namespace: samba
-    project: default
-    syncPolicy:
-      automated:
-        selfHeal: true
-        prune: true
-      syncOptions:
-        - CreateNamespace=true
+# samba:
+#   chart: samba
+#   helm:
+#     releaseName: samba
+#   namespace: samba
+#   project: default
+#   syncPolicy:
+#     automated:
+#       selfHeal: true
+#       prune: true
+#     syncOptions:
+#       - CreateNamespace=true
   wishlist-backend:
     chart: wishlist-backend
     helm:
