@@ -5,6 +5,10 @@
   ],
   "packageRules": [
     {
+      "matchFileNames": ["charts/samba/*"],
+      "automerge": true
+    },
+    {
       "matchFileNames": ["charts/**/*"],
       "semanticCommitType": "fix",
       "semanticCommitScope": "{{parentDir}}",
