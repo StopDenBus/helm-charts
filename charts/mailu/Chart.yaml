@@ -13,9 +13,9 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.0.16
+version: 0.0.17
 dependencies:
   - name: mailu
-    version: 2.4.0
+    version: 2.5.0
     repository: https://mailu.github.io/helm-charts/
     alias: mailu
