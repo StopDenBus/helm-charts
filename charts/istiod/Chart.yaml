@@ -13,7 +13,7 @@ type: application
 # This is the chart version. This version number should be incremented each time you make changes
 # to the chart and its templates, including the app version.
 # Versions are expected to follow Semantic Versioning (https://semver.org/)
-version: 0.0.28
+version: 0.0.29
 # This is the version number of the application being deployed. This version number should be
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
@@ -21,22 +21,22 @@ version: 0.0.28
 appVersion: "0.0.1"
 dependencies:
   - name: base
-    version: 1.27.2
+    version: 1.27.3
     repository: https://istio-release.storage.googleapis.com/charts
     alias: istio-base
   - name: istiod
-    version: 1.27.2
+    version: 1.27.3
     repository: https://istio-release.storage.googleapis.com/charts
     alias: istio-istiod
   - name: cni
-    version: 1.27.2
+    version: 1.27.3
     repository: https://istio-release.storage.googleapis.com/charts
     alias: istio-cni
   - name: gateway
-    version: 1.27.2
+    version: 1.27.3
     repository: https://istio-release.storage.googleapis.com/charts
     alias: istio-gateway
   - name: ztunnel
-    version: 1.27.2
+    version: 1.27.3
     repository: https://istio-release.storage.googleapis.com/charts
     alias: istio-ztunnel
