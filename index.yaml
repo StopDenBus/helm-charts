@@ -3611,6 +3611,21 @@ entries:
   external-secrets:
   - apiVersion: v2
     appVersion: 0.9.10
+    created: "2025-11-21T18:57:01.980990755Z"
+    dependencies:
+    - alias: external-secrets
+      name: external-secrets
+      repository: https://charts.external-secrets.io
+      version: 1.1.0
+    description: External secret management for Kubernetes
+    digest: 98d38c68a6eb016faf743d69453abc8deb46e2d5105b6ebbee7f763feab2106b
+    name: external-secrets
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-secrets-0.0.22/external-secrets-0.0.22.tgz
+    version: 0.0.22
+  - apiVersion: v2
+    appVersion: 0.9.10
     created: "2025-07-05T10:57:31.831333419Z"
     dependencies:
     - alias: external-secrets
@@ -8204,4 +8219,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-11-21T14:36:40.257746198Z"
+generated: "2025-11-21T18:57:01.982215909Z"
