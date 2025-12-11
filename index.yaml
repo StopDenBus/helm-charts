@@ -3976,6 +3976,21 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 9.5.2
+    created: "2025-12-11T18:45:37.023320349Z"
+    dependencies:
+    - alias: grafana
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 10.3.1
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 9c99e3f5a42dc2409137c3a022b9b8a4f33d5bffbc3461cb800e34806178b06d
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.52/grafana-0.0.52.tgz
+    version: 0.0.52
+  - apiVersion: v2
+    appVersion: 9.5.2
     created: "2025-12-01T19:31:39.508649448Z"
     dependencies:
     - alias: grafana
@@ -8097,6 +8112,21 @@ entries:
   pihole:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-12-11T18:45:37.245405673Z"
+    dependencies:
+    - alias: pihole
+      name: pihole
+      repository: https://mojo2600.github.io/pihole-kubernetes/
+      version: 2.35.0
+    description: Installs pihole in kubernetes
+    digest: 0bd4b5aaabc7946f2107e3ed7afd6b2c5f6e93db1d73d58f7569a972b2125ef2
+    name: pihole
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/pihole-0.0.5/pihole-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-08-14T09:29:34.286944651Z"
     dependencies:
     - alias: pihole
@@ -8374,4 +8404,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-09T20:45:56.576105367Z"
+generated: "2025-12-11T18:45:37.246452546Z"
