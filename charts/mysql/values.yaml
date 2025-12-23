@@ -1,4 +1,6 @@
 mysql:
+  image:
+    repository: bitnamilegacy/mysql
   auth:
     existingSecret: "mysql-secrets"
     createDatabase: false
