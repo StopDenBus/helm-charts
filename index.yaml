@@ -3322,6 +3322,22 @@ entries:
   external-dns:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2025-12-23T15:33:58.433246692Z"
+    dependencies:
+    - alias: external-dns
+      name: external-dns
+      repository: https://kubernetes-sigs.github.io/external-dns/
+      version: 1.19.0
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 42c4ad2d62f97767b9630a3da71e6648d4a6e5d917ab6897a03fd625df1edfc6
+    name: external-dns
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-dns-0.0.30/external-dns-0.0.30.tgz
+    version: 0.0.30
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2025-12-23T15:29:48.905328647Z"
     dependencies:
     - alias: external-dns
@@ -8653,4 +8669,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-23T15:29:48.906799648Z"
+generated: "2025-12-23T15:33:58.435306098Z"
