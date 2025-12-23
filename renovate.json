@@ -18,5 +18,16 @@
       "matchCurrentVersion": "!/^0/",
       "automerge": true
     }
+  ],
+  "registryAliases": {
+    "dhi.io": "dhi.io"
+  },
+  "hostRules": [
+    {
+      "matchHost": "dhi.io",
+      "hostType": "docker",
+      "username": "{{ secrets.MEND_DHI_USERNAME }}",
+      "password": "{{ secrets.MEND_DHI_PASSWORD }}"
+    }
   ]
 }
