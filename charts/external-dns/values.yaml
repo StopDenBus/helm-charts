@@ -1,4 +1,6 @@
 external-dns:
+  imagePullSecrets:
+    - name: dhi
   sources:
     - service
   policy: sync
