@@ -6,12 +6,21 @@ external-dns:
   provider: rfc2136
   domainFilters:
     - apps.gusek.info
-  rfc2136:
-    host: samba-tcp.samba.svc.cluster.local
-    port: 53
-    zones:
-      - apps.gusek.info
-    tsigAxfr: true
-    tsigKeyname: externaldns
+  provider:
+    name: rfc2136
+  extraArgs:
+    metrics-address: :7979
+    rfc2136-host: samba-tcp.samba.svc.cluster.local
+    rfc2136-port: 53
+    rfc2136-zone: apps.gusek.info
+    rfc2136-min-ttl: 0
+    rfc2136-tsig-axfr:
+    rfc2136-tsig-secret-alg: hmac-sha256
+    rfc2136-tsig-keyname: externaldns
     secretName: tsig-secrets
-  
+  env:
+    - name: EXTERNAL_DNS_RFC2136_TSIG_SECRET
+      valueFrom:
+        secretKeyRef:
+          key: rfc2136_tsig_secret
+          name: tsig-secrets
