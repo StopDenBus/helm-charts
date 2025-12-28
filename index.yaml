@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-12-28T22:10:29.099174494Z"
+    description: A Helm chart for ArgoCD applications
+    digest: d097698974fde1ad62e7f033b965a2d275d4c02d1f01f1ffab837fea0f8c00fe
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.131/applications-0.0.131.tgz
+    version: 0.0.131
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-12-28T17:42:24.509257714Z"
     description: A Helm chart for ArgoCD applications
     digest: acc3486fb591dc3661f3273c5772038079db3a959f3c2c65297c7bcb4f5b90b5
@@ -6293,6 +6303,25 @@ entries:
     version: 0.0.1
   kgateway:
   - apiVersion: v2
+    created: "2025-12-28T22:10:29.315599812Z"
+    dependencies:
+    - alias: kgateway-crds
+      name: kgateway-crds
+      repository: oci://cr.kgateway.dev/kgateway-dev/charts
+      version: v2.2.0-beta.4
+    - alias: kgateway
+      name: kgateway
+      repository: oci://cr.kgateway.dev/kgateway-dev/charts
+      version: v2.2.0-beta.4
+    description: The kgateway project is a feature-rich, Kubernetes-native ingress
+      controller and next-generation API gateway.
+    digest: 8cf1f9d7f5b451f5836dcb547a0eaf97eb698c212c6f1daff30d9501d4843093
+    name: kgateway
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/kgateway-0.0.7/kgateway-0.0.7.tgz
+    version: 0.0.7
+  - apiVersion: v2
     created: "2025-12-28T21:54:00.661399771Z"
     dependencies:
     - alias: kgateway-crds
@@ -8735,6 +8764,26 @@ entries:
   pihole:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-12-28T22:10:29.538062981Z"
+    dependencies:
+    - alias: pihole
+      name: pihole
+      repository: https://mojo2600.github.io/pihole-kubernetes/
+      version: 2.35.0
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: Installs pihole in kubernetes
+    digest: cbc5aaf2fe4ce4123dae77389a3c0cfcfb61ff04c56f3426de8b4d01c17a4b40
+    name: pihole
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/pihole-0.0.7/pihole-0.0.7.tgz
+    version: 0.0.7
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-12-11T18:45:37.245405673Z"
     dependencies:
     - alias: pihole
@@ -9038,6 +9087,16 @@ entries:
   wishlist-frontend:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-12-28T22:10:29.704238455Z"
+    description: A Helm chart for Kubernetes
+    digest: 4667e9557e43d3a5eadf1cfaea835ab590ad31926e95e02590afd0080f53c923
+    name: wishlist-frontend
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.3/wishlist-frontend-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-12-28T21:54:00.953836595Z"
     description: A Helm chart for Kubernetes
     digest: f6659a3357643db17eadab9b34a9c88862eea23da1c87e8a30fe682cbd58d02f
@@ -9056,4 +9115,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-28T21:54:00.955638844Z"
+generated: "2025-12-28T22:10:29.705283612Z"
