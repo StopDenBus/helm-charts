@@ -6,8 +6,10 @@ httproute:
     serviceName: pihole-web
     port: 80
   parentRefs:
-    name: https
-    namespace: kgateway-system
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: https
+      namespace: kgateway-system
   # -- HTTPRoute rules configuration
   # @default -- `[]` (See [values.yaml])
   rules:

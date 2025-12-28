@@ -88,9 +88,9 @@ applications:
     namespace: kgateway-system
     project: default
     syncPolicy:
-      # automated:
-      #   selfHeal: true
-      #   prune: true
+      automated:
+        selfHeal: true
+        prune: true
       syncOptions:
         - ServerSideApply=true
   loki:
@@ -170,12 +170,7 @@ applications:
       releaseName: ingress-nginx
     namespace: ingress-nginx
     project: cluster-bootstrap
-    syncPolicy: {}
-#      automated:
-#        selfHeal: true
-#        prune: true
-#      syncOptions:
-#        - CreateNamespace=true
+    syncPolicy:
   openebs:
     chart: openebs
     helm:

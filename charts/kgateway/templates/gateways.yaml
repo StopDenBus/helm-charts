@@ -17,6 +17,7 @@ spec:
       certificateRefs:
         - name: wildcard-apps
           kind: Secret
+          group: ''
     allowedRoutes:
       namespaces:
         from: All
