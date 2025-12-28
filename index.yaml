@@ -1274,6 +1274,22 @@ entries:
   argocd:
   - apiVersion: v2
     appVersion: 6.0.4
+    created: "2025-12-28T21:54:00.517506231Z"
+    dependencies:
+    - alias: argocd
+      name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 9.2.3
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 37d5d56802dadd39c04a75721af12c154069af99c4634219c88aa3d423ab7bc1
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/argocd-0.1.105/argocd-0.1.105.tgz
+    version: 0.1.105
+  - apiVersion: v2
+    appVersion: 6.0.4
     created: "2025-12-28T13:43:40.479819939Z"
     dependencies:
     - alias: argocd
@@ -6277,6 +6293,25 @@ entries:
     version: 0.0.1
   kgateway:
   - apiVersion: v2
+    created: "2025-12-28T21:54:00.661399771Z"
+    dependencies:
+    - alias: kgateway-crds
+      name: kgateway-crds
+      repository: oci://cr.kgateway.dev/kgateway-dev/charts
+      version: v2.2.0-beta.4
+    - alias: kgateway
+      name: kgateway
+      repository: oci://cr.kgateway.dev/kgateway-dev/charts
+      version: v2.2.0-beta.4
+    description: The kgateway project is a feature-rich, Kubernetes-native ingress
+      controller and next-generation API gateway.
+    digest: 67d71085752fe60376798cb80efb34fd877b6485cdffaa22db8518e74cc4c04e
+    name: kgateway
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/kgateway-0.0.6/kgateway-0.0.6.tgz
+    version: 0.0.6
+  - apiVersion: v2
     created: "2025-12-28T17:13:15.39095739Z"
     dependencies:
     - alias: kgateway-crds
@@ -9003,6 +9038,16 @@ entries:
   wishlist-frontend:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2025-12-28T21:54:00.953836595Z"
+    description: A Helm chart for Kubernetes
+    digest: f6659a3357643db17eadab9b34a9c88862eea23da1c87e8a30fe682cbd58d02f
+    name: wishlist-frontend
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.2/wishlist-frontend-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-06-02T15:19:25.544868967Z"
     description: A Helm chart for Kubernetes
     digest: 4c70d375c4657a391758fa44661066d1339053650aad8286e22cda241a4d96df
@@ -9011,4 +9056,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-28T20:00:15.623698057Z"
+generated: "2025-12-28T21:54:00.955638844Z"
