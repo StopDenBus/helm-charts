@@ -2,9 +2,11 @@ kind: Gateway
 apiVersion: gateway.networking.k8s.io/v1
 metadata:
   name: https
-  annotations:
-    metallb.io/allow-shared-ip: nginx
 spec:
+  infrastructure:
+    annotations:
+      metallb.io/allow-shared-ip: nginx
+      metallb.io/ip-allocated-from-pool: nginx
   gatewayClassName: kgateway
   listeners:
   - protocol: HTTPS
