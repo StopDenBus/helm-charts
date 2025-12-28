@@ -2,6 +2,8 @@ kind: Gateway
 apiVersion: gateway.networking.k8s.io/v1
 metadata:
   name: https
+  annotations:
+    metallb.io/allow-shared-ip: nginx
 spec:
   gatewayClassName: kgateway
   listeners:
