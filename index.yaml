@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-12-28T13:29:12.601237141Z"
+    description: A Helm chart for ArgoCD applications
+    digest: c10651b6415e3a1c7aafd41c109fe056c6a5b7b834317f863457e863539e4f6a
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.126/applications-0.0.126.tgz
+    version: 0.0.126
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-09-21T13:46:58.34170519Z"
     description: A Helm chart for ArgoCD applications
     digest: 09fb8ba9d9243b30733776f94fe89796dd81e2e6af57525db6273230dd887bc5
@@ -3368,6 +3378,22 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.1/dex-0.0.1.tgz
     version: 0.0.1
   external-dns:
+  - apiVersion: v2
+    appVersion: 0.0.0
+    created: "2025-12-28T13:29:12.710527725Z"
+    dependencies:
+    - alias: external-dns
+      name: external-dns-chart
+      repository: oci://dhi.io
+      version: 1.19.0
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 86c9eace2c8fa1e5046fb35ae15d9e4030d0eee8e12e984b8532acc1583c9a91
+    name: external-dns
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-dns-0.0.36/external-dns-0.0.36.tgz
+    version: 0.0.36
   - apiVersion: v2
     appVersion: 0.0.0
     created: "2025-12-23T18:45:28.44977787Z"
@@ -8131,6 +8157,16 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/mysql-0.0.1/mysql-0.0.1.tgz
     version: 0.0.1
+  namespaces:
+  - apiVersion: v2
+    created: "2025-12-28T13:29:12.815669532Z"
+    description: This chart creates namespaces and secrets for it
+    digest: f5a6afd8067a758e828b8dc530bbbb6f1009d447f4454e6f5a0615cc6047910f
+    name: namespaces
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/namespaces-0.0.1/namespaces-0.0.1.tgz
+    version: 0.0.1
   openebs:
   - apiVersion: v2
     appVersion: 2.5.0
@@ -8750,4 +8786,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-28T13:14:30.880271131Z"
+generated: "2025-12-28T13:29:12.817526934Z"
