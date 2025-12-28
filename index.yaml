@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-12-28T15:13:47.716044873Z"
+    description: A Helm chart for ArgoCD applications
+    digest: c767186de01725993954d25fcdf719e0c213d984e52ddd26e34f99eb478ba41d
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.127/applications-0.0.127.tgz
+    version: 0.0.127
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-12-28T13:29:12.601237141Z"
     description: A Helm chart for ArgoCD applications
     digest: c10651b6415e3a1c7aafd41c109fe056c6a5b7b834317f863457e863539e4f6a
@@ -6235,6 +6245,26 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/istio-0.0.1/istio-0.0.1.tgz
     version: 0.0.1
+  kgateway:
+  - apiVersion: v2
+    created: "2025-12-28T15:13:47.855066043Z"
+    dependencies:
+    - alias: kgateway-crds
+      name: kgateway-crds
+      repository: oci://cr.kgateway.dev/kgateway-dev/charts
+      version: v2.1.2
+    - alias: kgateway
+      name: kgateway
+      repository: oci://cr.kgateway.dev/kgateway-dev/charts
+      version: v2.1.2
+    description: The kgateway project is a feature-rich, Kubernetes-native ingress
+      controller and next-generation API gateway.
+    digest: 3ba7d5e7e0d739f8dac65b90b21e566c4326fd7d9ace4130a4ce0f770cf4207c
+    name: kgateway
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/kgateway-0.0.1/kgateway-0.0.1.tgz
+    version: 0.0.1
   loki:
   - apiVersion: v2
     appVersion: v2.8.2
@@ -7608,6 +7638,21 @@ entries:
     version: 0.0.1
   metallb:
   - apiVersion: v2
+    created: "2025-12-28T15:13:47.998273076Z"
+    dependencies:
+    - alias: metallb
+      name: metallb
+      repository: https://metallb.github.io/metallb
+      version: 0.15.3
+    description: A network load-balancer implementation for Kubernetes using standard
+      routing protocols
+    digest: c04b95f7ae64640ec069f015560d60b10dd39b5db7c9dd03b108a76ec0deb86b
+    name: metallb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/metallb-0.0.16/metallb-0.0.16.tgz
+    version: 0.0.16
+  - apiVersion: v2
     created: "2025-07-27T14:06:04.912598701Z"
     dependencies:
     - alias: metallb
@@ -8174,6 +8219,15 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/mysql-0.0.1/mysql-0.0.1.tgz
     version: 0.0.1
   namespaces:
+  - apiVersion: v2
+    created: "2025-12-28T15:13:48.118198859Z"
+    description: This chart creates namespaces and secrets for it
+    digest: 6cf641a73d66f3e92a0969cc1cca01ec74447cded73a091649248361199569a8
+    name: namespaces
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/namespaces-0.0.2/namespaces-0.0.2.tgz
+    version: 0.0.2
   - apiVersion: v2
     created: "2025-12-28T13:29:12.815669532Z"
     description: This chart creates namespaces and secrets for it
@@ -8802,4 +8856,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-28T13:43:40.48063866Z"
+generated: "2025-12-28T15:13:48.119170452Z"
