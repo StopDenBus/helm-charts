@@ -10,5 +10,5 @@ appVersion: 0.0.1
 dependencies:
   - name: samba
     repository: https://stopdenbus.github.io/samba
-    version: 0.0.2
+    version: 0.0.3
     alias: samba
