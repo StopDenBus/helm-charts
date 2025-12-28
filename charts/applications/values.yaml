@@ -170,12 +170,12 @@ applications:
       releaseName: ingress-nginx
     namespace: ingress-nginx
     project: cluster-bootstrap
-    syncPolicy:
-      automated:
-        selfHeal: true
-        prune: true
-      syncOptions:
-        - CreateNamespace=true
+    syncPolicy: {}
+#      automated:
+#        selfHeal: true
+#        prune: true
+#      syncOptions:
+#        - CreateNamespace=true
   openebs:
     chart: openebs
     helm:
