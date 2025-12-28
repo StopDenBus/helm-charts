@@ -1,0 +1,18 @@
+kind: Gateway
+apiVersion: gateway.networking.k8s.io/v1
+metadata:
+  name: https
+spec:
+  gatewayClassName: kgateway
+  listeners:
+  - protocol: HTTP
+    port: 8443
+    name: https
+    tls:
+      mode: Terminate
+      certificateRefs:
+        - name: wildcard-apps
+          kind: Secret
+    allowedRoutes:
+      namespaces:
+        from: All

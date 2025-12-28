@@ -81,6 +81,16 @@ applications:
           - .webhooks[].failurePolicy
         kind: ValidatingWebhookConfiguration
         name: istiod-default-validator
+  kgateway:
+    chart: kgateway
+    helm:
+      releaseName: kgateway
+    namespace: kgateway-system
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
   loki:
     chart: loki
     helm:
