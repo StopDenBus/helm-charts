@@ -5,7 +5,7 @@ metadata:
 spec:
   gatewayClassName: kgateway
   listeners:
-  - protocol: HTTP
+  - protocol: HTTPS
     port: 8443
     name: https
     tls:
