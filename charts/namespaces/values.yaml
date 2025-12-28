@@ -6,6 +6,7 @@ namespaces:
     docker_dhi_secret: true
   external-secrets: {}
   ingress-nginx: {}
+  kgateway-system: {}
   mail: {}
   metallb-system: {}
   monitoring: {}

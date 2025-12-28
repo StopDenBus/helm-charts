@@ -9,10 +9,11 @@ spec:
     priority: 50
     namespaces:
       - ingress-nginx
+      - kgateway-system
       - pihole
     serviceSelectors:
       - matchExpressions:
-          - {key: app.kubernetes.io/name, operator: In, values: [nginx, pihole]}
+          - {key: app.kubernetes.io/name, operator: In, values: [nginx, pihole, kgateway]}
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
