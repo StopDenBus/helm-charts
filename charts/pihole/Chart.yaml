@@ -18,9 +18,14 @@ version: 0.0.5
 # incremented each time you make changes to the application. Versions are not expected to
 # follow Semantic Versioning. They should reflect the version the application is using.
 # It is recommended to use it with quotes.
-appVersion: "0.0.1"
+appVersion: "0.0.2"
 dependencies:
   - name: pihole
     version: 2.35.0
     repository: https://mojo2600.github.io/pihole-kubernetes/
     alias: pihole
+  - name: common
+    repository: oci://registry-1.docker.io/bitnamicharts
+    tags:
+      - bitnami-common
+    version: 2.x.x

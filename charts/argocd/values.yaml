@@ -57,6 +57,13 @@ argocd:
         - hostname:
           - argocd.apps.gusek.info
       https: true
+    httproute:
+      enabled: true
+      parentRefs:
+        - name: https
+          namespace: kgateway-system
+      hostnames:
+        - argocd.apps.gusek.info
   
   applicationSet:
     enabled: false
