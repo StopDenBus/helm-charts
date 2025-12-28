@@ -140,7 +140,18 @@ applications:
         selfHeal: true
         prune: true
       syncOptions:
-        - CreateNamespace=true      
+        - CreateNamespace=true
+  namespaces:
+    chart: namespaces
+    helm:
+      releaseName: namespaces
+    project: cluster-bootstrap
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true
   nginx:
     chart: ingress-nginx
     helm:
@@ -176,7 +187,7 @@ applications:
         selfHeal: true
         prune: true
       syncOptions:
-        - CreateNamespace=true        
+        - CreateNamespace=true
   php-hello-world:
     chart: php-hello-world
     helm:
@@ -227,4 +238,4 @@ applications:
         selfHeal: true
         prune: true
       syncOptions:
-        - CreateNamespace=true        
+        - CreateNamespace=true
