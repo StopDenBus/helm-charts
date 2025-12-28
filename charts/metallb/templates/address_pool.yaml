@@ -13,8 +13,7 @@ spec:
       - pihole
     serviceSelectors:
       - matchExpressions:
-          - {key: app.kubernetes.io/name, operator: In, values: [nginx, pihole]}
-          - {key: gateway.networking.k8s.io/gateway-class-name, operator: In, values: [kgateway]}
+          - {key: app.kubernetes.io/name, operator: In, values: [nginx, pihole,https]}
 ---
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
