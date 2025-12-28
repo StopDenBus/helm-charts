@@ -87,10 +87,12 @@ applications:
       releaseName: kgateway
     namespace: kgateway-system
     project: default
-    syncPolicy: {}
+    syncPolicy:
       # automated:
       #   selfHeal: true
       #   prune: true
+      syncOptions:
+        - ServerSideApply=true
   loki:
     chart: loki
     helm:
