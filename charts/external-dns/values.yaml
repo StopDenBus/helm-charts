@@ -5,7 +5,6 @@ external-dns:
     - service
   policy: sync
   txtOwnerId: "kubernetes"
-  provider: rfc2136
   domainFilters:
     - apps.gusek.info
   provider:

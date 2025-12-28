@@ -1,0 +1,18 @@
+namespaces:
+  argocd: {}
+  dex: {}
+  dungeon: {}
+  external-dns:
+    docker_dhi_secret: true
+  external-secrets: {}
+  ingress-nginx: {}
+  mail: {}
+  metallb-system: {}
+  monitoring: {}
+  mysql: {}
+  openebs: {}
+  pihole: {}
+  reloader: {}
+  samba: {}
+  stuff: {}
+  wishlist: {}
