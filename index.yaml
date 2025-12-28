@@ -8779,6 +8779,25 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-12-28T20:00:15.621974212Z"
+    dependencies:
+    - alias: samba
+      name: samba
+      repository: https://stopdenbus.github.io/samba
+      version: 0.0.3
+    description: Samba is the standard Windows interoperability suite of programs
+      for Linux and Unix.
+    digest: 0a9723c448b2c05e5cd269f259e154c5b1d391e65347d11396ffc2ac10bfecbe
+    name: samba
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/samba-0.1.3/samba-0.1.3.tgz
+    version: 0.1.3
+  - annotations:
+      category: Infrastructure
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-09-08T10:09:37.398838195Z"
     dependencies:
     - name: common
@@ -8992,4 +9011,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-28T17:42:24.510176402Z"
+generated: "2025-12-28T20:00:15.623698057Z"
