@@ -1,0 +1,12 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: BackendTLSPolicy
+metadata:
+  name: tls-upstream-{{ .Values.httproute.backendRef.serviceName }}
+spec:
+  targetRefs:
+    - kind: Service
+      name: {{ .Values.httproute.backendRef.serviceName }}
+      group: ""
+  validation:
+    wellKnownCACertificates: "System"
+    hostname: {{ first .Values.httproute.hostnames }}
