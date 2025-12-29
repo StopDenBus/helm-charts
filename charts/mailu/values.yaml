@@ -1,3 +1,29 @@
+httproute:
+  enabled: true
+  hostnames:
+    - mailu.apps.gusek.info
+  backendRef:
+    serviceName: mailu-front
+    port: 443
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: https
+      namespace: kgateway-system
+  # -- HTTPRoute rules configuration
+  # @default -- `[]` (See [values.yaml])
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      # filters: []
+      #   - type: RequestHeaderModifier
+      #     requestHeaderModifier:
+      #       add:
+      #         - name: X-Custom-Header
+      #           value: custom-value
+
 mailu:
   global:
     database:
@@ -10,7 +36,7 @@ mailu:
   mailuVersion: "2024.06.27"
 
   hostnames:
-    - mail.apps.gusek.info
+    - mailu.apps.gusek.info
   domain: "gusek.info"
   existingSecret: "mailu-secret-key"
   timezone: "Europe/Berlin"
@@ -43,7 +69,7 @@ mailu:
       kubernetes.io/ingress.class: nginx  
     extraTls:
       - hosts:
-        - mail.apps.gusek.info
+        - mailu.apps.gusek.info
         secretName: wildcard-apps
     existingSecret: wildcard-apps
 

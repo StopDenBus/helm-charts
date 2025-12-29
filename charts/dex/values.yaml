@@ -1,3 +1,28 @@
+httproute:
+  enabled: true
+  hostnames:
+    - dex.apps.gusek.info
+  backendRef:
+    serviceName: dex
+    port: 5556
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: https
+      namespace: kgateway-system
+  # -- HTTPRoute rules configuration
+  # @default -- `[]` (See [values.yaml])
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
+      # filters: []
+      #   - type: RequestHeaderModifier
+      #     requestHeaderModifier:
+      #       add:
+      #         - name: X-Custom-Header
+      #           value: custom-value
 
 dex:
   fullnameOverride: dex
