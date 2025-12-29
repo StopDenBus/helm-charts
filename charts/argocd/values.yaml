@@ -20,6 +20,8 @@ argocd:
         issuer: https://dex.apps.gusek.info/dex
         clientID: argocd
         clientSecret: $oidc.clientSecret
+    params:
+      server.insecure: "true"
     rbac:
       policy.csv: |
         g, kubernetes_admin, role:admin
