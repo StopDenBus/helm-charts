@@ -2943,6 +2943,27 @@ entries:
   dex:
   - apiVersion: v2
     appVersion: 0.17.0
+    created: "2025-12-29T15:25:45.147345453Z"
+    dependencies:
+    - alias: dex
+      name: dex
+      repository: https://charts.dexidp.io
+      version: 0.24.0
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: OpenID Connect (OIDC) identity and OAuth 2.0 provider with pluggable
+      connectors.
+    digest: d4dd3f54f9bba7ba248befad33649d5912208acaa7b9728854c5f82881643793
+    name: dex
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.35/dex-0.0.35.tgz
+    version: 0.0.35
+  - apiVersion: v2
+    appVersion: 0.17.0
     created: "2025-05-25T13:17:25.915938488Z"
     dependencies:
     - alias: dex
@@ -7018,6 +7039,25 @@ entries:
     version: 0.0.1
   mailu:
   - apiVersion: v2
+    created: "2025-12-29T15:25:45.361521774Z"
+    dependencies:
+    - alias: mailu
+      name: mailu
+      repository: https://mailu.github.io/helm-charts/
+      version: 2.6.3
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: This chart installs the Mailu mail system on kubernetes
+    digest: 7f8f45d1f35ea57062adcbbafeb973f2211f05a01c23eab29e256d32b1159ffa
+    name: mailu
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mailu-0.0.24/mailu-0.0.24.tgz
+    version: 0.0.24
+  - apiVersion: v2
     created: "2025-12-16T21:11:55.418606347Z"
     dependencies:
     - alias: mailu
@@ -9135,4 +9175,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-28T22:31:31.827442345Z"
+generated: "2025-12-29T15:25:45.363139847Z"
