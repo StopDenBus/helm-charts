@@ -105,18 +105,19 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-  # mariadb:
-  #   chart: mariadb
-  #   helm:
-  #     releaseName: mariadb
-  #   namespace: mariadb
-  #   project: default
-  #   syncPolicy:
-  #     automated:
-  #       selfHeal: true
-  #       prune: true
-  #     syncOptions:
-  #       - CreateNamespace=true
+  mariadb:
+    enabled: false
+    chart: mariadb
+    helm:
+      releaseName: mariadb
+    namespace: mariadb
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true
   mailu:
     chart: mailu
     helm:
@@ -164,18 +165,19 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
-  #nginx:
-  #  chart: ingress-nginx
-  #  helm:
-  #    releaseName: ingress-nginx
-  #  namespace: ingress-nginx
-  #  project: cluster-bootstrap
-  #  syncPolicy:
-  #    automated:
-  #      selfHeal: true
-  #      prune: true
-  #    syncOptions:
-  #      - CreateNamespace=true
+  nginx:
+    enabled: false
+    chart: ingress-nginx
+    helm:
+      releaseName: ingress-nginx
+    namespace: ingress-nginx
+    project: cluster-bootstrap
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true
   openebs:
     chart: openebs
     helm:

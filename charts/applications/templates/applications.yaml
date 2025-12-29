@@ -19,6 +19,8 @@ spec:
       prune: true
 
 {{- range $app, $properties := .Values.applications }}
+{{- $enabled := hasKey $properties "enabled" | ternary $properties.enabled true }}
+{{- if $enabled }}
 ---
 apiVersion: argoproj.io/v1alpha1
 kind: Application
@@ -45,7 +47,7 @@ spec:
     server: https://kubernetes.default.svc
   {{- include "syncPolicy" $properties | nindent 2 }}
   {{- include "ignoreDifferences" $properties | nindent 2 }}  
-
+{{- end }}
 {{- end }}
 
 {{- range $app, $properties := .Values.applications }}
