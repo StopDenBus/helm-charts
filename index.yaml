@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-12-29T18:31:26.757967647Z"
+    description: A Helm chart for ArgoCD applications
+    digest: d2214045ad4cfdd58c939f388a4dc4d7e68b352db8da06ec2e9b52caaa87ffb0
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.133/applications-0.0.133.tgz
+    version: 0.0.133
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-12-28T22:19:57.690819309Z"
     description: A Helm chart for ArgoCD applications
     digest: f257c7dfc56ca130ad233a22292e1a217e35a1bde6e4ee72728b21cb6cfb6721
@@ -6334,6 +6344,25 @@ entries:
     version: 0.0.1
   kgateway:
   - apiVersion: v2
+    created: "2025-12-29T18:31:26.90409293Z"
+    dependencies:
+    - alias: kgateway-crds
+      name: kgateway-crds
+      repository: oci://cr.kgateway.dev/kgateway-dev/charts
+      version: v2.2.0-beta.4
+    - alias: kgateway
+      name: kgateway
+      repository: oci://cr.kgateway.dev/kgateway-dev/charts
+      version: v2.2.0-beta.4
+    description: The kgateway project is a feature-rich, Kubernetes-native ingress
+      controller and next-generation API gateway.
+    digest: 745d92d26a1b337820a75dcdab38075edc51c8576fe56868bfd3130030eb831c
+    name: kgateway
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/kgateway-0.0.8/kgateway-0.0.8.tgz
+    version: 0.0.8
+  - apiVersion: v2
     created: "2025-12-28T22:10:29.315599812Z"
     dependencies:
     - alias: kgateway-crds
@@ -9175,4 +9204,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-29T15:25:45.363139847Z"
+generated: "2025-12-29T18:31:26.904891448Z"
