@@ -10,7 +10,7 @@ spec:
   gatewayClassName: kgateway
   listeners:
   - protocol: HTTPS
-    port: 8443
+    port: 443
     name: https
     tls:
       mode: Terminate
