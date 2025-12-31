@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2025-12-31T12:40:41.727560713Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 8cff98b5159337222712d5e7b31e29ea6524db54003ddaa8eb66a3fa7c0a672c
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.136/applications-0.0.136.tgz
+    version: 0.0.136
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-12-29T20:32:58.922694391Z"
     description: A Helm chart for ArgoCD applications
     digest: ed0d8524ba69861cf53c095a5e82a0592e2166464694eef3b850e4da80eb018b
@@ -9304,4 +9314,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2025-12-31T12:39:27.560285555Z"
+generated: "2025-12-31T12:40:41.728623433Z"
