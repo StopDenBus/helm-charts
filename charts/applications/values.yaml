@@ -47,6 +47,7 @@ applications:
         - CreateNamespace=true
         - ServerSideApply=true
   grafana:
+    enabled: false
     chart: grafana
     helm:
       releaseName: grafana
@@ -59,6 +60,7 @@ applications:
       syncOptions:
         - CreateNamespace=true
   istio:
+    enabled: false
     chart: istio
     helm:
       releaseName: istio
@@ -94,6 +96,7 @@ applications:
       syncOptions:
         - ServerSideApply=true
   loki:
+    enabled: false
     chart: loki
     helm:
       releaseName: loki
@@ -203,6 +206,7 @@ applications:
       syncOptions:
         - CreateNamespace=true
   php-hello-world:
+    enabled: false
     chart: php-hello-world
     helm:
       releaseName: php-hello-world
