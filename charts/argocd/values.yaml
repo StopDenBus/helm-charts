@@ -73,8 +73,11 @@ argocd:
           name: argocd-server
           group: ""
       validation:
-        wellKnownCACertificates: "System"
-        hostname: argocd.apps.gusek.info
+        caCertificateRefs:
+        - group: core
+          kind: ConfigMap
+          name: wildcard-with-ca
+        hostname: "argocd.apps.gusek.info"
 
   applicationSet:
     enabled: false
