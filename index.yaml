@@ -1334,6 +1334,22 @@ entries:
   argocd:
   - apiVersion: v2
     appVersion: 6.0.4
+    created: "2026-01-02T16:12:29.793583554Z"
+    dependencies:
+    - alias: argocd
+      name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 9.2.3
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 672814b00c032c7e3b51c0bc1b13152af2645a71adc5024600ee0f3ed7d64a9b
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/argocd-0.1.108/argocd-0.1.108.tgz
+    version: 0.1.108
+  - apiVersion: v2
+    appVersion: 6.0.4
     created: "2026-01-02T14:41:09.230639951Z"
     dependencies:
     - alias: argocd
@@ -9330,4 +9346,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-01-02T14:41:09.231426921Z"
+generated: "2026-01-02T16:12:29.79563533Z"
