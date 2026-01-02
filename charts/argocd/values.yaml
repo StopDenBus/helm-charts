@@ -20,8 +20,8 @@ argocd:
         issuer: https://dex.apps.gusek.info/dex
         clientID: argocd
         clientSecret: $oidc.clientSecret
-    params:
-      server.insecure: "true"
+    # params:
+    #   server.insecure: "true"
     rbac:
       policy.csv: |
         g, kubernetes_admin, role:admin
@@ -40,7 +40,7 @@ argocd:
   dex:
     enabled: false
 
-  repoServer:    
+  repoServer:
     rbac:
       - apiGroups: [""] # "" indicates the core API group
         resources: ["secrets"]
@@ -48,7 +48,7 @@ argocd:
 
   server:
     ingress:
-      enabled: true
+      enabled: false
       annotations:
         nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
         nginx.ingress.kubernetes.io/ssl-passthrough: "false"
@@ -66,7 +66,16 @@ argocd:
           namespace: kgateway-system
       hostnames:
         - argocd.apps.gusek.info
-  
+    backendTLSPolicy:
+      enabled: true
+      targetRefs:
+        - kind: Service
+          name: argocd-server
+          group: ""
+      validation:
+        wellKnownCACertificates: "System"
+        hostname: argocd.apps.gusek.info
+
   applicationSet:
     enabled: false
 
