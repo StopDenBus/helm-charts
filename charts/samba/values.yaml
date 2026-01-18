@@ -3,4 +3,4 @@ samba:
     image:
       registry: ghcr.io
       repository: stopdenbus/samba/samba
-      tag: 26.01.11
+      tag: 26.01.18
