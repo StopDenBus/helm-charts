@@ -5589,6 +5589,21 @@ entries:
   ingress-nginx:
   - apiVersion: v2
     appVersion: 4.10.0
+    created: "2026-02-03T02:02:33.334190271Z"
+    dependencies:
+    - alias: nginx
+      name: ingress-nginx
+      repository: https://kubernetes.github.io/ingress-nginx
+      version: 4.14.3
+    description: A Helm chart for Kubernetes
+    digest: 3c4b25fa9dc3df2ca87f35962d6f18546ee77c7f1938b4781177e561192a1fa7
+    name: ingress-nginx
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/ingress-nginx-0.1.22/ingress-nginx-0.1.22.tgz
+    version: 0.1.22
+  - apiVersion: v2
+    appVersion: 4.10.0
     created: "2026-01-27T01:40:30.247936629Z"
     dependencies:
     - alias: nginx
@@ -9838,4 +9853,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-01-30T09:05:34.721489535Z"
+generated: "2026-02-03T02:02:33.510320257Z"
