@@ -7112,6 +7112,21 @@ entries:
   loki:
   - apiVersion: v2
     appVersion: v2.8.2
+    created: "2026-02-05T17:48:55.852359777Z"
+    dependencies:
+    - alias: loki
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: 6.52.0
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: d841a20be8a6edc30643e39ba3244540c8ac9ddf407e4c30d8de11c03436e15e
+    name: loki
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/loki-0.0.42/loki-0.0.42.tgz
+    version: 0.0.42
+  - apiVersion: v2
+    appVersion: v2.8.2
     created: "2026-01-22T02:08:50.601733926Z"
     dependencies:
     - alias: loki
@@ -9901,4 +9916,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-02-04T00:29:52.186611237Z"
+generated: "2026-02-05T17:48:55.853228476Z"
