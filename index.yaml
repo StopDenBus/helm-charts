@@ -9882,6 +9882,21 @@ entries:
   pypiserver:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-02-18T12:17:07.190044544Z"
+    dependencies:
+    - alias: pypi
+      name: pypiserver
+      repository: https://community-charts.github.io/helm-charts
+      version: 0.1.8
+    description: A Helm chart for PyPI Server
+    digest: b999b612654641c50ab80e1b993d2d51c743c3aac131c813e09690e2a99023cf
+    name: pypiserver
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/pypiserver-0.0.3/pypiserver-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-02-18T12:04:59.003843692Z"
     dependencies:
     - alias: pypi
@@ -10178,4 +10193,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-02-18T12:05:58.16070479Z"
+generated: "2026-02-18T12:17:07.191011927Z"
