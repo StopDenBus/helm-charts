@@ -221,6 +221,16 @@ applications:
     featureBranches:
       feature/cool-feature:
         tag: 40ba834d914638ecee75159a7f25cbed2d96e3fc
+  pypi:
+    path: chart/pypi
+    repoURL: git@github.com:StopDenBus/helm-charts.git
+    targetRevision: HEAD
+    namespace: pypi
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
   samba:
    path: charts/samba
    repoURL: git@github.com:StopDenBus/helm-charts.git

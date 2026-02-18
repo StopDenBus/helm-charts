@@ -1,0 +1,56 @@
+pypi:
+  image:
+    repository: pypiserver/pypiserver
+    tag: v2.4.0
+  volumes:
+    - name: auth
+      secret:
+        secretName: pypi-auth
+    - name: packages
+      persistentVolumeClaim:
+        claimName: pypi-packages-pvc
+    - emptyDir: {}
+      name: tmp
+  volumeMounts:
+    - name: auth
+      mountPath: "/data/.htpasswd"
+      subPath: ".htpasswd"
+    - name: packages
+      mountPath: "/data/packages"
+    - mountPath: /tmp
+      name: tmp
+  podArgs:
+    - "run"
+    - "-P"
+    - "/data/.htpasswd"
+    - "--overwrite"
+  # -- This is for setting Security Context to a Pod. For more information checkout: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+  podSecurityContext:
+    fsGroup: 9898
+
+  # -- This is for setting Security Context to a Container. For more information checkout: https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+  securityContext:
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    runAsNonRoot: true
+    runAsUser: 9898
+
+httproute:
+  enabled: true
+  hostnames:
+    - pypi.apps.gusek.info
+  backendRef:
+    serviceName: pypi
+    port: 8080
+  parentRefs:
+    - group: gateway.networking.k8s.io
+      kind: Gateway
+      name: https
+      namespace: kgateway-system
+  rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /
