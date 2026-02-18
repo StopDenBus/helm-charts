@@ -9,6 +9,7 @@ applications:
     syncPolicy:
       syncOptions:
         - CreateNamespace=true
+        - ServerSideApply=true
   dex:
     chart: dex
     helm:
