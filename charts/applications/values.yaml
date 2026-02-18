@@ -221,10 +221,10 @@ applications:
     featureBranches:
       feature/cool-feature:
         tag: 40ba834d914638ecee75159a7f25cbed2d96e3fc
-  pypi:
-    chart: pypi
+  pypiserver:
+    chart: pypiserver
     helm:
-      releaseName: pypi
+      releaseName: pypiserver
     namespace: pypi
     project: default
     syncPolicy:
