@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-02-18T11:33:24.03948035Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 433e4c9790d2948559b02ebf26c5b70d70099982a21a7499dae5f655d0473987
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.137/applications-0.0.137.tgz
+    version: 0.0.137
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-12-31T12:40:41.727560713Z"
     description: A Helm chart for ArgoCD applications
     digest: 8cff98b5159337222712d5e7b31e29ea6524db54003ddaa8eb66a3fa7c0a672c
@@ -9792,6 +9802,22 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/pihole-0.0.1/pihole-0.0.1.tgz
     version: 0.0.1
+  pypiserver:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2026-02-18T11:33:24.230651275Z"
+    dependencies:
+    - alias: pypi
+      name: pypiserver
+      repository: https://community-charts.github.io/helm-charts
+      version: 0.1.8
+    description: A Helm chart for PyPI Server
+    digest: 14c4c1cf20f719c9a54c7f16f5f218955c09cdf34cb4d147fa0fabead2656381
+    name: pypiserver
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/pypiserver-0.0.1/pypiserver-0.0.1.tgz
+    version: 0.0.1
   samba:
   - annotations:
       category: Infrastructure
@@ -10060,4 +10086,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-02-16T21:05:38.939861983Z"
+generated: "2026-02-18T11:33:24.23160763Z"
