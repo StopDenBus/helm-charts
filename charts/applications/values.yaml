@@ -228,12 +228,12 @@ applications:
       releaseName: pypiserver
     namespace: pypi
     project: default
-    syncPolicy:
-      automated:
-        selfHeal: true
-        prune: true
-      syncOptions:
-        - CreateNamespace=true
+    syncPolicy: {}
+      # automated:
+      #   selfHeal: true
+      #   prune: true
+      # syncOptions:
+      #   - CreateNamespace=true
   samba:
    path: charts/samba
    repoURL: git@github.com:StopDenBus/helm-charts.git
