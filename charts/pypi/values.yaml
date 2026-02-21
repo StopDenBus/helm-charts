@@ -42,7 +42,7 @@ httproute:
   hostnames:
     - pypi.apps.gusek.info
   backendRef:
-    serviceName: pypi
+    serviceName: pypiserver
     port: 8080
   parentRefs:
     - group: gateway.networking.k8s.io
