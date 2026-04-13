@@ -6389,6 +6389,37 @@ entries:
   istio:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-04-13T21:57:09.613892049Z"
+    dependencies:
+    - alias: istio-base
+      name: base
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.29.2
+    - alias: istio-istiod
+      name: istiod
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.29.2
+    - alias: istio-cni
+      name: cni
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.29.2
+    - alias: istio-gateway
+      name: gateway
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.29.2
+    - alias: istio-ztunnel
+      name: ztunnel
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.29.2
+    description: Helm chart for istio control plane
+    digest: 97c70efc9d82171a4c4018e1de1d222834916f2d0aaf714ac8b0b194c8c39596
+    name: istio
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/istio-0.0.36/istio-0.0.36.tgz
+    version: 0.0.36
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-03-10T23:02:57.806193317Z"
     dependencies:
     - alias: istio-base
@@ -8729,6 +8760,23 @@ entries:
   mariadb:
   - apiVersion: v2
     appVersion: 11.2.2
+    created: "2026-04-13T21:57:09.748212604Z"
+    dependencies:
+    - alias: mariadb
+      name: mariadb
+      repository: https://charts.bitnami.com/bitnami
+      version: 25.0.8
+    description: MariaDB is an open source, community-developed SQL database server
+      that is widely in use around the world due to its enterprise features, flexibility,
+      and collaboration with leading tech firms.
+    digest: ec404adbb061ccd81d06c4ab64659723aba25b07b6b95bb386504681c71e6b81
+    name: mariadb
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mariadb-0.0.42/mariadb-0.0.42.tgz
+    version: 0.0.42
+  - apiVersion: v2
+    appVersion: 11.2.2
     created: "2026-04-08T20:12:54.60747652Z"
     dependencies:
     - alias: mariadb
@@ -10832,4 +10880,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-04-11T21:52:41.074878742Z"
+generated: "2026-04-13T21:57:09.893986326Z"
