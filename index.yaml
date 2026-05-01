@@ -4217,6 +4217,22 @@ entries:
   external-dns:
   - apiVersion: v2
     appVersion: 0.0.0
+    created: "2026-05-01T18:02:24.898239217Z"
+    dependencies:
+    - alias: external-dns
+      name: external-dns-chart
+      repository: oci://dhi.io
+      version: 1.21.1
+    description: ExternalDNS synchronizes exposed Kubernetes Services and Ingresses
+      with DNS providers.
+    digest: 21edb144e459a5f99d2bb59d54d79395938fc4a44a0c0aaab705706c689eeadd
+    name: external-dns
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/external-dns-0.0.38/external-dns-0.0.38.tgz
+    version: 0.0.38
+  - apiVersion: v2
+    appVersion: 0.0.0
     created: "2026-01-02T20:29:53.779356405Z"
     dependencies:
     - alias: external-dns
@@ -11092,4 +11108,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-05-01T13:50:16.163478936Z"
+generated: "2026-05-01T18:02:24.900109968Z"
