@@ -32,8 +32,8 @@ mailu:
         existingSecretPasswordKey: "mysql-mailu-password"
         username: "mailu"
     storageClass: "zfs"
-  
-  mailuVersion: "2024.06.27"
+
+  #mailuVersion: "2024.06.27"
 
   hostnames:
     - mailu.apps.gusek.info
@@ -41,15 +41,15 @@ mailu:
   existingSecret: "mailu-secret-key"
   timezone: "Europe/Berlin"
   subnet: "10.244.0.0/16"
-  
+
   initialAccount:
     enabled: true
     username: "admin"
     domain: "gusek.info"
     existingSecret: "mailu-admin-secret"
     existingSecretPasswordKey: "password"
-    mode: "ifmissing"    
-  
+    mode: "ifmissing"
+
   externalDatabase:
     enabled: true
     type: "mysql"
@@ -66,7 +66,7 @@ mailu:
 
   ingress:
     annotations:
-      kubernetes.io/ingress.class: nginx  
+      kubernetes.io/ingress.class: nginx
     extraTls:
       - hosts:
         - mailu.apps.gusek.info
@@ -80,7 +80,7 @@ mailu:
       annotations:
         external-dns.alpha.kubernetes.io/hostname: mail.apps.gusek.info.
     updateStrategy:
-      type: Recreate      
+      type: Recreate
 
   fetchmail:
     enabled: true
