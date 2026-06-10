@@ -10771,6 +10771,21 @@ entries:
   openebs:
   - apiVersion: v2
     appVersion: 2.5.0
+    created: "2026-06-10T15:03:39.361748342Z"
+    dependencies:
+    - alias: zfs-localpv
+      name: zfs-localpv
+      repository: https://openebs.github.io/zfs-localpv
+      version: 2.10.1
+    description: Containerized Attached Storage for Kubernetes
+    digest: e29873f623aa3b89215022fba59aa836965e5210a7c6c621c334e73aee29c2c6
+    name: openebs
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/openebs-0.0.11/openebs-0.0.11.tgz
+    version: 0.0.11
+  - apiVersion: v2
+    appVersion: 2.5.0
     created: "2026-05-19T10:11:48.649556468Z"
     dependencies:
     - alias: zfs-localpv
@@ -11597,4 +11612,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-06-07T17:16:01.58037091Z"
+generated: "2026-06-10T15:03:39.362432318Z"
