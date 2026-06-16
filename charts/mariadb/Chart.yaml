@@ -21,6 +21,6 @@ version: 0.0.49
 appVersion: "11.2.2"
 dependencies:
   - name: mariadb
-    version: 25.1.4
+    version: 26.1.5
     repository: https://charts.bitnami.com/bitnami
     alias: mariadb
