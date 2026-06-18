@@ -16,6 +16,6 @@ type: application
 version: 0.0.18
 dependencies:
   - name: metallb
-    version: 0.15.3
+    version: 0.16.1
     repository: https://metallb.github.io/metallb
     alias: metallb
