@@ -16,7 +16,7 @@ type: application
 version: 0.0.20
 dependencies:
   - name: kgateway-crds
-    version: 2.3.3
+    version: 2.3.4
     repository: oci://cr.kgateway.dev/kgateway-dev/charts
     alias: kgateway-crds
   - name: kgateway
