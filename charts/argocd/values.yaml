@@ -64,6 +64,8 @@ argocd:
       parentRefs:
         - name: https
           namespace: kgateway-system
+          group: gateway.networking.k8s.io
+          kind: Gateway
       hostnames:
         - argocd.apps.gusek.info
     backendTLSPolicy:
