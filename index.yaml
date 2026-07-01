@@ -1394,6 +1394,22 @@ entries:
   argocd:
   - apiVersion: v2
     appVersion: 6.0.4
+    created: "2026-07-01T23:49:42.822967727Z"
+    dependencies:
+    - alias: argocd
+      name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 10.1.0
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: f8adfc9bfea1cd99ba0f945ce0674f4726b52d9408b365c7fcce85c2ebe74dd0
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/argocd-0.1.160/argocd-0.1.160.tgz
+    version: 0.1.160
+  - apiVersion: v2
+    appVersion: 6.0.4
     created: "2026-06-26T14:15:04.178107393Z"
     dependencies:
     - alias: argocd
@@ -11373,6 +11389,26 @@ entries:
   pihole:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-07-01T23:49:42.950167632Z"
+    dependencies:
+    - alias: pihole
+      name: pihole
+      repository: https://mojo2600.github.io/pihole-kubernetes/
+      version: 2.37.0
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: Installs pihole in kubernetes
+    digest: d432f2ff195defaa8bdbec8670719f63065cd31da2a21d1f9a7a780b5120138b
+    name: pihole
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/pihole-0.0.10/pihole-0.0.10.tgz
+    version: 0.0.10
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-06-13T01:01:09.604998537Z"
     dependencies:
     - alias: pihole
@@ -11865,4 +11901,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-06-29T21:00:46.274391901Z"
+generated: "2026-07-01T23:49:42.952183688Z"
