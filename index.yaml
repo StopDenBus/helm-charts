@@ -11032,6 +11032,15 @@ entries:
     version: 0.0.1
   namespaces:
   - apiVersion: v2
+    created: "2026-07-04T15:34:02.680101677Z"
+    description: This chart creates namespaces and secrets for it
+    digest: a584f021aa89ae7c065bf9f9215c4b15f2c382ebc49346690b93296e122c9490
+    name: namespaces
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/namespaces-0.0.3/namespaces-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
     created: "2025-12-28T15:13:48.118198859Z"
     description: This chart creates namespaces and secrets for it
     digest: 6cf641a73d66f3e92a0969cc1cca01ec74447cded73a091649248361199569a8
@@ -11671,6 +11680,25 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-07-04T15:34:02.815012898Z"
+    dependencies:
+    - alias: samba
+      name: samba
+      repository: https://stopdenbus.github.io/samba
+      version: 0.0.3
+    description: Samba is the standard Windows interoperability suite of programs
+      for Linux and Unix.
+    digest: 7ac5d49d7b80bb77b52be59a5629da3f721b005e9fe77c30bff340976fb21f24
+    name: samba
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/samba-0.1.4/samba-0.1.4.tgz
+    version: 0.1.4
+  - annotations:
+      category: Infrastructure
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-12-28T20:00:15.621974212Z"
     dependencies:
     - alias: samba
@@ -11933,4 +11961,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-07-04T15:29:17.809431796Z"
+generated: "2026-07-04T15:34:02.816003195Z"
