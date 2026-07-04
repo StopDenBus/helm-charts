@@ -1,6 +1,8 @@
 samba:
   samba:
     image:
-      registry: ghcr.io
-      repository: stopdenbus/samba/samba
-      tag: 26.06.28
+      registry: docker.io
+      repository: malefitz01/samba
+      tag: 26.07.04
+      pullSecrets:
+        - name: dhi
