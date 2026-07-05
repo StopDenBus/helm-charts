@@ -10,5 +10,5 @@ appVersion: 0.0.1
 dependencies:
   - name: samba
     repository: oci://registry-1.docker.io/malefitz01
-    version: 0.0.4
+    version: 26.07.05
     alias: samba
