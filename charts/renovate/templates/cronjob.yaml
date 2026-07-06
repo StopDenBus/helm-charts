@@ -1,0 +1,35 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: {{ template "common.names.fullname" . }}
+  labels: {{- include "common.labels.standard" ( dict "customLabels" .Values.commonLabels "context" $ ) | nindent 4 }}
+  {{- if or .Values.annotations .Values.commonAnnotations }}
+  {{- $annotations := include "common.tplvalues.merge" (dict "values" (list .Values.annotations .Values.commonAnnotations) "context" .) }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" $annotations "context" $ ) | nindent 4 }}
+  {{- end }}
+spec:
+  schedule: '@hourly'
+  concurrencyPolicy: Forbid
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          containers:
+            - name: renovate
+              image: {{ template "renovate.image" . }}
+              imagePullPolicy: {{ .Values.renovate.image.pullPolicy }}
+              # Environment Variables
+              env:
+              {{- if .Values.renovate.extraEnvVars }}
+              {{- include "common.tplvalues.render" (dict "value" .Values.renovate.extraEnvVars "context" $) | nindent 16 }}
+              {{- end }}
+              envFrom:
+                {{- if .Values.renovate.extraEnvVarsCM }}
+                - configMapRef:
+                    name: {{ include "common.tplvalues.render" (dict "value" .Values.renovate.extraEnvVarsCM "context" $) }}
+                {{- end }}
+                {{- if .Values.renovate.extraEnvVarsSecret }}
+                - secretRef:
+                    name: {{ include "common.tplvalues.render" (dict "value" .Values.renovate.extraEnvVarsSecret "context" $) }}
+                {{- end }}
+          restartPolicy: Never
