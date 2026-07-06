@@ -234,6 +234,16 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
+  renovate:
+    chart: renovate
+    helm:
+      releaseName: renovate
+    namespace: renovate
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
   samba:
    path: charts/samba
    repoURL: git@github.com:StopDenBus/helm-charts.git
