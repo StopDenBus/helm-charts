@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-07-06T11:48:24.386224741Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 2665b4fb1813da31d3bb26abb5d95ad82e5f5f16b72c23c04a92ab891d757daa
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.143/applications-0.0.143.tgz
+    version: 0.0.143
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-03-15T12:11:38.688210016Z"
     description: A Helm chart for ArgoCD applications
     digest: d4a5ecf4065dccc0787e433faf72aa219360b5407c0c1cd4122627b507605893
@@ -11032,6 +11042,15 @@ entries:
     version: 0.0.1
   namespaces:
   - apiVersion: v2
+    created: "2026-07-06T11:48:24.537344814Z"
+    description: This chart creates namespaces and secrets for it
+    digest: fb586948dd17691f93827ff65095b0ed93ebfd92ec01ef15c030c9eac1b190ea
+    name: namespaces
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/namespaces-0.0.4/namespaces-0.0.4.tgz
+    version: 0.0.4
+  - apiVersion: v2
     created: "2026-07-04T15:34:02.680101677Z"
     description: This chart creates namespaces and secrets for it
     digest: a584f021aa89ae7c065bf9f9215c4b15f2c382ebc49346690b93296e122c9490
@@ -11674,6 +11693,24 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/pypiserver-0.0.1/pypiserver-0.0.1.tgz
     version: 0.0.1
+  renovate:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2026-07-06T11:48:24.660927966Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: A Helm chart for Renovate. Automated dependency updates. Multi-platform
+      and multi-language.
+    digest: 58377b068cec2c62143c48d460b3ac59b6d6ddc7faf542b1f6d61c9e2ad262b2
+    name: renovate
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/renovate-0.0.1/renovate-0.0.1.tgz
+    version: 0.0.1
   samba:
   - annotations:
       category: Infrastructure
@@ -11980,4 +12017,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-07-05T15:33:37.369673893Z"
+generated: "2026-07-06T11:48:24.801644903Z"
