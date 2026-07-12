@@ -5,10 +5,10 @@ type: application
 annotations:
   category: Infrastructure
   licenses: Apache-2.0
-version: 0.1.5
+version: 0.1.6
 appVersion: 0.0.1
 dependencies:
   - name: samba
-    repository: oci://registry-1.docker.io/malefitz01
+    repository: oci://codeberg.org/malefitz
     version: 0.0.4
     alias: samba
