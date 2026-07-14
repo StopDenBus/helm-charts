@@ -14,6 +14,7 @@ namespaces:
   openebs: {}
   pihole: {}
   reloader: {}
+  renovate: {}
   samba:
     docker_dhi_secret: true
   stuff: {}

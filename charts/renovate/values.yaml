@@ -1,0 +1,64 @@
+global:
+  imageRegistry: ""
+  ## e.g:
+  ## imagePullSecrets:
+  ##   - myRegistryKeySecretName
+  ##
+  imagePullSecrets: []
+
+## @param nameOverride String to partially override common.names.name
+##
+nameOverride: ""
+## @param fullnameOverride String to fully override common.names.fullname
+##
+fullnameOverride: ""
+## @param commonLabels Labels to add to all deployed objects
+##
+commonLabels: {}
+## @param commonAnnotations Annotations to add to all deployed objects
+##
+commonAnnotations: {}
+## @param clusterDomain Kubernetes cluster domain name
+##
+
+renovate:
+  image:
+    registry: docker.io
+    repository: renovate/renovate
+    tag: 43.259-full
+    ## Specify a imagePullPolicy
+    ## Defaults to 'Always' if image tag is 'latest', else set to 'IfNotPresent'
+    ## ref: https://kubernetes.io/docs/concepts/containers/images/#pre-pulled-images
+    ##
+    pullPolicy: IfNotPresent
+    ## Optionally specify an array of imagePullSecrets.
+    ## Secrets must be manually created in the namespace.
+    ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+    ## e.g:
+    ## pullSecrets:
+    ##   - myRegistryKeySecretName
+    ##
+    pullSecrets: []
+  ## @param renovate.extraEnvVars Array with extra environment variables to add to renovate containers
+  ## e.g:
+  ## extraEnvVars:
+  ##   - name: FOO
+  ##     value: "bar"
+  ##
+  extraEnvVars:
+    - name: LOG_LEVEL
+      value: debug
+    - name: RENOVATE_AUTODISCOVER
+      value: 'true'
+    - name: RENOVATE_ENDPOINT
+      value: 'https://codeberg.org'
+    - name: RENOVATE_GIT_AUTHOR
+      value: 'Renovate Bot <bot@renovateapp.com>'
+    - name: RENOVATE_PLATFORM
+      value: 'forgejo'
+  ## @param renovate.extraEnvVarsCM Name of existing ConfigMap containing extra env vars for renovate containers
+  ##
+  extraEnvVarsCM: ""
+  ## @param renovate.extraEnvVarsSecret Name of existing Secret containing extra env vars for renovate containers
+  ##
+  extraEnvVarsSecret: "renovate-env"
