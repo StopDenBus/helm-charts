@@ -6,3 +6,47 @@ samba:
       tag: 26.07.05
       pullSecrets:
         - name: dhi-secret
+    hostAliases:
+      - ip: "192.168.0.13"
+        hostnames:
+          - "samba.gusek.info"
+          - "samba"
+
+externalSecret:
+  enabled: true
+  secretStoreName: vault-backend
+  secretStoreKind: ClusterSecretStore
+  keyName: externaldns
+  algorithm: hmac-sha256
+  remoteKey: secrets/data/samba/tsig
+  remoteProperty: key
+
+dnsConfig:
+  enabled: true
+  dnsPolicy: "None"
+  nameservers:
+    - 192.168.0.13
+  searches:
+    - gusek.info
+  options:
+    - name: ndots
+      value: "5"
+
+service:
+  annotations:
+    metallb.io/allow-shared-ip: "share_this_service_ip"
+
+persistence:
+  named:
+    enabled: true
+    storageClass: "zfs"
+    size: 1Gi
+    accessModes:
+      - ReadWriteOnce
+  samba:
+    enabled: true
+    mountPath: /var/lib/samba
+    storageClass: "zfs"
+    size: 1Gi
+    accessModes:
+      - ReadWriteOnce
