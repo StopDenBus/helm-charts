@@ -10,6 +10,12 @@
       "automerge": true
     },
     {
+      "matchDatasources": ["docker"],
+      "matchPackageNames": ["malefitz01/samba"],
+      "commitMessageTopic": "samba Docker image",
+      "commitMessageExtra": "to {{newValue}}"
+    },
+    {
       "matchFileNames": ["charts/**/*"],
       "semanticCommitType": "fix",
       "semanticCommitScope": "{{parentDir}}",
