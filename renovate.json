@@ -29,5 +29,8 @@
       "username": "{{ secrets.MEND_DHI_USERNAME }}",
       "password": "{{ secrets.MEND_DHI_PASSWORD }}"
     }
-  ]
+  ],
+  "secrets": {
+    "ignorePaths": ["renovate.json"]
+  }
 }
