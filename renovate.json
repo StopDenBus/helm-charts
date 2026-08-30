@@ -11,7 +11,7 @@
     },
     {
       "matchDatasources": ["docker"],
-      "matchPackageNames": ["malefitz01/samba"],
+      "matchPackageNames": ["docker.io/malefitz01/samba"],
       "commitMessageTopic": "samba Docker image",
       "commitMessageExtra": "to {{newValue}}"
     },
