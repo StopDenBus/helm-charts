@@ -10,5 +10,5 @@ appVersion: 0.0.1
 dependencies:
   - name: samba
     repository: oci://codeberg.org/malefitz
-    version: 0.0.4
+    version: 0.0.12
     alias: samba
