@@ -78,7 +78,7 @@ mailu:
       enabled: true
       type: LoadBalancer
       annotations:
-        external-dns.alpha.kubernetes.io/hostname: mail.apps.gusek.info.
+        external-dns.kubernetes.io/hostname: mail.apps.gusek.info.
     updateStrategy:
       type: Recreate
 
