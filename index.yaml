@@ -8194,6 +8194,25 @@ entries:
     version: 0.0.1
   kgateway:
   - apiVersion: v2
+    created: "2026-08-31T23:12:34.120853069Z"
+    dependencies:
+    - alias: kgateway-crds
+      name: kgateway-crds
+      repository: oci://cr.kgateway.dev/kgateway-dev/charts
+      version: 2.4.3
+    - alias: kgateway
+      name: kgateway
+      repository: oci://cr.kgateway.dev/kgateway-dev/charts
+      version: v2.4.4
+    description: The kgateway project is a feature-rich, Kubernetes-native ingress
+      controller and next-generation API gateway.
+    digest: d82ddc8e5f375a0dc22e23c63df23125208b315e4a78c93e0629a8af2206f06a
+    name: kgateway
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/kgateway-0.0.24/kgateway-0.0.24.tgz
+    version: 0.0.24
+  - apiVersion: v2
     created: "2026-08-31T19:13:23.302558926Z"
     dependencies:
     - alias: kgateway-crds
@@ -12329,4 +12348,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-08-31T19:13:23.303538296Z"
+generated: "2026-08-31T23:12:34.241217793Z"
