@@ -3,6 +3,6 @@ samba:
     image:
       registry: docker.io
       repository: malefitz01/samba
-      tag: 26.09.13
+      tag: 26.09.20
       pullSecrets:
         - name: dhi-secret
