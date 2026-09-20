@@ -1,7 +1,7 @@
 pypi:
   image:
     repository: pypiserver/pypiserver
-    tag: v2.4.1
+    tag: v2.4.2
   volumes:
     - name: auth
       secret:
