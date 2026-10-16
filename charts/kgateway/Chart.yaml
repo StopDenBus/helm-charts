@@ -20,6 +20,6 @@ dependencies:
     repository: oci://cr.kgateway.dev/kgateway-dev/charts
     alias: kgateway-crds
   - name: kgateway
-    version: v2.4.6
+    version: v2.4.7
     repository: oci://cr.kgateway.dev/kgateway-dev/charts
     alias: kgateway
