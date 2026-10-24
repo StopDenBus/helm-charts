@@ -13,6 +13,7 @@ argocd:
 
   configs:
     cm:
+      application.resourceTrackingMethod: annotation
       exec.enabled: 'true'
       url: https://argocd.apps.gusek.info
       oidc.config: |
