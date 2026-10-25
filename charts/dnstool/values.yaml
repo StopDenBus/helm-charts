@@ -17,4 +17,4 @@ dnstool:
   externalSecret:
     vaultKey: secrets/data/kubernetes/dnstool
   # Cron schedule of the job. The update is idempotent: it only changes DNS when the public IP changed.
-  schedule: "@daily"
+  schedule: "@hourly"
