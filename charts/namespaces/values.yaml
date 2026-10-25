@@ -1,6 +1,8 @@
 namespaces:
   argocd: {}
   dex: {}
+  dnstool:
+    docker_dhi_secret: true
   dungeon: {}
   external-dns:
     docker_dhi_secret: true

@@ -1,0 +1,20 @@
+dnstool:
+  image:
+    registry: docker.io
+    repository: malefitz01/dnstool
+  imagePullSecrets:
+    - name: dhi-secret
+  username: mgusek
+  domainId: 674
+  args:
+    - update-ip
+    - --zone
+    - gusek.info
+    - --fqdn
+    - gusek.info
+    - --ttl
+    - 300
+  externalSecret:
+    vaultKey: secrets/data/kubernetes/dnstool
+  # Cron schedule of the job. The update is idempotent: it only changes DNS when the public IP changed.
+  schedule: "@daily"

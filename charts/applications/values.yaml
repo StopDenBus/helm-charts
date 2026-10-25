@@ -22,6 +22,16 @@ applications:
         prune: true
       syncOptions:
         - CreateNamespace=true
+  dnstool:
+    path: charts/dnstool
+    repoURL: git@github.com:StopDenBus/helm-charts.git
+    targetRevision: HEAD
+    namespace: dnstool
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
   external-dns:
     chart: external-dns
     helm:
