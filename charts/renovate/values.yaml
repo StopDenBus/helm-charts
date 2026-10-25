@@ -50,6 +50,8 @@ renovate:
       value: debug
     - name: RENOVATE_AUTODISCOVER
       value: 'true'
+    - name: RENOVATE_DETECT_HOST_RULES_FROM_ENV
+      value: 'true'
     - name: RENOVATE_ENDPOINT
       value: 'https://codeberg.org'
     - name: RENOVATE_GIT_AUTHOR
