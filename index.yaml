@@ -4985,6 +4985,23 @@ entries:
       category: Infrastructure
     apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-10-25T12:00:44.878869028Z"
+    dependencies:
+    - name: dnstool
+      repository: oci://codeberg.org/malefitz
+      version: 1.0.0
+    description: Keeps the DNS A record at opteam.ax pointed at the current public
+      IP.
+    digest: a0ee8184ace034704f5e5f16eb15c3f8be854f22acddc356bb20582f9cef1d55
+    name: dnstool
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/dnstool-0.1.1/dnstool-0.1.1.tgz
+    version: 0.1.1
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-10-25T11:41:12.601436466Z"
     dependencies:
     - name: dnstool
@@ -13156,4 +13173,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-10-25T11:41:13.050477387Z"
+generated: "2026-10-25T12:00:44.88058081Z"
