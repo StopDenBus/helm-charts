@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-10-25T11:41:12.261088688Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 2e842c12201503e23663c9914bd42b47fab319edefdb896238432d40779ae7bd
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.145/applications-0.0.145.tgz
+    version: 0.0.145
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-10-24T10:47:08.173907099Z"
     description: A Helm chart for ArgoCD applications
     digest: 837953b9dd2ecb88b9190e737cca1635e2a2482e7242d62caeca91da3465843f
@@ -4970,6 +4980,24 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.1/dex-0.0.1.tgz
     version: 0.0.1
+  dnstool:
+  - annotations:
+      category: Infrastructure
+    apiVersion: v2
+    appVersion: 0.0.1
+    created: "2026-10-25T11:41:12.601436466Z"
+    dependencies:
+    - name: dnstool
+      repository: oci://codeberg.org/malefitz
+      version: 1.0.0
+    description: Keeps the DNS A record at opteam.ax pointed at the current public
+      IP.
+    digest: 431102be4b91d1e85218d7ed0419d285ed5df67da3b0e15faeaeb8e8f8022820
+    name: dnstool
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/dnstool-0.1.0/dnstool-0.1.0.tgz
+    version: 0.1.0
   external-dns:
   - apiVersion: v2
     appVersion: 0.0.0
@@ -12036,6 +12064,15 @@ entries:
     version: 0.0.1
   namespaces:
   - apiVersion: v2
+    created: "2026-10-25T11:41:12.823544419Z"
+    description: This chart creates namespaces and secrets for it
+    digest: ccb5edd5f9b91cbeafa133eddfc693632cf6550b573fa7c50b93085830903ab9
+    name: namespaces
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/namespaces-0.0.5/namespaces-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
     created: "2026-07-06T11:48:24.537344814Z"
     description: This chart creates namespaces and secrets for it
     digest: fb586948dd17691f93827ff65095b0ed93ebfd92ec01ef15c030c9eac1b190ea
@@ -13119,4 +13156,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-10-24T11:10:40.98349013Z"
+generated: "2026-10-25T11:41:13.050477387Z"
