@@ -1,0 +1,12 @@
+apiVersion: v2
+name: dnstool
+description: Keeps the DNS A record at opteam.ax pointed at the current public IP.
+type: application
+annotations:
+  category: Infrastructure
+version: 0.1.0
+appVersion: 0.0.1
+dependencies:
+  - name: dnstool
+    repository: oci://codeberg.org/malefitz
+    version: 1.0.0
