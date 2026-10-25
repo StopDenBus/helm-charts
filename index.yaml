@@ -12848,6 +12848,23 @@ entries:
   renovate:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-10-25T13:10:34.041964676Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: A Helm chart for Renovate. Automated dependency updates. Multi-platform
+      and multi-language.
+    digest: cc076984641d12dc3b275d1522296307498fda5db7ed2280ed9c7eaf56793dcb
+    name: renovate
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/renovate-0.0.3/renovate-0.0.3.tgz
+    version: 0.0.3
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-10-25T12:40:59.210258677Z"
     dependencies:
     - name: common
@@ -13224,4 +13241,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-10-25T13:08:03.897760772Z"
+generated: "2026-10-25T13:10:34.043582072Z"
