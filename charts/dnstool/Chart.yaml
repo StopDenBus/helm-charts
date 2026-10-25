@@ -4,7 +4,7 @@ description: Keeps the DNS A record at opteam.ax pointed at the current public I
 type: application
 annotations:
   category: Infrastructure
-version: 0.1.0
+version: 0.1.1
 appVersion: 0.0.1
 dependencies:
   - name: dnstool
