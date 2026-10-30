@@ -33,7 +33,7 @@ mailu:
         username: "mailu"
     storageClass: "zfs"
 
-  mailuVersion: "2024.06.58"
+  mailuVersion: "2024.06.67"
 
   hostnames:
     - mailu.apps.gusek.info
