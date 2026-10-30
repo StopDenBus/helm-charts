@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-10-30T13:21:03.828601163Z"
+    description: A Helm chart for ArgoCD applications
+    digest: c35f2e73c1d7e61ca88e3d46e62db97110f8f2cbe862aff9b87dd23926b2a235
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.146/applications-0.0.146.tgz
+    version: 0.0.146
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-10-25T11:41:12.261088688Z"
     description: A Helm chart for ArgoCD applications
     digest: 2e842c12201503e23663c9914bd42b47fab319edefdb896238432d40779ae7bd
@@ -10105,6 +10115,25 @@ entries:
     version: 0.0.1
   mailu:
   - apiVersion: v2
+    created: "2026-10-30T13:21:04.02268965Z"
+    dependencies:
+    - alias: mailu
+      name: mailu
+      repository: https://mailu.github.io/helm-charts/
+      version: 2.8.0
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: This chart installs the Mailu mail system on kubernetes
+    digest: fd307d0cfe64615f5762b6305f440e64203c4bfa40abf48ce15596656bfce9fd
+    name: mailu
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mailu-0.0.33/mailu-0.0.33.tgz
+    version: 0.0.33
+  - apiVersion: v2
     created: "2026-09-19T17:38:17.762391418Z"
     dependencies:
     - alias: mailu
@@ -13290,4 +13319,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-10-26T23:49:22.26332976Z"
+generated: "2026-10-30T13:21:04.152310634Z"
