@@ -12,7 +12,7 @@
       "matchStrings": ["mailuVersion:\\s*\"?(?<currentValue>[\\w.-]+)\"?"],
       "datasourceTemplate": "docker",
       "depNameTemplate": "mailu/admin",
-      "packageNameTemplate": "docker.io/mailu/admin",
+      "packageNameTemplate": "ghcr.io/mailu/admin",
       "versioningTemplate": "docker"
     }
   ],
@@ -20,7 +20,7 @@
     {
       "matchManagers": ["custom.regex"],
       "matchFileNames": ["charts/mailu/values.yaml"],
-      "matchPackageNames": ["docker.io/mailu/admin"],
+      "matchPackageNames": ["ghcr.io/mailu/admin"],
       "commitMessageTopic": "Mailu images",
       "allowedVersions": "/^\\d{4}\\.\\d{2}\\.\\d+$/",
       "bumpVersions": [
