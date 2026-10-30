@@ -4,7 +4,34 @@
   "extends": [
     "config:recommended"
   ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Mailu image tag (mailuVersion) im mailu Umbrella-Chart",
+      "managerFilePatterns": ["/^charts/mailu/values\\.yaml$/"],
+      "matchStrings": ["mailuVersion:\\s*\"?(?<currentValue>[\\w.-]+)\"?"],
+      "datasourceTemplate": "docker",
+      "depNameTemplate": "mailu/admin",
+      "packageNameTemplate": "docker.io/mailu/admin",
+      "versioningTemplate": "docker"
+    }
+  ],
   "packageRules": [
+    {
+      "matchManagers": ["custom.regex"],
+      "matchFileNames": ["charts/mailu/values.yaml"],
+      "matchPackageNames": ["docker.io/mailu/admin"],
+      "commitMessageTopic": "Mailu images",
+      "allowedVersions": "/^\\d{4}\\.\\d{2}\\.\\d+$/",
+      "bumpVersions": [
+        {
+          "name": "mailu umbrella chart version",
+          "filePatterns": ["charts/mailu/Chart.yaml"],
+          "matchStrings": ["\\nversion:\\s*(?<version>\\S+)"],
+          "bumpType": "patch"
+        }
+      ]
+    },
     {
       "matchFileNames": ["charts/samba/*"],
       "automerge": true
