@@ -7658,6 +7658,37 @@ entries:
   istio:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-11-06T19:38:08.154319428Z"
+    dependencies:
+    - alias: istio-base
+      name: base
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.30.8
+    - alias: istio-istiod
+      name: istiod
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.30.8
+    - alias: istio-cni
+      name: cni
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.30.8
+    - alias: istio-gateway
+      name: gateway
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.30.8
+    - alias: istio-ztunnel
+      name: ztunnel
+      repository: https://istio-release.storage.googleapis.com/charts
+      version: 1.30.8
+    description: Helm chart for istio control plane
+    digest: a850335654c309e5b01cf1c0647ccd9097f34f48dd8064bde4ae1cddca9469ce
+    name: istio
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/istio-0.0.44/istio-0.0.44.tgz
+    version: 0.0.44
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-10-22T10:10:16.569216987Z"
     dependencies:
     - alias: istio-base
@@ -13454,4 +13485,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-11-06T15:45:32.05526782Z"
+generated: "2026-11-06T19:38:08.156093475Z"
