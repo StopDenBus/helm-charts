@@ -106,6 +106,13 @@ applications:
         prune: true
       syncOptions:
         - ServerSideApply=true
+    # The CRDs contain int64 limits (9223372036854775807) which ArgoCD parses as float64
+    # (...775000) while the API server stores ...774784 -> permanent OutOfSync.
+    ignoreDifferences:
+      - group: apiextensions.k8s.io
+        kind: CustomResourceDefinition
+        jqPathExpressions:
+          - '.. | select(type == "object") | (.maximum, .minimum) | select(. != null)'
   loki:
     enabled: false
     chart: loki
