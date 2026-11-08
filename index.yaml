@@ -13230,6 +13230,25 @@ entries:
       licenses: Apache-2.0
     apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-11-08T04:43:38.793471072Z"
+    dependencies:
+    - alias: samba
+      name: samba
+      repository: oci://codeberg.org/malefitz
+      version: 0.0.23
+    description: Samba is the standard Windows interoperability suite of programs
+      for Linux and Unix.
+    digest: 2fcfb9b19ff600e1c740db51703a290f12f53db86923eaf875d17813c5bcd36c
+    name: samba
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/samba-0.1.8/samba-0.1.8.tgz
+    version: 0.1.8
+  - annotations:
+      category: Infrastructure
+      licenses: Apache-2.0
+    apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-07-14T11:23:47.759070254Z"
     dependencies:
     - alias: samba
@@ -13568,4 +13587,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-11-07T21:49:05.379515636Z"
+generated: "2026-11-08T04:43:38.794121894Z"
