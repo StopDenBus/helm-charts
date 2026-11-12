@@ -13001,6 +13001,26 @@ entries:
   pihole:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-11-12T18:42:15.817597776Z"
+    dependencies:
+    - alias: pihole
+      name: pihole
+      repository: https://mojo2600.github.io/pihole-kubernetes/
+      version: 2.39.0
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: Installs pihole in kubernetes
+    digest: c4d66e73d1990575f378156df0e7fba5b4491a46cba1427a9fe3f3cde0432f8f
+    name: pihole
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/pihole-0.0.13/pihole-0.0.13.tgz
+    version: 0.0.13
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-08-31T04:48:01.235266192Z"
     dependencies:
     - alias: pihole
@@ -13700,4 +13720,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-11-11T21:28:23.373165965Z"
+generated: "2026-11-12T18:42:15.994146827Z"
