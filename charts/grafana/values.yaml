@@ -5,7 +5,7 @@ mcpServiceAccount:
   grafanaUrl: http://grafana
   adminSecretName: grafana-admin-password
   tokenSecretName: grafana-mcp-token
-  image: docker.io/alpine/k8s:1.35.10
+  image: docker.io/alpine/k8s:1.37.2
 
 grafana:
   deploymentStrategy:
