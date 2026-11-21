@@ -53,17 +53,6 @@ pihole:
     upstreamServers:
       - server=/gusek.info/192.168.0.13
 
-  ingress:
-    enabled: true
-    annotations:
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    hosts:
-      - pihole.apps.gusek.info
-    tls:
-      - hosts:
-        - pihole.apps.gusek.info
-        secretName: wildcard-apps
-
   adlists:
       - https://raw.githubusercontent.com/FadeMind/hosts.extras/master/add.Spam/hosts
       - https://v.firebog.net/hosts/static/w3kbl.txt
