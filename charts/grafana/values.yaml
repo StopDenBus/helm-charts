@@ -38,6 +38,8 @@ grafana:
           access: proxy
           type: prometheus
           url: http://prometheus-server
+          jsonData:
+            timeInterval: 60s
   envValueFrom:
     GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
       secretKeyRef:
