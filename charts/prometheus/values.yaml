@@ -1,0 +1,88 @@
+basicAuth:
+  enabled: true
+  secretName: prometheus-push-auth
+  username: alloy
+  vaultKey: secrets/data/kubernetes/monitoring/push
+  vaultProperty: key
+
+prometheus:
+  server:
+    fullnameOverride: prometheus-server
+    retention: 30d
+    extraFlags:
+      - web.enable-lifecycle
+      - web.enable-remote-write-receiver
+    persistentVolume:
+      enabled: true
+      storageClass: zfs
+      size: 20Gi
+    route:
+      main:
+        enabled: true
+        annotations:
+          link.argocd.argoproj.io/external-link: https://prometheus.apps.gusek.info
+        hostnames:
+          - prometheus.apps.gusek.info
+        parentRefs:
+          - group: gateway.networking.k8s.io
+            kind: Gateway
+            name: https
+            namespace: kgateway-system
+        matches:
+          - path:
+              type: PathPrefix
+              value: /
+
+  # Prepared, but not enabled yet:
+  # - alertmanager: enable it and configure receivers once a notification channel exists
+  # - node-exporter / kube-state-metrics: enable together with the cluster monitoring
+  alertmanager:
+    enabled: false
+  kube-state-metrics:
+    enabled: false
+  prometheus-node-exporter:
+    enabled: false
+  prometheus-pushgateway:
+    enabled: false
+
+  scrapeConfigs:
+    kubernetes-api-servers:
+      enabled: false
+    kubernetes-nodes:
+      enabled: false
+    kubernetes-nodes-cadvisor:
+      enabled: false
+    kubernetes-service-endpoints:
+      enabled: false
+    kubernetes-service-endpoints-slow:
+      enabled: false
+    prometheus-pushgateway:
+      enabled: false
+    kubernetes-services:
+      enabled: false
+    kubernetes-pods:
+      enabled: false
+    kubernetes-pods-slow:
+      enabled: false
+
+  # Hosts that are scraped by prometheus (pull), e.g. grafana alloy on a debian host:
+  #   - targets: ["stoppi.gusek.info:12345"]
+  # Hosts can also push their metrics to https://prometheus.apps.gusek.info/api/v1/write
+  extraScrapeConfigs: |
+    - job_name: hosts
+      static_configs:
+        - targets: []
+
+  serverFiles:
+    alerting_rules.yml:
+      groups:
+        - name: instances
+          rules:
+            - alert: InstanceDown
+              expr: up == 0
+              for: 5m
+              labels:
+                severity: page
+              annotations:
+                summary: "Instance {{ $labels.instance }} down"
+                description: "{{ $labels.instance }} of job {{ $labels.job }} has been down for more than 5 minutes."
