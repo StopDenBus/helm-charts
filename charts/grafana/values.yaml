@@ -38,6 +38,8 @@ grafana:
   route:
     main:
       enabled: true
+      annotations:
+        link.argocd.argoproj.io/external-link: https://grafana.apps.gusek.info
       hostnames:
         - grafana.apps.gusek.info
       parentRefs:
