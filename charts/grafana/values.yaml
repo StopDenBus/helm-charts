@@ -35,15 +35,15 @@ grafana:
       org_id: 1      
     server:
       root_url: https://grafana.apps.gusek.info
-  ingress:
-    enabled: true
-    annotations:
-        nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-    hosts:
-      - grafana.apps.gusek.info
-    tls:
-      - hosts:
+  route:
+    main:
+      enabled: true
+      hostnames:
         - grafana.apps.gusek.info
-        secretName: wildcard-apps
+      parentRefs:
+        - group: gateway.networking.k8s.io
+          kind: Gateway
+          name: https
+          namespace: kgateway-system
   testFramework:
     enabled: false   

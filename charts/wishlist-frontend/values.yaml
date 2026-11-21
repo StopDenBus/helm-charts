@@ -43,21 +43,6 @@ service:
   type: ClusterIP
   port: 80
 
-ingress:
-  enabled: true
-  className: ""
-  annotations:
-    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-  hosts:
-    - host: wishlist.apps.gusek.info
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls:
-    - hosts:
-      - wishlist.apps.gusek.info
-      secretName: wildcard-apps
-
 httproute:
   enabled: true
   hostnames:

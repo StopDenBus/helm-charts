@@ -56,17 +56,11 @@ Return feature branche helm parameters
 {{- define "featureBrancheHelmParameters" -}}
 {{- $featureBrancheName := (include "featureBrancheName" .) -}}
 {{- $hostname := printf "%s.apps.gusek.info" $featureBrancheName -}}
-{{- $hosts := dict "secretName" "wildcard-apps" "hosts" list $hostname  -}}
-{{- $extraTls := list $hosts -}}
 helm:
 {{ printf "releaseName: %s" $featureBrancheName | indent 2 }}
   parameters:
     - name: "application.image.tag"
       value: {{ .properties.tag }}
-    - name: "ingress.hostname"
+    - name: "httproute.hostnames[0]"
       value: {{ $hostname }}
-    - name: "ingress.extraTls[0].hosts[0]"
-      value: {{ printf "%s.apps.gusek.info" $featureBrancheName }}
-    - name: "ingress.extraTls[0].secretName"
-      value: "wildcard-apps"
 {{- end -}}

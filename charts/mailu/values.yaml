@@ -65,12 +65,7 @@ mailu:
     hostPath: /data/kubernetes/mailu
 
   ingress:
-    annotations:
-      kubernetes.io/ingress.class: nginx
-    extraTls:
-      - hosts:
-        - mailu.apps.gusek.info
-        secretName: wildcard-apps
+    enabled: false
     existingSecret: wildcard-apps
 
   front:
@@ -79,6 +74,10 @@ mailu:
       type: LoadBalancer
       annotations:
         external-dns.kubernetes.io/hostname: mail.apps.gusek.info.
+    updateStrategy:
+      type: Recreate
+
+  postfix:
     updateStrategy:
       type: Recreate
 
