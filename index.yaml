@@ -6507,6 +6507,21 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 9.5.2
+    created: "2026-11-21T15:16:12.747271081Z"
+    dependencies:
+    - alias: grafana
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 10.5.15
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 93a9def3156e2f905fa17c96475c5fae56212fc5e0c6dad3b4c92fdb8b3d2be6
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.78/grafana-0.0.78.tgz
+    version: 0.0.78
+  - apiVersion: v2
+    appVersion: 9.5.2
     created: "2026-11-21T15:05:35.024033096Z"
     dependencies:
     - alias: grafana
@@ -14263,4 +14278,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-11-21T15:05:35.025125712Z"
+generated: "2026-11-21T15:16:12.748226895Z"
