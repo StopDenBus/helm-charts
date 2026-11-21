@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-11-21T12:54:01.904244539Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 2e9be4a535ff9f35d3da52f2889aa20c48fdf6c03d31878200c557697be38311
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.148/applications-0.0.148.tgz
+    version: 0.0.148
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-11-07T12:09:49.123637308Z"
     description: A Helm chart for ArgoCD applications
     digest: c3ae016aa74576f60ee9ceca8362e08ff71c3ee4124b304f4d3b688c006bd7eb
@@ -4645,6 +4655,27 @@ entries:
   dex:
   - apiVersion: v2
     appVersion: 0.17.0
+    created: "2026-11-21T12:54:02.083445307Z"
+    dependencies:
+    - alias: dex
+      name: dex
+      repository: https://charts.dexidp.io
+      version: 0.26.0
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: OpenID Connect (OIDC) identity and OAuth 2.0 provider with pluggable
+      connectors.
+    digest: aa7c157900e27adacdb9c43f915aca564db996cd96ef0f71b240a9e97d10fcb0
+    name: dex
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/dex-0.0.36/dex-0.0.36.tgz
+    version: 0.0.36
+  - apiVersion: v2
+    appVersion: 0.17.0
     created: "2025-12-29T15:25:45.147345453Z"
     dependencies:
     - alias: dex
@@ -6427,6 +6458,21 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/external-secrets-0.0.1/external-secrets-0.0.1.tgz
     version: 0.0.1
   grafana:
+  - apiVersion: v2
+    appVersion: 9.5.2
+    created: "2026-11-21T12:54:02.377148004Z"
+    dependencies:
+    - alias: grafana
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 10.5.15
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 1c4a8e516f184a9be8b5075ac7a60c33fd83282bad669e6013110c71eafb0a09
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.73/grafana-0.0.73.tgz
+    version: 0.0.73
   - apiVersion: v2
     appVersion: 9.5.2
     created: "2026-01-30T09:05:34.719553939Z"
@@ -9769,6 +9815,21 @@ entries:
   loki:
   - apiVersion: v2
     appVersion: v2.8.2
+    created: "2026-11-21T12:54:02.539154653Z"
+    dependencies:
+    - alias: loki
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: 7.7.0
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: 38249ed16c9f62086ff8f490bf4462d83ee7673c192e4f484ef5e290f07cfd6d
+    name: loki
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/loki-0.0.50/loki-0.0.50.tgz
+    version: 0.0.50
+  - apiVersion: v2
+    appVersion: v2.8.2
     created: "2026-11-19T04:50:20.420413549Z"
     dependencies:
     - alias: loki
@@ -10488,6 +10549,25 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/loki-0.0.1/loki-0.0.1.tgz
     version: 0.0.1
   mailu:
+  - apiVersion: v2
+    created: "2026-11-21T12:54:02.747669479Z"
+    dependencies:
+    - alias: mailu
+      name: mailu
+      repository: https://mailu.github.io/helm-charts/
+      version: 2.8.0
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: This chart installs the Mailu mail system on kubernetes
+    digest: 616cbcdeff63cfba1acd4b71c03249f88975f1ae95e4106c5eba7ae368895ca5
+    name: mailu
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/mailu-0.0.39/mailu-0.0.39.tgz
+    version: 0.0.39
   - apiVersion: v2
     created: "2026-11-20T02:13:02.30048499Z"
     dependencies:
@@ -12937,6 +13017,20 @@ entries:
   php-hello-world:
   - apiVersion: v2
     appVersion: 0.0.13
+    created: "2026-11-21T12:54:02.920331765Z"
+    dependencies:
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      version: 1.x.x
+    description: A hello world app written in PHP
+    digest: d15cee4364ff8fdd4470a7bd186204e16cc688dc436f7f959c866526b3e99774
+    name: php-hello-world
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/php-hello-world-0.0.32/php-hello-world-0.0.32.tgz
+    version: 0.0.32
+  - apiVersion: v2
+    appVersion: 0.0.13
     created: "2023-05-20T14:22:21.490454473Z"
     dependencies:
     - name: common
@@ -13138,6 +13232,26 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/php-hello-world-0.0.1/php-hello-world-0.0.1.tgz
     version: 0.0.1
   pihole:
+  - apiVersion: v2
+    appVersion: 0.0.1
+    created: "2026-11-21T12:54:03.06247792Z"
+    dependencies:
+    - alias: pihole
+      name: pihole
+      repository: https://mojo2600.github.io/pihole-kubernetes/
+      version: 2.39.0
+    - name: common
+      repository: oci://registry-1.docker.io/bitnamicharts
+      tags:
+      - bitnami-common
+      version: 2.x.x
+    description: Installs pihole in kubernetes
+    digest: 5c1e06fbd76b39dc83e9e3159c27ad67b08c93eadb5c442652a86b285e081954
+    name: pihole
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/pihole-0.0.15/pihole-0.0.15.tgz
+    version: 0.0.15
   - apiVersion: v2
     appVersion: 0.0.1
     created: "2026-11-21T12:04:18.975864967Z"
@@ -13819,6 +13933,16 @@ entries:
   wishlist-backend:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-11-21T12:54:03.189862509Z"
+    description: A Helm chart for Kubernetes
+    digest: ac5be81addb18e326396f64305888a5713359be38463b43ba4f494abc3611821
+    name: wishlist-backend
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-backend-0.0.5/wishlist-backend-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2025-07-09T15:10:06.148718636Z"
     description: A Helm chart for Kubernetes
     digest: e2e2c52622d8f01de7391395e56e3fa52f5d45b2d07f790a341f3b3dffc6565c
@@ -13860,6 +13984,16 @@ entries:
   wishlist-frontend:
   - apiVersion: v2
     appVersion: 1.16.0
+    created: "2026-11-21T12:54:03.320123809Z"
+    description: A Helm chart for Kubernetes
+    digest: 3e2b3bb43d6f787909abfade707b28e48e9899f9481412e243205b79bfbd0f3a
+    name: wishlist-frontend
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.5/wishlist-frontend-0.0.5.tgz
+    version: 0.0.5
+  - apiVersion: v2
+    appVersion: 1.16.0
     created: "2025-12-28T22:31:31.826609182Z"
     description: A Helm chart for Kubernetes
     digest: 74ee381ced18391d4bc3bad11628d11866c7ab2ec36983a186e5de8ee611ace1
@@ -13898,4 +14032,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-11-21T12:04:19.145701682Z"
+generated: "2026-11-21T12:54:03.321232193Z"
