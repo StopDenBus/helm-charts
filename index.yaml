@@ -3,6 +3,16 @@ entries:
   applications:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-11-21T14:02:21.821483192Z"
+    description: A Helm chart for ArgoCD applications
+    digest: 1d98319e3cf8068b3f7f70d4a20625820b030044f4690a5618a22e752b61b1e4
+    name: applications
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/applications-0.0.149/applications-0.0.149.tgz
+    version: 0.0.149
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-11-21T12:54:01.904244539Z"
     description: A Helm chart for ArgoCD applications
     digest: 2e9be4a535ff9f35d3da52f2889aa20c48fdf6c03d31878200c557697be38311
@@ -6497,6 +6507,21 @@ entries:
   grafana:
   - apiVersion: v2
     appVersion: 9.5.2
+    created: "2026-11-21T14:02:21.967877472Z"
+    dependencies:
+    - alias: grafana
+      name: grafana
+      repository: https://grafana.github.io/helm-charts
+      version: 10.5.15
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 2291570b0fc0651129cd87cbe4c12c2d2880098d573b10ca1f5e0983b79ad735
+    name: grafana
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/grafana-0.0.75/grafana-0.0.75.tgz
+    version: 0.0.75
+  - apiVersion: v2
+    appVersion: 9.5.2
     created: "2026-11-21T13:24:07.570717979Z"
     dependencies:
     - alias: grafana
@@ -9865,6 +9890,21 @@ entries:
     - https://github.com/StopDenBus/helm-charts/releases/download/kgateway-0.0.1/kgateway-0.0.1.tgz
     version: 0.0.1
   loki:
+  - apiVersion: v2
+    appVersion: v2.8.2
+    created: "2026-11-21T14:02:22.146829481Z"
+    dependencies:
+    - alias: loki
+      name: loki
+      repository: https://grafana.github.io/helm-charts
+      version: 7.7.0
+    description: 'Loki: like Prometheus, but for logs.'
+    digest: 9a2c24145483b5ba41966d90109ea6b59286709540963d9b91d2a73619cfabdf
+    name: loki
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/loki-0.0.52/loki-0.0.52.tgz
+    version: 0.0.52
   - apiVersion: v2
     appVersion: v2.8.2
     created: "2026-11-21T13:24:07.825979577Z"
@@ -13607,6 +13647,22 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/pihole-0.0.1/pihole-0.0.1.tgz
     version: 0.0.1
+  prometheus:
+  - apiVersion: v2
+    appVersion: v3.16.0
+    created: "2026-11-21T14:02:22.307113003Z"
+    dependencies:
+    - alias: prometheus
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 29.48.0
+    description: Installs prometheus in kubernetes
+    digest: 7a0426130207eced862372b684e765f5224ce6260ca23651cff1ceed087bca5a
+    name: prometheus
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/prometheus-0.0.1/prometheus-0.0.1.tgz
+    version: 0.0.1
   pypiserver:
   - apiVersion: v2
     appVersion: 0.0.1
@@ -14177,4 +14233,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-11-21T13:24:08.868822276Z"
+generated: "2026-11-21T14:02:22.308788194Z"
