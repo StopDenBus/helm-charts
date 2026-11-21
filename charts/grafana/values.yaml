@@ -1,3 +1,12 @@
+mcpServiceAccount:
+  enabled: true
+  name: mcp
+  role: Viewer
+  grafanaUrl: http://grafana
+  adminSecretName: grafana-admin-password
+  tokenSecretName: grafana-mcp-token
+  image: docker.io/alpine/k8s:1.35.10
+
 grafana:
   deploymentStrategy:
     type: Recreate
