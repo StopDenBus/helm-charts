@@ -1,0 +1,618 @@
+{
+  "uid": "host-logs",
+  "title": "Host Logs",
+  "tags": [
+    "host",
+    "logs",
+    "journal"
+  ],
+  "timezone": "browser",
+  "editable": true,
+  "graphTooltip": 1,
+  "schemaVersion": 41,
+  "version": 1,
+  "refresh": "1m",
+  "time": {
+    "from": "now-3h",
+    "to": "now"
+  },
+  "templating": {
+    "list": [
+      {
+        "name": "ds_loki",
+        "label": "Loki",
+        "type": "datasource",
+        "query": "loki",
+        "current": {},
+        "hide": 0,
+        "includeAll": false,
+        "multi": false,
+        "options": [],
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false
+      },
+      {
+        "name": "host",
+        "label": "host",
+        "type": "query",
+        "datasource": {
+          "type": "loki",
+          "uid": "${ds_loki}"
+        },
+        "query": {
+          "label": "host",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "{job=\"systemd-journal\"}",
+          "type": 1
+        },
+        "refresh": 2,
+        "includeAll": true,
+        "multi": true,
+        "allValue": ".*",
+        "sort": 1,
+        "current": {},
+        "options": [],
+        "regex": "",
+        "hide": 0,
+        "skipUrlSync": false
+      },
+      {
+        "name": "unit",
+        "label": "unit",
+        "type": "query",
+        "datasource": {
+          "type": "loki",
+          "uid": "${ds_loki}"
+        },
+        "query": {
+          "label": "unit",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "{job=\"systemd-journal\", host=~\"$host\"}",
+          "type": 1
+        },
+        "refresh": 2,
+        "includeAll": true,
+        "multi": true,
+        "allValue": ".*",
+        "sort": 1,
+        "current": {},
+        "options": [],
+        "regex": "",
+        "hide": 0,
+        "skipUrlSync": false
+      },
+      {
+        "name": "level",
+        "label": "level",
+        "type": "query",
+        "datasource": {
+          "type": "loki",
+          "uid": "${ds_loki}"
+        },
+        "query": {
+          "label": "level",
+          "refId": "LokiVariableQueryEditor-VariableQuery",
+          "stream": "{job=\"systemd-journal\", host=~\"$host\"}",
+          "type": 1
+        },
+        "refresh": 2,
+        "includeAll": true,
+        "multi": true,
+        "allValue": ".*",
+        "sort": 1,
+        "current": {},
+        "options": [],
+        "regex": "",
+        "hide": 0,
+        "skipUrlSync": false
+      },
+      {
+        "name": "search",
+        "label": "Suche",
+        "type": "textbox",
+        "query": "",
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "options": [
+          {
+            "selected": true,
+            "text": "",
+            "value": ""
+          }
+        ],
+        "hide": 0,
+        "skipUrlSync": false
+      }
+    ]
+  },
+  "annotations": {
+    "list": []
+  },
+  "links": [],
+  "panels": [
+    {
+      "id": 1,
+      "type": "stat",
+      "title": "Log-Zeilen",
+      "datasource": {
+        "type": "loki",
+        "uid": "${ds_loki}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${ds_loki}"
+          },
+          "expr": "sum(count_over_time({job=\"systemd-journal\", host=~\"$host\", unit=~\"$unit\", level=~\"$level\"} |~ \"(?i)$search\" [$__range]))",
+          "legendFormat": "",
+          "editorMode": "code",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "auto",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 2,
+      "type": "stat",
+      "title": "Fehler (error/crit/alert/emerg)",
+      "datasource": {
+        "type": "loki",
+        "uid": "${ds_loki}"
+      },
+      "gridPos": {
+        "x": 6,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${ds_loki}"
+          },
+          "expr": "sum(count_over_time({job=\"systemd-journal\", host=~\"$host\", unit=~\"$unit\", level=~\"error|crit|alert|emerg\"} |~ \"(?i)$search\" [$__range]))",
+          "legendFormat": "",
+          "editorMode": "code",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "auto",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 3,
+      "type": "stat",
+      "title": "Warnungen",
+      "datasource": {
+        "type": "loki",
+        "uid": "${ds_loki}"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${ds_loki}"
+          },
+          "expr": "sum(count_over_time({job=\"systemd-journal\", host=~\"$host\", unit=~\"$unit\", level=\"warning\"} |~ \"(?i)$search\" [$__range]))",
+          "legendFormat": "",
+          "editorMode": "code",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 100
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "auto",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 4,
+      "type": "stat",
+      "title": "Aktive Units",
+      "datasource": {
+        "type": "loki",
+        "uid": "${ds_loki}"
+      },
+      "gridPos": {
+        "x": 18,
+        "y": 0,
+        "w": 6,
+        "h": 4
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${ds_loki}"
+          },
+          "expr": "count(sum by (unit) (count_over_time({job=\"systemd-journal\", host=~\"$host\", unit=~\"$unit\", level=~\"$level\"} |~ \"(?i)$search\" [$__range])))",
+          "legendFormat": "",
+          "editorMode": "code",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "colorMode": "value",
+        "graphMode": "none",
+        "textMode": "auto",
+        "justifyMode": "auto"
+      }
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Log-Volumen nach Level",
+      "datasource": {
+        "type": "loki",
+        "uid": "${ds_loki}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 4,
+        "w": 16,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${ds_loki}"
+          },
+          "expr": "sum by (level) (count_over_time({job=\"systemd-journal\", host=~\"$host\", unit=~\"$unit\", level=~\"$level\"} |~ \"(?i)$search\" [$__interval]))",
+          "legendFormat": "{{level}}",
+          "editorMode": "code",
+          "range": true
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "custom": {
+            "drawStyle": "bars",
+            "lineWidth": 1,
+            "fillOpacity": 80,
+            "showPoints": "never",
+            "spanNulls": true,
+            "stacking": {
+              "mode": "normal",
+              "group": "A"
+            }
+          },
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "bottom",
+          "calcs": [
+            "sum"
+          ],
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "desc"
+        }
+      }
+    },
+    {
+      "id": 6,
+      "type": "bargauge",
+      "title": "Top 10 Units nach Log-Zeilen",
+      "datasource": {
+        "type": "loki",
+        "uid": "${ds_loki}"
+      },
+      "gridPos": {
+        "x": 16,
+        "y": 4,
+        "w": 8,
+        "h": 8
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${ds_loki}"
+          },
+          "expr": "topk(10, sum by (unit) (count_over_time({job=\"systemd-journal\", host=~\"$host\", unit=~\"$unit\", level=~\"$level\"} |~ \"(?i)$search\" [$__range])))",
+          "legendFormat": "{{unit}}",
+          "editorMode": "code",
+          "instant": true,
+          "range": false
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "short",
+          "min": 0,
+          "max": null,
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "blue",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "showUnfilled": true,
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "namePlacement": "left",
+        "valueMode": "color",
+        "sizing": "auto",
+        "minVizHeight": 16
+      }
+    },
+    {
+      "id": 7,
+      "type": "row",
+      "title": "Fehler und Warnungen",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 12,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "id": 8,
+      "type": "logs",
+      "title": "Fehler und Warnungen",
+      "datasource": {
+        "type": "loki",
+        "uid": "${ds_loki}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 13,
+        "w": 24,
+        "h": 10
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${ds_loki}"
+          },
+          "expr": "{job=\"systemd-journal\", host=~\"$host\", unit=~\"$unit\", level=~\"error|warning|crit|alert|emerg\"} |~ \"(?i)$search\"",
+          "queryType": "range",
+          "editorMode": "code"
+        }
+      ],
+      "options": {
+        "showTime": true,
+        "showLabels": false,
+        "showCommonLabels": false,
+        "wrapLogMessage": true,
+        "prettifyLogMessage": false,
+        "enableLogDetails": true,
+        "dedupStrategy": "none",
+        "sortOrder": "Descending",
+        "enableInfiniteScrolling": false
+      }
+    },
+    {
+      "id": 9,
+      "type": "row",
+      "title": "Alle Logs",
+      "collapsed": false,
+      "gridPos": {
+        "x": 0,
+        "y": 23,
+        "w": 24,
+        "h": 1
+      },
+      "panels": []
+    },
+    {
+      "id": 10,
+      "type": "logs",
+      "title": "Journal",
+      "datasource": {
+        "type": "loki",
+        "uid": "${ds_loki}"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 24,
+        "w": 24,
+        "h": 16
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "type": "loki",
+            "uid": "${ds_loki}"
+          },
+          "expr": "{job=\"systemd-journal\", host=~\"$host\", unit=~\"$unit\", level=~\"$level\"} |~ \"(?i)$search\"",
+          "queryType": "range",
+          "editorMode": "code"
+        }
+      ],
+      "options": {
+        "showTime": true,
+        "showLabels": false,
+        "showCommonLabels": false,
+        "wrapLogMessage": true,
+        "prettifyLogMessage": false,
+        "enableLogDetails": true,
+        "dedupStrategy": "none",
+        "sortOrder": "Descending",
+        "enableInfiniteScrolling": false
+      }
+    }
+  ]
+}
