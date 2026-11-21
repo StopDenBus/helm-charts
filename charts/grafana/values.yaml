@@ -1,4 +1,10 @@
 grafana:
+  deploymentStrategy:
+    type: Recreate
+  persistence:
+    enabled: true
+    storageClassName: zfs
+    size: 2Gi
   admin:
     existingSecret: "grafana-admin-password"
     passwordKey: admin-password
@@ -14,6 +20,10 @@ grafana:
             maxLines: 1000
           type: loki
           url: http://loki:3100
+        - name: prometheus
+          access: proxy
+          type: prometheus
+          url: http://prometheus-server
   envValueFrom:
     GF_AUTH_GENERIC_OAUTH_CLIENT_SECRET:
       secretKeyRef:

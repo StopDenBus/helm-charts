@@ -5,6 +5,12 @@ httproute:
   backendRef:
     serviceName: loki
     port: 3100
+  basicAuth:
+    enabled: true
+    secretName: loki-push-auth
+    username: alloy
+    vaultKey: secrets/data/kubernetes/monitoring/push
+    vaultProperty: key
   parentRefs:
     - group: gateway.networking.k8s.io
       kind: Gateway

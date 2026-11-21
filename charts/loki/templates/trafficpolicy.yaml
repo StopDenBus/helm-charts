@@ -1,0 +1,15 @@
+{{- if and .Values.httproute.enabled .Values.httproute.basicAuth.enabled }}
+apiVersion: gateway.kgateway.dev/v1alpha1
+kind: TrafficPolicy
+metadata:
+  name: {{ .Release.Name }}-basic-auth
+spec:
+  targetRefs:
+    - group: gateway.networking.k8s.io
+      kind: HTTPRoute
+      name: {{ .Release.Name }}
+  basicAuth:
+    secretRef:
+      name: {{ .Values.httproute.basicAuth.secretName }}
+      key: .htpasswd
+{{- end }}

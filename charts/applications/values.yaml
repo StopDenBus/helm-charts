@@ -58,7 +58,6 @@ applications:
         - CreateNamespace=true
         - ServerSideApply=true
   grafana:
-    enabled: false
     chart: grafana
     helm:
       releaseName: grafana
@@ -114,7 +113,6 @@ applications:
         jqPathExpressions:
           - '.. | select(type == "object") | (.maximum, .minimum) | select(. != null)'
   loki:
-    enabled: false
     chart: loki
     helm:
       releaseName: loki
@@ -239,6 +237,18 @@ applications:
     featureBranches:
       feature/cool-feature:
         tag: 40ba834d914638ecee75159a7f25cbed2d96e3fc
+  prometheus:
+    chart: prometheus
+    helm:
+      releaseName: prometheus
+    namespace: monitoring
+    project: default
+    syncPolicy:
+      automated:
+        selfHeal: true
+        prune: true
+      syncOptions:
+        - CreateNamespace=true
   pypiserver:
     chart: pypiserver
     helm:
