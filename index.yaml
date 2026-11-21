@@ -1454,6 +1454,22 @@ entries:
   argocd:
   - apiVersion: v2
     appVersion: 6.0.4
+    created: "2026-11-21T13:20:15.773240225Z"
+    dependencies:
+    - alias: argocd
+      name: argo-cd
+      repository: https://argoproj.github.io/argo-helm
+      version: 10.18.2
+    description: A Helm chart for ArgoCD, a declarative, GitOps continuous delivery
+      tool for Kubernetes.
+    digest: 75142fb81dc7d91d7e5b44d699199e3c8846355fc9db7c04a716f2dede9f366f
+    name: argocd
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/argocd-0.1.203/argocd-0.1.203.tgz
+    version: 0.1.203
+  - apiVersion: v2
+    appVersion: 6.0.4
     created: "2026-11-19T08:54:17.86504777Z"
     dependencies:
     - alias: argocd
@@ -13490,6 +13506,21 @@ entries:
   pypiserver:
   - apiVersion: v2
     appVersion: 0.0.1
+    created: "2026-11-21T13:20:17.141606338Z"
+    dependencies:
+    - alias: pypi
+      name: pypiserver
+      repository: https://community-charts.github.io/helm-charts
+      version: 0.1.9
+    description: A Helm chart for PyPI Server
+    digest: d8d732c0f9439fff01a864e5c0e390496ea5dc8f6420ebe42942afe78d2e074d
+    name: pypiserver
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/pypiserver-0.0.7/pypiserver-0.0.7.tgz
+    version: 0.0.7
+  - apiVersion: v2
+    appVersion: 0.0.1
     created: "2026-02-22T11:46:06.253758173Z"
     dependencies:
     - alias: pypi
@@ -14032,4 +14063,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-11-21T12:54:03.321232193Z"
+generated: "2026-11-21T13:20:17.342392069Z"
