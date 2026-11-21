@@ -50,7 +50,15 @@
         "multi": true,
         "allValue": ".*",
         "sort": 1,
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": [
+            "All"
+          ],
+          "value": [
+            "$__all"
+          ]
+        },
         "options": [],
         "regex": "",
         "hide": 0,
