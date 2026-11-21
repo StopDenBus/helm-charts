@@ -9,8 +9,12 @@ metadata:
     {{- if .Values.commonLabels }}
     {{- include "common.tplvalues.render" ( dict "value" .Values.commonLabels "context" $ ) | nindent 4 }}
     {{- end }}
-  {{- if .Values.commonAnnotations }}
-  annotations: {{- include "common.tplvalues.render" ( dict "value" .Values.commonAnnotations "context" $ ) | nindent 4 }}
+  {{- $annotations := .Values.commonAnnotations | default dict }}
+  {{- if .Values.httproute.hostnames }}
+  {{- $annotations = merge (dict) $annotations (dict "link.argocd.argoproj.io/external-link" (printf "https://%s" (first .Values.httproute.hostnames))) }}
+  {{- end }}
+  {{- with $annotations }}
+  annotations: {{- include "common.tplvalues.render" ( dict "value" . "context" $ ) | nindent 4 }}
   {{- end }}
 spec:
   parentRefs: {{- toYaml .Values.httproute.parentRefs | nindent 4 }}

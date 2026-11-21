@@ -5,6 +5,14 @@ metadata:
   name: {{ include "pypi.fullname" . }}
   labels:
     {{- include "pypi.labels" . | nindent 4 }}
+  {{- $annotations := .Values.httproute.annotations | default dict }}
+  {{- if .Values.httproute.hostnames }}
+  {{- $annotations = merge (dict) $annotations (dict "link.argocd.argoproj.io/external-link" (printf "https://%s" (first .Values.httproute.hostnames))) }}
+  {{- end }}
+  {{- with $annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   parentRefs:
     {{- with .Values.httproute.parentRefs }}
