@@ -13714,6 +13714,21 @@ entries:
   prometheus:
   - apiVersion: v2
     appVersion: v3.16.0
+    created: "2026-11-22T22:33:18.219228277Z"
+    dependencies:
+    - alias: prometheus
+      name: prometheus
+      repository: https://prometheus-community.github.io/helm-charts
+      version: 29.49.0
+    description: Installs prometheus in kubernetes
+    digest: 57bcf03c365781c52ad7494715b6afb8e561cd4193ad46373bdcf462137ea760
+    name: prometheus
+    type: application
+    urls:
+    - https://github.com/StopDenBus/helm-charts/releases/download/prometheus-0.0.2/prometheus-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
+    appVersion: v3.16.0
     created: "2026-11-21T14:02:22.307113003Z"
     dependencies:
     - alias: prometheus
@@ -14316,4 +14331,4 @@ entries:
     urls:
     - https://github.com/StopDenBus/helm-charts/releases/download/wishlist-frontend-0.0.1/wishlist-frontend-0.0.1.tgz
     version: 0.0.1
-generated: "2026-11-22T14:43:23.030593155Z"
+generated: "2026-11-22T22:33:18.21985452Z"
